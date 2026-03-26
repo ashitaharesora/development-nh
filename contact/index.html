@@ -55,11 +55,23 @@
 
           <form
             class="c-form"
-            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdD5zeCiiHSxw3hlCwxmcPIyX9hZiXR81apohSN_dLKA6AMXA/formResponse?pli=1"
+            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfVRJAhcmWNw9usFn9-19uO_OUwtYYvd1p2VY_w2omvUFCtPA/formResponse"
             method="POST"
             target="hidden_iframe"
             onsubmit="submitted=true;"
           >
+            <div class="c-form__item">
+              <label class="c-form__label" for="field-mail">メールアドレス<span class="c-form__required">必須</span></label>
+              <input
+                class="c-form__input"
+                id="field-mail"
+                name="entry.495569430"
+                type="email"
+                placeholder="sample@example.com"
+                required
+              />
+            </div>
+
             <div class="c-form__item">
               <label class="c-form__label" for="field-name">お名前<span class="c-form__required">必須</span></label>
               <input
@@ -72,30 +84,15 @@
               />
             </div>
 
-            <!-- メールアドレスの entry ID が未取得のため、いったん非表示。取得後に追加してください。 -->
-            <!--
-            <div class="c-form__item">
-              <label class="c-form__label" for="field-mail">メールアドレス<span class="c-form__required">必須</span></label>
-              <input
-                class="c-form__input"
-                id="field-mail"
-                name="entry.XXXXXXXXXX"
-                type="email"
-                placeholder="sample@example.com"
-                required
-              />
-            </div>
-            -->
-
             <div class="c-form__item">
               <label class="c-form__label" for="field-job">ご職業</label>
-              <select class="c-form__input" id="field-job" name="entry.303009770">
-                <option value="" selected>選択してください</option>
-                <option value="個人事業主">個人事業主</option>
-                <option value="法人代表">法人代表</option>
-                <option value="会社員">会社員</option>
-                <option value="その他">その他</option>
-              </select>
+              <input
+                class="c-form__input"
+                id="field-job"
+                name="entry.303009770"
+                type="text"
+                placeholder="個人事業主 / 法人代表 / 会社員 など"
+              />
             </div>
 
             <div class="c-form__item">
@@ -120,7 +117,7 @@
             </div>
 
             <div class="c-form__item">
-              <label class="c-form__label" for="field-other">その他のご希望など</label>
+              <label class="c-form__label" for="field-other">その他のご希望等</label>
               <textarea
                 class="c-form__input c-form__textarea c-form__textarea-small"
                 id="field-other"
@@ -141,7 +138,7 @@
             name="hidden_iframe"
             id="hidden_iframe"
             style="display:none"
-            onload="if(submitted){window.location='./thanks/';}"
+            onload="if(submitted){window.location='./thanks.html';}"
           ></iframe>
         </div>
       </div>
