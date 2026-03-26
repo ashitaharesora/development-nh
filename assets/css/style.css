@@ -2497,7 +2497,7 @@ body:not(.home-page) .service-local-nav li {
   .container,
   .header-inner,
   .footer-inner {
-    width: min(100% - 16px, 1200px);
+    width: min(100% - 4px, 1200px);
   }
 
   .section,
@@ -2627,6 +2627,6 @@ body:not(.home-page) .service-local-nav li {
   .container,
   .header-inner,
   .footer-inner {
-    width: min(100% - 10px, 1200px);
+    width: min(100% - 4px, 1200px);
   }
 }
