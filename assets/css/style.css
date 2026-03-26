@@ -2438,3 +2438,55 @@ body:not(.home-page) .service-local-nav li {
     justify-content: center;
   }
 }
+
+/* ===== smartphone typography tuning ===== */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+    line-height: 1.35;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    line-height: 1.4;
+  }
+
+  h3 {
+    font-size: 1.08rem;
+    line-height: 1.45;
+  }
+
+  p,
+  li,
+  .meta,
+  .section-lead,
+  .nav-item,
+  .button,
+  .card p,
+  .news-item p,
+  .blog-item p,
+  .footer-links a {
+    font-size: 0.92rem;
+  }
+
+  .hero-kicker,
+  .brand-kicker,
+  .breadcrumbs {
+    font-size: 0.78rem;
+  }
+
+  .brand-name {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .button,
+  .nav-cta-group .nav-item.cta {
+    font-size: 0.9rem;
+  }
+}
