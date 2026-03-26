@@ -2057,3 +2057,108 @@ body:not(.home-page) .service-local-nav li {
     max-width: none;
   }
 }
+
+
+/* ===== header menu simplification + CTA color update ===== */
+
+.nav-list {
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.nav-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: 0.45rem;
+  flex-shrink: 0;
+}
+
+.nav-item.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.66rem 1rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* フッターの水色に合わせる */
+.nav-item.cta-free {
+  background: #cce7ff;
+  color: #234f79;
+  border: 1px solid #cce7ff;
+}
+
+.nav-item.cta-free:hover {
+  background: #b7dbfb;
+  border-color: #b7dbfb;
+  color: #1f456a;
+}
+
+.nav-item.cta-phone {
+  background: #ffffff;
+  color: #2b5f93;
+  border: 1px solid #b8d0e8;
+}
+
+.nav-item.cta-phone:hover {
+  background: #eef6fd;
+  color: #234f79;
+  border-color: #9fc0df;
+}
+
+@media (min-width: 1201px) {
+  .nav-list {
+    flex-wrap: nowrap;
+  }
+
+  .nav-item {
+    font-size: 0.94rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .brand-name {
+    font-size: 0.96rem;
+  }
+
+  .nav-item {
+    font-size: 0.9rem;
+  }
+
+  .nav-item.cta {
+    padding: 0.62rem 0.88rem;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-cta-group {
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
+    margin-top: 0.4rem;
+  }
+
+  .nav-item.cta {
+    flex: 1 1 auto;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-item.cta {
+    width: 100%;
+    max-width: none;
+  }
+}
