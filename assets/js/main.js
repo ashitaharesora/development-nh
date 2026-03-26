@@ -39,3 +39,29 @@ document.addEventListener('DOMContentLoaded', () => {
     year.textContent = new Date().getFullYear();
   }
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const targets = document.querySelectorAll(
+    ".js-fade-up, .js-slide-left, .js-slide-right"
+  );
+
+  if (!targets.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: "0px 0px -40px 0px",
+    }
+  );
+
+  targets.forEach((target) => observer.observe(target));
+});
