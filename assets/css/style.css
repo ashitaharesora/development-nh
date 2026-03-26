@@ -2145,3 +2145,22 @@ body:not(.home-page) .service-local-nav li {
     aspect-ratio: 5 / 4;
   }
 }
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
