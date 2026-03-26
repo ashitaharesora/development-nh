@@ -1,71 +1,2059 @@
-/* ===== header CTA buttons patch ===== */
+@font-face {
+  font-family: 'はれのそら明朝';
+  src: url('../fonts/harenosora-mincho.woff2') format('woff2'),
+    url('../fonts/harenosora-mincho.woff') format('woff');
+  font-display: swap;
+}
 
+:root {
+  --bg: #ffffff;
+  --text: #172033;
+  --muted: #5d697d;
+  --line: #d7dfeb;
+  --accent: #d9ecfb;
+  --accent-strong: #9cc7eb;
+  --card: #f7fbff;
+  --hero: #103f70;
+  --hero-overlay: rgba(7, 31, 59, .44);
+  --max: 1100px;
+  --shadow: 0 18px 44px rgba(18, 45, 78, .08);
+}
+
+* {
+  box-sizing: border-box
+}
+
+html {
+  scroll-behavior: smooth
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.9
+}
+
+a {
+  color: inherit;
+  text-decoration: none
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, .95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line)
+}
+
+.header-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0
+}
+
+.brand-logo {
+  width: 62px;
+  height: 62px;
+  flex: 0 0 62px
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0
+}
+
+.brand-kicker {
+  font-size: 12px;
+  letter-spacing: .08em;
+  color: var(--muted)
+}
+
+.brand-name {
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 20px;
+  line-height: 1.35
+}
+
+.nav-toggle {
+  display: none;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 28px
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  background: var(--text);
+  margin: 7px 0;
+  border-radius: 999px
+}
+
+.nav-list {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif
+}
+
+.nav-item {
+  font-size: 15px
+}
+
+.nav-item.cta {
+  padding: 9px 15px;
+  border: 1px solid var(--text);
+  border-radius: 999px;
+  background: #fff
+}
+
+main {
+  min-height: 60vh
+}
+
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 20px
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  background: #163f6d;
+  color: #fff
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, var(--hero-overlay), rgba(7, 31, 59, .30) 45%, rgba(7, 31, 59, .18)), url('../img/photo1.jpg') center/cover no-repeat
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(7, 31, 59, .12))
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  padding-top: 96px;
+  padding-bottom: 96px
+}
+
+.hero-kicker {
+  display: inline-flex;
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 255, 255, .38);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .08);
+  font-size: 13px;
+  letter-spacing: .08em;
+  margin-bottom: 16px
+}
+
+.hero h1 {
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400;
+  font-size: clamp(30px, 5vw, 54px);
+  line-height: 1.32;
+  margin: 0 0 20px;
+  max-width: 900px;
+  text-shadow: 0 6px 24px rgba(0, 0, 0, .18)
+}
+
+.hero p {
+  margin: 0;
+  font-size: 17px;
+  max-width: 850px;
+  color: rgba(255, 255, 255, .92)
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 30px
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--text);
+  background: #fff;
+  min-width: 180px;
+  transition: .2s ease
+}
+
+.hero .button {
+  border-color: rgba(255, 255, 255, .5)
+}
+
+.hero .button:not(.primary) {
+  background: rgba(255, 255, 255, .12);
+  color: #fff
+}
+
+.button.primary {
+  background: var(--text);
+  color: #fff
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(18, 45, 78, .08)
+}
+
+.section {
+  padding: 52px 0
+}
+
+.section.alt {
+  background: #f7fbff
+}
+
+.section h2 {
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400;
+  font-size: clamp(25px, 4vw, 34px);
+  line-height: 1.45;
+  margin: 0 0 18px
+}
+
+.section-lead {
+  color: var(--muted);
+  max-width: 860px;
+  margin: 0 0 30px
+}
+
+.grid {
+  display: grid;
+  gap: 20px
+}
+
+.grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+}
+
+.grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+}
+
+.card,
+.news-item,
+.blog-item,
+.work-item,
+.cta-box,
+.profile-card,
+.fee-guide {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow)
+}
+
+.card {
+  padding: 24px
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400;
+  line-height: 1.5
+}
+
+.card p {
+  margin: 0;
+  color: #374151
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none
+}
+
+.list li {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(360px, 0.82fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 14px
+}
+
+.page-hero {
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, #fff, #f8fbff)
+}
+
+.page-hero h1 {
+  margin: 0 0 8px;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 400
+}
+
+.breadcrumbs {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: var(--muted)
+}
+
+.breadcrumbs a {
+  text-decoration: underline
+}
+
+.content {
+  max-width: 800px
+}
+
+.content h2,
+.content h3 {
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400;
+  line-height: 1.5
+}
+
+.content h2 {
+  font-size: 28px;
+  margin: 40px 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line)
+}
+
+.content h3 {
+  font-size: 22px;
+  margin: 28px 0 8px
+}
+
+.content p {
+  margin: 0 0 18px
+}
+
+.content ul,
+.content ol {
+  margin: 0 0 18px 1.25em
+}
+
+.content li {
+  margin: 0 0 8px
+}
+
+.news-list,
+.blog-list {
+  display: grid;
+  gap: 16px
+}
+
+.news-item,
+.blog-item,
+.work-item {
+  padding: 22px
+}
+
+.news-item time,
+.blog-item .meta,
+.work-item .meta {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 8px
+}
+
+.news-item h3,
+.blog-item h3,
+.work-item h3 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.5;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--accent);
+  border-radius: 999px;
+  font-size: 12px
+}
+
+.notice {
+  padding: 16px 18px;
+  border: 1px solid var(--accent-strong);
+  background: #f5fbff;
+  border-radius: 16px
+}
+
+.faq-item {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line)
+}
+
+.faq-item h3 {
+  margin: 0 0 8px;
+  font-size: 20px
+}
+
+.cta-box {
+  background: linear-gradient(135deg, #f7fbff, #eef6ff);
+  padding: 30px
+}
+
+.site-footer {
+  margin-top: 64px;
+  border-top: 1px solid var(--line);
+  background: rgba(204, 231, 255, .8)
+}
+
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 14px
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px
+}
+
+.footer-links a {
+  padding: 8px 12px;
+  border: 1px solid rgba(0, 0, 0, .45);
+  border-radius: 999px;
+  background: #fff
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 18px
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 8px;
+  text-align: left;
+  vertical-align: top
+}
+
+.table th {
+  width: 28%;
+  color: var(--muted);
+  font-weight: 400
+}
+
+.profile-card {
+  overflow: hidden
+}
+
+.profile-photo {
+  width: 100%;
+  aspect-ratio: 5/4;
+  object-fit: cover
+}
+
+.profile-body {
+  padding: 22px
+}
+
+.profile-name {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400
+}
+
+.profile-role {
+  margin: 0 0 14px;
+  color: var(--muted)
+}
+
+.mini-logo {
+  width: 92px;
+  margin: 0 0 18px
+}
+
+.service-visual {
+  margin: 22px 0 0
+}
+
+.fee-guide {
+  padding: 18px
+}
+
+.fee-guide img {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--line)
+}
+
+.fee-guide figcaption {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--muted)
+}
+
+.logo-strip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.logo-strip img {
+  width: 64px;
+  height: 64px;
+}
+
+.logo-strip h3 {
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+
+.logo-strip .meta {
+  margin: 0;
+}
+
+.home-profile {
+  display: grid;
+  grid-template-columns: minmax(280px, 320px) minmax(280px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.highlight-card {
+  background: linear-gradient(180deg, #fff, #f8fbff);
+  min-width: 0;
+}
+
+/* ===== top only: logoなし・右上ハンバーガー ===== */
+
+.home-page .site-header.home-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: transparent;
+  border-bottom: none;
+  backdrop-filter: none;
+}
+
+.home-page .home-header .header-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 22px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.home-page .brand-overlay {
+  display: block;
+  min-width: 0;
+}
+
+.home-page .brand-text-overlay {
+  color: #fff;
+}
+
+.home-page .brand-kicker-overlay {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  letter-spacing: .08em;
+  color: rgba(255, 255, 255, .88);
+  text-shadow: 0 4px 16px rgba(0, 0, 0, .20);
+}
+
+.home-page .brand-name-line {
+  display: block;
+  white-space: nowrap;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(24px, 2.6vw, 38px);
+  line-height: 1.35;
+  color: #fff;
+  text-shadow: 0 6px 24px rgba(0, 0, 0, .22);
+}
+
+/* 通常ナビはトップでは隠す */
+.home-page .nav {
+  display: none;
+}
+
+/* 開いた時だけ表示 */
+.home-page .nav.open {
+  display: block;
+}
+
+.home-page .nav-toggle {
+  display: block;
+}
+
+.home-page .nav-toggle-overlay {
+  width: 44px;
+  height: 44px;
+  padding: 6px 4px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.home-page .nav-toggle-overlay span {
+  display: block;
+  height: 2px;
+  margin: 6px 0;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.home-page .nav-overlay-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(420px, 100%);
+  height: 100vh;
+  padding: 96px 28px 28px;
+  background: rgba(255, 255, 255, .98);
+  border-left: 1px solid var(--line);
+  box-shadow: -12px 0 40px rgba(18, 45, 78, .12);
+  z-index: 40;
+}
+
+.home-page .nav-overlay-panel .nav-list {
+  display: grid;
+  gap: 14px;
+  padding: 0;
+  margin: 0;
+}
+
+.home-page .nav-overlay-panel .nav-item {
+  display: block;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+.home-page .nav-overlay-panel .nav-item.cta {
+  margin-top: 12px;
+  padding: 14px 18px;
+  text-align: center;
+  border: 1px solid var(--text);
+  border-radius: 999px;
+  background: #fff;
+}
+
+.home-page .hero .container {
+  padding-top: 190px;
+  padding-bottom: 110px;
+}
+
+@media (max-width: 900px) {
+  .home-page .home-header .header-inner {
+    padding: 16px 16px 0;
+    gap: 12px;
+  }
+
+  .home-page .brand-name-line {
+    font-size: clamp(17px, 5vw, 24px);
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  .home-page .brand-kicker-overlay {
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+
+  .home-page .nav-toggle-overlay {
+    width: 44px;
+    height: 44px;
+    padding: 8px;
+  }
+
+  .home-page .nav-overlay-panel {
+    width: 100%;
+    padding: 84px 20px 24px;
+  }
+
+  .home-page .nav-overlay-panel .nav-item {
+    font-size: 20px;
+  }
+
+  .home-page .hero .container {
+    padding-top: 150px;
+    padding-bottom: 88px;
+  }
+}
+
+.home-page .nav-toggle {
+  display: block !important;
+  position: relative;
+  z-index: 60;
+}
+
+.home-page .nav-overlay-panel {
+  display: none;
+}
+
+.home-page .nav-overlay-panel.open {
+  display: block;
+}
+
+/* ===== トップの屋号を少し下げる ===== */
+.home-page .brand-name-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 20px;
+}
+
+/* ===== ヒーロー内の肩書きラベル幅を少し縮める ===== */
+.hero-kicker {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, .38);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .08);
+  font-size: 12px;
+  letter-spacing: .04em;
+  margin-bottom: 16px;
+}
+
+/* ===== 開いたメニューの見た目 ===== */
+.home-page .nav-overlay-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(420px, 100%);
+  height: 100vh;
+  padding: 84px 28px 28px;
+  background: rgba(255, 255, 255, .98);
+  border-left: 1px solid var(--line);
+  box-shadow: -12px 0 40px rgba(18, 45, 78, .12);
+  z-index: 40;
+}
+
+.home-page .nav-overlay-panel .nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.home-page .nav-overlay-panel .nav-list li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home-page .nav-overlay-panel .nav-item {
+  display: block;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+/* ===== 閉じるボタン ===== */
+.home-page .nav-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--text);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-page .nav-close:hover {
+  background: #f7fbff;
+}
+
+@media (max-width: 900px) {
+  .home-page .brand-name-group {
+    margin-top: 10px;
+  }
+
+  .hero-kicker {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .home-page .nav-close {
+    top: 18px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
+  }
+}
+
+/* ===== HeroをPCで1画面いっぱいにする ===== */
+.home-page .hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: stretch;
+}
+
+.home-page .hero::before {
+  background:
+    linear-gradient(115deg, var(--hero-overlay), rgba(7, 31, 59, .30) 45%, rgba(7, 31, 59, .18)),
+    url('../img/photo1.jpg') center center / cover no-repeat;
+}
+
+.home-page .hero .container {
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 140px;
+  padding-bottom: 80px;
+}
+
+/* ===== PCで画面がかなり横長な時も自然に見せる ===== */
 @media (min-width: 901px) {
-  .header-inner {
-    max-width: 1260px;
+  .home-page .hero::before {
+    background-position: 82% center;
+  }
+}
+
+/* ===== スマホでは太陽側（右側）が見えるようにする ===== */
+@media (max-width: 900px) {
+  .home-page .hero {
+    min-height: 100svh;
+  }
+
+  .home-page .hero::before {
+    background:
+      linear-gradient(115deg, var(--hero-overlay), rgba(7, 31, 59, .30) 45%, rgba(7, 31, 59, .18)),
+      url('../img/photo1.jpg') 78% center / cover no-repeat;
+  }
+
+  .home-page .hero .container {
+    min-height: 100svh;
+    justify-content: flex-start;
+    padding-top: 150px;
+    padding-bottom: 60px;
+  }
+
+  .home-page .hero .container {
+    padding-top: 130px;
+    padding-bottom: 36px;
+    min-height: auto;
+  }
+
+  .home-page .brand-name-group {
+    margin-top: 6px;
+    gap: 0;
+  }
+
+  .home-page .brand-name-line {
+    line-height: 1.28;
+  }
+
+  .home-page .hero-kicker {
+    margin-top: 18px;
+    margin-bottom: 14px;
+    padding: 5px 10px;
+  }
+
+  .home-page .hero h1 {
+    margin-bottom: 18px;
+    line-height: 1.32;
+  }
+
+  .home-page .hero p {
+    margin-bottom: 18px;
+    line-height: 1.8;
+  }
+
+  .home-page .hero-actions {
+    margin-top: 18px;
+    gap: 10px;
+  }
+}
+
+.highlight-card h3,
+.highlight-card p,
+.highlight-card li {
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 1200px) {
+  .home-profile {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .grid.two,
+  .grid.three,
+  .split,
+  .home-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-toggle {
+    display: block
+  }
+
+  .nav {
+    position: fixed;
+    inset: 72px 0 auto 0;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    display: none;
+  }
+
+  .nav.open {
+    display: block
   }
 
   .nav-list {
-    gap: 16px;
+    padding: 18px 20px;
+    display: grid;
+    gap: 12px;
   }
+}
+
+/* ===== final mobile spacing adjust ===== */
+@media (max-width: 900px) {
+  .home-page .home-header .header-inner {
+    padding: 12px 14px 0;
+    gap: 10px;
+  }
+
+  .home-page .brand-name-group {
+    margin-top: 12px;
+    gap: 0;
+  }
+
+  .home-page .brand-name-line {
+    font-size: clamp(16px, 4.8vw, 22px);
+    line-height: 1.18;
+  }
+
+  .home-page .hero .container {
+    padding-top: 112px;
+    padding-bottom: 20px;
+    min-height: auto;
+  }
+
+  .home-page .hero-kicker {
+    margin-top: -3px;
+    margin-bottom: 10px;
+    padding: 4px 9px;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .home-page .hero h1 {
+    margin: 0 0 12px;
+    line-height: 1.22;
+    font-size: clamp(34px, 10.5vw, 52px);
+  }
+
+  .home-page .hero p {
+    margin: 0 0 12px;
+    line-height: 1.65;
+    font-size: 14px;
+  }
+
+  .home-page .hero-actions {
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .home-page .hero .button {
+    min-width: 160px;
+    padding: 11px 18px;
+  }
+}
+
+/* about page only */
+.about-content {
+  max-width: 100%;
+}
+
+.about-profile-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.9fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.about-profile-table,
+.about-profile-card {
+  height: 100%;
+}
+
+.about-profile-table .table {
+  height: 100%;
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.about-profile-table .table th,
+.about-profile-table .table td {
+  padding: 16px 18px;
+}
+
+.about-profile-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-profile-card .profile-photo {
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+}
+
+.about-profile-card .profile-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-profile-card .list {
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .about-profile-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== about page fix ===== */
+
+.about-section {
+  padding-top: 40px;
+}
+
+.about-content {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.page-hero {
+  padding: 40px 0 24px;
+}
+
+.page-hero h1 {
+  margin: 0 0 6px;
+}
+
+.page-hero .meta {
+  margin: 0;
+}
+
+.about-profile-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+.about-profile-table,
+.about-profile-card {
+  height: 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+.about-profile-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-profile-card .profile-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-profile-card .list {
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .about-section {
+    padding-top: 28px;
+  }
+
+  .page-hero {
+    padding: 28px 0 18px;
+  }
+
+  .about-profile-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* ===== final: sub pages spacing adjust ===== */
+body:not(.home-page) .page-hero {
+  padding: 32px 0 18px;
+}
+
+body:not(.home-page) .page-hero h1 {
+  margin: 0 0 6px;
+}
+
+body:not(.home-page) .page-hero .meta,
+body:not(.home-page) .page-hero p,
+body:not(.home-page) .page-hero .section-lead {
+  margin: 0 0 8px;
+}
+
+/* サービス一覧のブロック用
+   HTML側に class="service-local-nav" を付けるのがおすすめ */
+body:not(.home-page) .service-local-nav {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+body:not(.home-page) .service-local-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body:not(.home-page) .service-local-nav li {
+  margin: 0 0 4px;
+}
+
+/* 下層ページ全体のsection間も少し詰める */
+body:not(.home-page) .section {
+  padding: 56px 0;
+}
+
+body:not(.home-page) .content h2 {
+  margin: 30px 0 10px;
+}
+
+@media (max-width: 900px) {
+  body:not(.home-page) .page-hero {
+    padding: 24px 0 14px;
+  }
+
+  body:not(.home-page) .service-local-nav {
+    margin-top: 4px;
+    padding-top: 6px;
+  }
+
+  body:not(.home-page) .section {
+    padding: 42px 0;
+  }
+
+  body:not(.home-page) .content h2 {
+    margin: 24px 0 8px;
+  }
+}
+
+/* ===== final: header layout adjust ===== */
+.header-inner {
+  max-width: 1180px;
+  gap: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.brand-logo {
+  width: 62px;
+  height: 62px;
+  flex: 0 0 62px;
+  margin-left: -8px;
+  /* 少し左へ */
+}
+
+.brand-text {
+  min-width: 0;
+}
+
+.brand-kicker {
+  margin-bottom: 2px;
+}
+
+.brand-name {
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.3;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+.nav {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .header-inner {
+    max-width: 1120px;
+  }
+
+  .brand-name {
+    font-size: clamp(15px, 1.5vw, 18px);
+  }
+
+  .brand-logo {
+    margin-left: -4px;
+  }
+}
+
+@media (max-width: 900px) {
+  .brand-logo {
+    margin-left: 0;
+  }
+
+  .brand-name {
+    white-space: normal;
+  }
+}
+
+/* =========================================
+   FINAL OVERRIDE CSS
+   一番下に追加して使う
+========================================= */
+
+/* ---------- 共通：下層ページの余白を少し詰める ---------- */
+body:not(.home-page) .page-hero {
+  padding: 30px 0 16px;
+}
+
+body:not(.home-page) .page-hero h1 {
+  margin: 0 0 6px;
+}
+
+body:not(.home-page) .page-hero .meta,
+body:not(.home-page) .page-hero p,
+body:not(.home-page) .page-hero .section-lead {
+  margin: 0 0 8px;
+}
+
+body:not(.home-page) .section {
+  padding: 48px 0;
+}
+
+body:not(.home-page) .content h2 {
+  margin: 26px 0 10px;
+}
+
+/* ---------- サービス一覧の位置を少し上に ---------- */
+/* 一覧部分に class="service-local-nav" を付けておく */
+body:not(.home-page) .service-local-nav {
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+}
+
+body:not(.home-page) .service-local-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body:not(.home-page) .service-local-nav li {
+  margin: 0 0 4px;
+  padding: 0;
+}
+
+/* ---------- ヘッダー：PC版で事務所名とメニューの間を少し広げる ---------- */
+@media (min-width: 901px) {
+  .header-inner {
+    max-width: 1180px;
+    gap: 18px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    min-width: 0;
+    flex: 0 1 auto;
+  }
+
+  .brand-logo {
+    width: 62px;
+    height: 62px;
+    flex: 0 0 62px;
+    margin-left: -8px;
+  }
+
+  .brand-text {
+    min-width: 0;
+    padding-right: 28px;
+  }
+
+  .brand-kicker {
+    margin-bottom: 2px;
+  }
+
+  .brand-name {
+    font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: clamp(16px, 1.65vw, 20px);
+    line-height: 1.3;
+    white-space: nowrap;
+    letter-spacing: 0;
+  }
+
+  .nav {
+    flex: 0 0 auto;
+    margin-left: 16px;
+  }
+
+  .nav-list {
+    gap: 22px;
+  }
+}
+
+/* ---------- 事務所案内ページ：本文の左寄り感と上の空白を修正 ---------- */
+.about-section {
+  padding-top: 24px;
+}
+
+.about-content {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.page-hero+.about-section {
+  padding-top: 20px;
+}
+
+/* ---------- 代表プロフィール：table と profile-card を均等幅に ---------- */
+.about-profile-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+  margin-top: 18px;
+}
+
+.about-profile-table,
+.about-profile-card {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+}
+
+.about-profile-table .table {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.about-profile-table .table th,
+.about-profile-table .table td {
+  padding: 16px 18px;
+  vertical-align: top;
+}
+
+.about-profile-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-profile-card .profile-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-profile-card .list {
+  flex: 1;
+}
+
+/* ---------- スマホ ---------- */
+@media (max-width: 900px) {
+  body:not(.home-page) .page-hero {
+    padding: 24px 0 14px;
+  }
+
+  body:not(.home-page) .section {
+    padding: 38px 0;
+  }
+
+  body:not(.home-page) .content h2 {
+    margin: 22px 0 8px;
+  }
+
+  body:not(.home-page) .service-local-nav {
+    margin-top: 4px;
+    padding-top: 6px;
+  }
+
+  .brand-logo {
+    margin-left: 0;
+  }
+
+  .brand-text {
+    padding-right: 0;
+  }
+
+  .brand-name {
+    white-space: normal;
+  }
+
+  .about-section {
+    padding-top: 18px;
+  }
+
+  .page-hero+.about-section {
+    padding-top: 14px;
+  }
+
+  .about-profile-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  @media (min-width: 901px) {
+    .brand-text {
+      padding-right: 100px;
+    }
+
+    .nav {
+      margin-left: 82px;
+    }
+  }
+}
+
+
+@media (min-width: 901px) {
+  .header-inner {
+    max-width: 1180px !important;
+    justify-content: flex-start !important;
+    gap: 24px !important;
+  }
+
+  .brand-logo {
+    margin-left: -24px !important;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 24px !important;
+    flex: 0 0 auto !important;
+  }
+
+  .brand-text {
+    padding-right: 0 !important;
+    min-width: 0;
+  }
+
+  .nav {
+    margin-left: 8px !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+
+.flow-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.flow-list li {
+  position: relative;
+  padding: 0 0 34px;
+  margin: 0 0 22px;
+}
+
+.flow-list li:not(:last-child)::after {
+  content: "↓";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--muted);
+}
+
+.flow-title {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-weight: 400;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+}
+
+
+/* ===== tax page pricing table ===== */
+.tax-content {
+  max-width: 100%;
+}
+
+.pricing-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 18px;
+}
+
+.price-panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+  min-width: 0;
+}
+
+.price-panel h3 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.price-panel-lead {
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.price-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.price-table th,
+.price-table td {
+  border: 1px solid var(--line);
+  padding: 14px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.7;
+}
+
+.price-table th {
+  background: #d9ecfb;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400;
+}
+
+.price-service-cell {
+  width: 34%;
+}
+
+.service-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.service-bullets li {
+  margin: 0 0 6px;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.service-bullets li::before {
+  content: "・";
+}
+
+.service-note {
+  margin: 12px 0 0;
+  color: #355a8b;
+  line-height: 1.7;
+}
+
+.price-note {
+  margin: 14px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .pricing-panels {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .price-panel {
+    padding: 18px;
+  }
+
+  .price-panel h3 {
+    font-size: 24px;
+  }
+
+  .price-table {
+    min-width: 560px;
+  }
+}
+
+/* taxページ 料金表を縦並びにする */
+.pricing-panels {
+  grid-template-columns: 1fr !important;
+}
+
+.pricing-content {
+  max-width: 100%;
+}
+
+.management-pricing .price-table th {
+  background: #ecd9c1;
+}
+
+.spot-note {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+@media (min-width: 901px) {
+  .home-page .home-header .header-inner {
+    justify-content: space-between !important;
+  }
+
+  .home-page .brand-overlay {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .home-page .nav-toggle-overlay {
+    margin-left: auto;
+    flex: 0 0 auto;
+  }
+}
+
+@media (min-width: 901px) {
+  .home-page .brand-name-group {
+    margin-top: 20px;
+    margin-left: 24px;
+  }
+}
+
+/* トップページ：代表プロフィール → お知らせ・記事 を縦並びにする */
+.home-page .split {
+  grid-template-columns: 1fr !important;
+  gap: 40px;
+}
+
+/* 主なサービスのカード高さを揃える */
+.home-page .section .grid.three {
+  align-items: stretch;
+}
+
+.home-page .section .grid.three>.card,
+.home-page .section .grid.three>a.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 税理士業務カードの補足 */
+.service-subnote {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* トップページ「主なサービス」のカード高さをそろえる */
+@media (min-width: 901px) {
+  .home-page .section .grid.three {
+    align-items: stretch;
+  }
+
+  .home-page .section .grid.three>.card,
+  .home-page .section .grid.three>a.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 190px;
+  }
+}
+
+.blog-item-with-image {
+  overflow: hidden;
+  display: block;
+  padding: 0;
+}
+
+.blog-thumb {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.blog-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-item-body {
+  padding: 22px;
+}
+
+/* ===== top page: standard header without hamburger ===== */
+.home-page.static-header-home .site-header {
+  position: sticky;
+  top: 0;
+  left: auto;
+  right: auto;
+  z-index: 1000;
+  background: rgba(255, 255, 255, .95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.home-page.static-header-home .header-inner {
+  align-items: center;
+}
+
+.home-page.static-header-home .brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.home-page.static-header-home .brand-logo {
+  width: 62px;
+  height: 62px;
+  flex: 0 0 62px;
+  margin-left: 0 !important;
+}
+
+.home-page.static-header-home .brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding-right: 0 !important;
+  color: var(--text);
+}
+
+.home-page.static-header-home .brand-kicker {
+  font-size: 12px;
+  letter-spacing: .08em;
+  color: var(--muted);
+}
+
+.home-page.static-header-home .brand-name {
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(16px, 1.65vw, 20px);
+  line-height: 1.3;
+  white-space: nowrap;
+  color: var(--text);
+}
+
+.home-page.static-header-home .nav,
+.home-page.static-header-home .site-nav-static {
+  display: block !important;
+  position: static !important;
+  inset: auto !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  margin-left: 8px !important;
+  padding: 0 !important;
+  flex: 0 0 auto !important;
+}
+
+.home-page.static-header-home .nav-list {
+  display: flex !important;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none;
+}
+
+.home-page.static-header-home .nav-toggle,
+.home-page.static-header-home .nav-close,
+.home-page.static-header-home .nav-toggle-overlay {
+  display: none !important;
+}
+
+.home-page.static-header-home .hero {
+  min-height: calc(100svh - 96px);
+}
+
+.home-page.static-header-home .hero .container {
+  min-height: calc(100svh - 96px);
+  justify-content: center;
+  padding-top: 96px;
+  padding-bottom: 80px;
+}
+
+.home-page.static-header-home .brand-name-group,
+.home-page.static-header-home .brand-name-line,
+.home-page.static-header-home .brand-overlay,
+.home-page.static-header-home .brand-text-overlay,
+.home-page.static-header-home .nav-overlay-panel {
+  all: unset;
+}
+
+@media (max-width: 1200px) {
+  .home-page.static-header-home .header-inner {
+    max-width: 1120px;
+  }
+
+  .home-page.static-header-home .brand-name {
+    font-size: clamp(15px, 1.5vw, 18px);
+  }
+}
+
+@media (max-width: 900px) {
+  .home-page.static-header-home .header-inner {
+    padding: 14px 16px;
+    align-items: flex-start;
+  }
+
+  .home-page.static-header-home .brand {
+    width: 100%;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .home-page.static-header-home .brand-logo {
+    width: 54px;
+    height: 54px;
+    flex-basis: 54px;
+  }
+
+  .home-page.static-header-home .brand-name {
+    white-space: normal;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .home-page.static-header-home .nav,
+  .home-page.static-header-home .site-nav-static {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+
+  .home-page.static-header-home .nav-list {
+    gap: 10px 14px;
+    justify-content: flex-start;
+    padding-top: 10px !important;
+  }
+
+  .home-page.static-header-home .nav-item {
+    font-size: 14px;
+  }
+
+  .home-page.static-header-home .nav-item.cta {
+    padding: 8px 12px;
+  }
+
+  .home-page.static-header-home .hero {
+    min-height: auto;
+  }
+
+  .home-page.static-header-home .hero .container {
+    min-height: auto;
+    padding-top: 72px;
+    padding-bottom: 36px;
+  }
+}
+
+/* 既存の style.css の末尾に追記してください */
+
+.nav-list {
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
 }
 
 .nav-cta-group {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-left: 8px;
+  gap: 0.55rem;
+  margin-left: 0.35rem;
+  flex-shrink: 0;
 }
 
 .nav-item.cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
-  padding: 9px 14px;
+  min-height: 40px;
+  padding: 0.66rem 0.92rem;
   border-radius: 999px;
-  border: 1px solid var(--text);
-  font-size: 14px;
-  line-height: 1.2;
-  transition: .2s ease;
+  font-size: 0.86rem;
+  line-height: 1;
+  white-space: nowrap;
 }
 
-.cta-consult {
-  background: #fff;
-  color: var(--text);
+.nav-item.cta-free {
+  background: #f3a64c;
+  color: #ffffff;
+  border: 1px solid #f3a64c;
 }
 
-.cta-urgent {
-  background: var(--text);
-  color: #fff;
+.nav-item.cta-free:hover {
+  background: #e19336;
+  border-color: #e19336;
+  color: #ffffff;
 }
 
-.cta-phone {
-  background: #eef6ff;
-  color: #103f70;
-  border-color: var(--accent-strong);
-  font-weight: 600;
+.nav-item.cta-phone {
+  background: #ffffff;
+  color: #2b5f93;
+  border: 1px solid #b8d0e8;
 }
 
-.nav-item.cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(18, 45, 78, .08);
+.nav-item.cta-phone:hover {
+  background: #eef6fd;
+  color: #234f79;
+  border-color: #9fc0df;
+}
+
+@media (min-width: 1201px) {
+  .nav-list {
+    flex-wrap: nowrap;
+  }
+
+  .nav-item {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .brand-name {
+    font-size: 0.96rem;
+  }
+
+  .nav-item {
+    font-size: 0.88rem;
+  }
+
+  .nav-item.cta {
+    padding: 0.62rem 0.82rem;
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 900px) {
   .nav-cta-group {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
+    width: 100%;
     margin-left: 0;
-    margin-top: 4px;
+    justify-content: center;
+    margin-top: 0.4rem;
+  }
+
+  .nav-item.cta {
+    flex: 1 1 auto;
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-cta-group {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .nav-item.cta {
     width: 100%;
-    min-height: 46px;
-    padding: 12px 16px;
-    text-align: center;
+    max-width: none;
   }
 }
