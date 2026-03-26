@@ -2490,3 +2490,143 @@ body:not(.home-page) .service-local-nav li {
     font-size: 0.9rem;
   }
 }
+
+/* ===== smartphone compact layout ===== */
+@media (max-width: 768px) {
+  /* 全体の左右余白をかなり小さく */
+  .container,
+  .header-inner,
+  .footer-inner {
+    width: min(100% - 16px, 1200px);
+  }
+
+  .section,
+  .page-hero {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  /* ヘッダーをコンパクトに */
+  .site-header {
+    padding: 0;
+  }
+
+  .header-inner {
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .brand {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 10px;
+    align-items: start;
+    margin-bottom: 10px;
+  }
+
+  .brand-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .brand-kicker {
+    font-size: 0.66rem;
+    line-height: 1.35;
+    margin-bottom: 2px;
+  }
+
+  .brand-name {
+    font-size: 0.88rem;
+    line-height: 1.35;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    align-items: center;
+  }
+
+  .nav-item {
+    font-size: 0.82rem;
+    line-height: 1.3;
+  }
+
+  .nav-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin: 8px 0 0;
+  }
+
+  .nav-cta-group .nav-item.cta {
+    width: 100%;
+    min-height: 42px;
+    padding: 0.72rem 0.9rem;
+    font-size: 0.84rem;
+    justify-content: center;
+  }
+
+  /* ヒーローも少し詰める */
+  .hero .container {
+    padding-top: 36px;
+    padding-bottom: 44px;
+  }
+
+  .hero-kicker {
+    font-size: 0.74rem;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 1.32rem;
+    line-height: 1.35;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p,
+  li,
+  .meta,
+  .section-lead,
+  .card p,
+  .news-item p,
+  .blog-item p,
+  .button,
+  .footer-links a {
+    font-size: 0.88rem;
+  }
+
+  .grid.three,
+  .home-profile,
+  .split {
+    gap: 16px;
+  }
+
+  .card,
+  .cta-box,
+  .profile-card,
+  .form-wrap {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container,
+  .header-inner,
+  .footer-inner {
+    width: min(100% - 10px, 1200px);
+  }
+}
