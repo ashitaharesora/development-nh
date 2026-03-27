@@ -1828,7 +1828,7 @@ body:not(.home-page) .service-local-nav li {
 }
 
 .home-page.static-header-home .brand-kicker {
-  font-size: 12px;
+  font-size: 10px;
   letter-spacing: .08em;
   color: var(--muted);
 }
@@ -1934,7 +1934,7 @@ body:not(.home-page) .service-local-nav li {
   }
 
   .home-page.static-header-home .nav-item {
-    font-size: 13px;
+    font-size: 12.7px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1942,7 +1942,7 @@ body:not(.home-page) .service-local-nav li {
   }
 
   .home-page.static-header-home .nav-item.cta {
-    padding: 4px 6px;
+    padding: 2px 6px;
   }
 
   .home-page.static-header-home .hero {
@@ -2785,8 +2785,6 @@ body:not(.home-page) .service-local-nav li {
 
   .nav-cta-group .nav-item.cta {
     min-height: 30px;
-    padding: 0.45rem 0.55rem;
-    font-size: 0.7rem;
   }
 
   /* 本文とフッターも左右余白を少し詰める */
