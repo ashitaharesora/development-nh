@@ -1912,9 +1912,9 @@ body:not(.home-page) .service-local-nav li {
   }
 
   .home-page.static-header-home .brand-logo {
-    width: 40px;
-    height: 40px;
-    flex-basis: 40px;
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
   }
 
   .home-page.static-header-home .brand-name {
@@ -2745,7 +2745,7 @@ body:not(.home-page) .service-local-nav li {
     grid-template-columns: 28px 1fr;
     gap: 6px;
     align-items: center;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 
   .brand-logo {
