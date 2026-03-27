@@ -1930,7 +1930,7 @@ body:not(.home-page) .service-local-nav li {
   .home-page.static-header-home .nav-list {
     gap: 4px 16px;
     justify-content: center;
-    padding-top: 2px !important;
+    padding-top: 3px !important;
   }
 
   .home-page.static-header-home .nav-item {
