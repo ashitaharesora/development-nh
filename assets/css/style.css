@@ -453,7 +453,6 @@ main {
 }
 
 .site-footer {
-  margin-top: 64px;
   border-top: 1px solid var(--line);
   background: rgba(204, 231, 255, .8)
 }
@@ -463,19 +462,19 @@ main {
   margin: 0 auto;
   padding: 30px 20px;
   text-align: center;
-  font-size: 14px
+  font-size: 12px
 }
 
 .footer-links {
   display: flex;
   justify-content: center;
-  gap: 14px;
+  gap: 4px;
   flex-wrap: wrap;
   margin-bottom: 14px
 }
 
 .footer-links a {
-  padding: 8px 12px;
+  padding: 4px 6px;
   border: 1px solid rgba(0, 0, 0, .45);
   border-radius: 999px;
   background: #fff
