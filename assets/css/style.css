@@ -2744,7 +2744,7 @@ body:not(.home-page) .service-local-nav li {
     grid-template-columns: 28px 1fr;
     gap: 6px;
     align-items: center;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
   }
 
   .brand-logo {
