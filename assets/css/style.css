@@ -2811,7 +2811,6 @@ body:not(.home-page) .service-local-nav li {
 @media (max-width: 768px) {
   .home-page.static-header-home .brand {
     padding: 6px 8px;
-    border-radius: 10px;
     background: rgba(204, 231, 255, .8);
   }
   .brand-name {
@@ -2823,7 +2822,7 @@ body:not(.home-page) .service-local-nav li {
 @media (max-width: 768px) {
   .nav-cta-group .nav-item.cta {
   min-height: 28px;
-  padding: 0.38rem 0.55rem;
+  padding: 0.3rem 0.4rem;
 }
 }
 
