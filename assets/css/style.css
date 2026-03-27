@@ -2750,9 +2750,9 @@ body:not(.home-page) .service-local-nav li {
   }
 
   .brand-logo {
-    width: 28px;
-    height: 28px;
-    flex: 0 0 28px;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
   }
 
   .brand-kicker {
