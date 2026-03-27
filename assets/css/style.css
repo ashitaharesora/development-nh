@@ -1828,7 +1828,7 @@ body:not(.home-page) .service-local-nav li {
 }
 
 .home-page.static-header-home .brand-kicker {
-  font-size: 10px;
+  font-size: 6px;
   letter-spacing: .08em;
   color: var(--muted);
 }
@@ -1917,7 +1917,7 @@ body:not(.home-page) .service-local-nav li {
 
   .home-page.static-header-home .brand-name {
     white-space: normal;
-    font-size: 15.65px;
+    font-size: 15.85px;
     line-height: 1.35;
   }
 
@@ -2811,6 +2811,6 @@ body:not(.home-page) .service-local-nav li {
 /* スマホではさらに少し詰める */
 @media (max-width: 768px) {
   .brand-name {
-    gap: 0.08em;
+    gap: 4px;
   }
 }
