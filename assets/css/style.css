@@ -1913,9 +1913,9 @@ body:not(.home-page) .service-local-nav li {
   }
 
   .home-page.static-header-home .brand-logo {
-    width: 54px;
-    height: 54px;
-    flex-basis: 54px;
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
   }
 
   .home-page.static-header-home .brand-name {
