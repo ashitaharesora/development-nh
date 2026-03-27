@@ -468,13 +468,13 @@ main {
 .footer-links {
   display: flex;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
   flex-wrap: wrap;
   margin-bottom: 14px
 }
 
 .footer-links a {
-  padding: 4px 6px;
+  padding: 6px 4px;
   border: 1px solid rgba(0, 0, 0, .45);
   border-radius: 999px;
   background: #fff
