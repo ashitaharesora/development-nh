@@ -1908,7 +1908,6 @@ body:not(.home-page) .service-local-nav li {
 
   .home-page.static-header-home .brand {
     width: 100%;
-    gap: 10px;
   }
 
   .home-page.static-header-home .brand-logo {
@@ -1930,13 +1929,13 @@ body:not(.home-page) .service-local-nav li {
   }
 
   .home-page.static-header-home .nav-list {
-    gap: 10px 14px;
+    gap: 8px 15px;
     justify-content: center;
     padding-top: 10px !important;
   }
 
   .home-page.static-header-home .nav-item {
-    font-size: 14px;
+    font-size: 14.5px;
   }
 
   .home-page.static-header-home .nav-item.cta {
