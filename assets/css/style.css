@@ -2826,3 +2826,72 @@ body:not(.home-page) .service-local-nav li {
 }
 }
 
+/* ===== mobile only floating CTA ===== */
+.floating-cta {
+  display: none;
+}
+
+/* スマホだけ：ヘッダーCTAとヒーローボタンを消す */
+@media (max-width: 768px) {
+  .home-page.static-header-home .nav-cta-group,
+  .home-page.static-header-home .hero-actions {
+    display: none !important;
+  }
+
+  .home-page.static-header-home {
+    padding-bottom: 84px;
+  }
+
+  .floating-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1100;
+    display: flex;
+    gap: 8px;
+    padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.96);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -8px 24px rgba(18, 45, 78, .08);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(110%);
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+  }
+
+  .floating-cta.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .floating-cta-item {
+    flex: 1 1 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0.72rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.84rem;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .floating-cta-free {
+    background: #4a4a4a;
+    color: #fff;
+    border: 1px solid #4a4a4a;
+  }
+
+  .floating-cta-phone {
+    background: #fff;
+    color: #444;
+    border: 1px solid #b8b8b8;
+  }
+}
