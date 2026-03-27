@@ -2807,18 +2807,6 @@ body:not(.home-page) .service-local-nav li {
   display: inline-block;
 }
 
-/* スマホではさらに少し詰める */
-@media (max-width: 768px) {
-  .home-page.static-header-home .brand {
-    padding: 6px 8px;
-    background: rgba(204, 231, 255, .8);
-  }
-  .brand-name {
-    gap: 4px;
-  }
-}
-
-
 @media (max-width: 768px) {
   .nav-cta-group .nav-item.cta {
   min-height: 28px;
