@@ -1933,7 +1933,7 @@ body:not(.home-page) .service-local-nav li {
   }
 
   .home-page.static-header-home .nav-item {
-    font-size: 12.7px;
+    font-size: 14px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
