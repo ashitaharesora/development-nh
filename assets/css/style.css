@@ -474,7 +474,7 @@ main {
 }
 
 .footer-links a {
-  padding: 6px 4px;
+  padding: 9px 4px;
   border: 1px solid rgba(0, 0, 0, .45);
   border-radius: 999px;
   background: #fff
@@ -2826,7 +2826,7 @@ body:not(.home-page) .service-local-nav li {
   }
 
   .home-page.static-header-home {
-    padding-bottom: 72px;
+    padding-bottom: 80px;
   }
 
   .floating-cta {
