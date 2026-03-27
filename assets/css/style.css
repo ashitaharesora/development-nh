@@ -1918,7 +1918,7 @@ body:not(.home-page) .service-local-nav li {
 
   .home-page.static-header-home .brand-name {
     white-space: normal;
-    font-size: 15.8px;
+    font-size: 15.65px;
     line-height: 1.35;
   }
 
@@ -1936,6 +1936,12 @@ body:not(.home-page) .service-local-nav li {
 
   .home-page.static-header-home .nav-item {
     font-size: 14.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(204, 231, 255, .8);
   }
 
   .home-page.static-header-home .nav-item.cta {
