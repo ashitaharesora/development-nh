@@ -3280,15 +3280,15 @@ body:not(.home-page) .service-local-nav li {
   }
 
   .static-header-service .brand-kicker {
-    font-size: 0.52rem;
+    font-size: 9px;
     line-height: 1.15;
     margin-bottom: 0;
   }
 
   .static-header-service .brand-name {
-    font-size: 9px;   
-    line-height: 1.1;
-    white-space: nowrap;
+    white-space: normal;
+    font-size: 15.75px;
+    line-height: 1.35;
   }
 
   .static-header-service .nav,
