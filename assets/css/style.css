@@ -344,7 +344,7 @@ main {
 }
 
 .breadcrumbs a {
-  text-decoration: underline
+  text-decoration: none
 }
 
 .content {
@@ -2262,20 +2262,8 @@ main {
 }
 
 .home-page.static-header-home .brand {
-  position: relative;
   display: flex;
   width: 100%;
-  padding-bottom: 8px;
-}
-
-.home-page.static-header-home .brand::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: #cfd8e3;
 }
 
 /* =========================================
@@ -2284,7 +2272,7 @@ main {
 ========================================= */
 
 /* 共通 */
-.static-header-service .site-header {
+:is(.static-header-service, .static-header-unified) .site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -2293,7 +2281,7 @@ main {
   border-bottom: 1px solid var(--line);
 }
 
-.static-header-service .header-inner {
+:is(.static-header-service, .static-header-unified) .header-inner {
   max-width: 1180px;
   margin: 0 auto;
   padding: 14px 20px;
@@ -2303,7 +2291,7 @@ main {
   gap: 20px;
 }
 
-.static-header-service .brand {
+:is(.static-header-service, .static-header-unified) .brand {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -2311,27 +2299,27 @@ main {
   flex: 1 1 auto;
 }
 
-.static-header-service .brand-logo {
+:is(.static-header-service, .static-header-unified) .brand-logo {
   width: 62px;
   height: 62px;
   flex: 0 0 62px;
   margin-left: 0;
 }
 
-.static-header-service .brand-text {
+:is(.static-header-service, .static-header-unified) .brand-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
   min-width: 0;
 }
 
-.static-header-service .brand-kicker {
+:is(.static-header-service, .static-header-unified) .brand-kicker {
   font-size: 12px;
   letter-spacing: .08em;
   color: var(--muted);
 }
 
-.static-header-service .brand-name {
+:is(.static-header-service, .static-header-unified) .brand-name {
   display: inline-flex;
   align-items: baseline;
   gap: 0.18em;
@@ -2342,13 +2330,13 @@ main {
   color: var(--text);
 }
 
-.static-header-service .brand-name-tax,
-.static-header-service .brand-name-labor {
+:is(.static-header-service, .static-header-unified) .brand-name-tax,
+:is(.static-header-service, .static-header-unified) .brand-name-labor {
   display: inline-block;
 }
 
-.static-header-service .nav,
-.static-header-service .site-nav-static {
+:is(.static-header-service, .static-header-unified) .nav,
+:is(.static-header-service, .static-header-unified) .site-nav-static {
   display: block !important;
   position: static !important;
   inset: auto !important;
@@ -2360,7 +2348,7 @@ main {
   flex: 0 0 auto !important;
 }
 
-.static-header-service .nav-list {
+:is(.static-header-service, .static-header-unified) .nav-list {
   display: flex !important;
   gap: 22px;
   align-items: center;
@@ -2370,11 +2358,11 @@ main {
   list-style: none;
 }
 
-.static-header-service .nav-item {
+:is(.static-header-service, .static-header-unified) .nav-item {
   font-size: 15px;
 }
 
-.static-header-service .nav-item.cta {
+:is(.static-header-service, .static-header-unified) .nav-item.cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2385,7 +2373,7 @@ main {
   white-space: nowrap;
 }
 
-.static-header-service .nav-cta-group {
+:is(.static-header-service, .static-header-unified) .nav-cta-group {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -2393,13 +2381,13 @@ main {
   flex-shrink: 0;
 }
 
-.static-header-service .nav-cta-group .cta-free {
+:is(.static-header-service, .static-header-unified) .nav-cta-group .cta-free {
   background: #111111;
   color: #ffffff;
   border: 1px solid #111111;
 }
 
-.static-header-service .nav-cta-group .cta-phone {
+:is(.static-header-service, .static-header-unified) .nav-cta-group .cta-phone {
   background: #ffffff;
   color: #111111;
   border: 1px solid #111111;
@@ -2407,80 +2395,68 @@ main {
 
 /* mobile */
 @media (max-width: 768px) {
-  .static-header-service {
+  :is(.static-header-service, .static-header-unified).has-floating-cta {
     padding-bottom: 68px;
   }
 
-  .static-header-service .nav-cta-group {
+  :is(.static-header-service, .static-header-unified) .nav-cta-group {
     display: none !important;
   }
 
-  .static-header-service .header-inner,
-  .static-header-service .container,
-  .static-header-service .footer-inner {
+  :is(.static-header-service, .static-header-unified) .header-inner,
+  :is(.static-header-service, .static-header-unified) .container,
+  :is(.static-header-service, .static-header-unified) .footer-inner {
     width: 100%;
     max-width: none;
     padding-left: 8px;
     padding-right: 8px;
   }
 
-  .static-header-service .header-inner {
+  :is(.static-header-service, .static-header-unified) .header-inner {
     display: block;
     padding-top: 6px;
     padding-bottom: 6px;
     align-items: flex-start;
   }
 
-  .static-header-service .brand {
-    position: relative;
+  :is(.static-header-service, .static-header-unified) .brand {
     display: grid;
     grid-template-columns: 28px 1fr;
     align-items: center;
     width: 100%;
     margin-bottom: 0;
-    padding-bottom: 8px;
   }
 
-  .static-header-service .brand::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: #cfd8e3;
-  }
-
-  .static-header-service .brand-logo {
+  :is(.static-header-service, .static-header-unified) .brand-logo {
     width: 36px;
     height: 36px;
     flex-basis: 36px;
   }
 
-  .static-header-service .brand-text {
+  :is(.static-header-service, .static-header-unified) .brand-text {
     display: block;
     min-width: 0;
   }
 
-  .static-header-service .brand-kicker {
+  :is(.static-header-service, .static-header-unified) .brand-kicker {
     font-size: 9px;
     line-height: 1.15;
     margin-bottom: 0;
   }
 
-  .static-header-service .brand-name {
+  :is(.static-header-service, .static-header-unified) .brand-name {
     white-space: normal;
     font-size: 15.75px;
     line-height: 1.35;
   }
 
-  .static-header-service .nav,
-  .static-header-service .site-nav-static {
+  :is(.static-header-service, .static-header-unified) .nav,
+  :is(.static-header-service, .static-header-unified) .site-nav-static {
     width: 100%;
     margin-left: 0 !important;
   }
 
-  .static-header-service .nav-list {
+  :is(.static-header-service, .static-header-unified) .nav-list {
     display: flex !important;
     flex-wrap: wrap;
     gap: 4px 8px;
@@ -2490,7 +2466,7 @@ main {
     margin: 0 !important;
   }
 
-  .static-header-service .nav-item {
+  :is(.static-header-service, .static-header-unified) .nav-item {
     font-size: 0.72rem;
     line-height: 1.1;
     display: inline-flex;
@@ -2499,7 +2475,7 @@ main {
     padding: 0 10px;
   }
 
-  .static-header-service .floating-cta {
+  :is(.static-header-service, .static-header-unified) .floating-cta {
     position: fixed;
     left: 0;
     right: 0;
@@ -2518,14 +2494,14 @@ main {
     transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
   }
 
-  .static-header-service .floating-cta.is-visible {
+  :is(.static-header-service, .static-header-unified) .floating-cta.is-visible {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
     pointer-events: auto;
   }
 
-  .static-header-service .floating-cta-item {
+  :is(.static-header-service, .static-header-unified) .floating-cta-item {
     flex: 1 1 0;
     display: inline-flex;
     align-items: center;
@@ -2539,13 +2515,13 @@ main {
     white-space: nowrap;
   }
 
-  .static-header-service .floating-cta-free {
+  :is(.static-header-service, .static-header-unified) .floating-cta-free {
     background: #111111;
     color: #ffffff;
     border: 1px solid #111111;
   }
 
-  .static-header-service .floating-cta-phone {
+  :is(.static-header-service, .static-header-unified) .floating-cta-phone {
     background: #ffffff;
     color: #111111;
     border: 1px solid #111111;
