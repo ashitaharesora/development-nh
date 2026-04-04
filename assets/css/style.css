@@ -3099,3 +3099,278 @@ body:not(.home-page) .service-local-nav li {
     border: 1px solid #111111;
   }
 }
+
+/* =========================================
+   services page header unified with home
+   style.css の一番下に追加
+========================================= */
+
+/* 共通 */
+.static-header-service .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, .95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.static-header-service .header-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.static-header-service .brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.static-header-service .brand-logo {
+  width: 62px;
+  height: 62px;
+  flex: 0 0 62px;
+  margin-left: 0;
+}
+
+.static-header-service .brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.static-header-service .brand-kicker {
+  font-size: 12px;
+  letter-spacing: .08em;
+  color: var(--muted);
+}
+
+.static-header-service .brand-name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.18em;
+  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(16px, 1.65vw, 20px);
+  line-height: 1.3;
+  white-space: nowrap;
+  color: var(--text);
+}
+
+.static-header-service .brand-name-tax,
+.static-header-service .brand-name-labor {
+  display: inline-block;
+}
+
+.static-header-service .nav,
+.static-header-service .site-nav-static {
+  display: block !important;
+  position: static !important;
+  inset: auto !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  margin-left: 8px !important;
+  padding: 0 !important;
+  flex: 0 0 auto !important;
+}
+
+.static-header-service .nav-list {
+  display: flex !important;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none;
+}
+
+.static-header-service .nav-item {
+  font-size: 15px;
+}
+
+.static-header-service .nav-item.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.66rem 1rem;
+  border-radius: 999px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.static-header-service .nav-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: 0.45rem;
+  flex-shrink: 0;
+}
+
+.static-header-service .nav-cta-group .cta-free {
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
+}
+
+.static-header-service .nav-cta-group .cta-phone {
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #111111;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .static-header-service {
+    padding-bottom: 68px;
+  }
+
+  .static-header-service .nav-cta-group {
+    display: none !important;
+  }
+
+  .static-header-service .header-inner,
+  .static-header-service .container,
+  .static-header-service .footer-inner {
+    width: 100%;
+    max-width: none;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .static-header-service .header-inner {
+    display: block;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    align-items: flex-start;
+  }
+
+  .static-header-service .brand {
+    position: relative;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 6px;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 8px;
+  }
+
+  .static-header-service .brand::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: #cfd8e3;
+  }
+
+  .static-header-service .brand-logo {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+  }
+
+  .static-header-service .brand-text {
+    display: block;
+    min-width: 0;
+  }
+
+  .static-header-service .brand-kicker {
+    font-size: 0.52rem;
+    line-height: 1.15;
+    margin-bottom: 0;
+  }
+
+  .static-header-service .brand-name {
+    font-size: 0.76rem;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .static-header-service .nav,
+  .static-header-service .site-nav-static {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+
+  .static-header-service .nav-list {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 0 0 !important;
+    margin: 0 !important;
+  }
+
+  .static-header-service .nav-item {
+    font-size: 0.72rem;
+    line-height: 1.1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+  }
+
+  .static-header-service .floating-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1100;
+    display: flex;
+    gap: 8px;
+    padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.96);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -8px 24px rgba(18, 45, 78, .08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(110%);
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+  }
+
+  .static-header-service .floating-cta.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .static-header-service .floating-cta-item {
+    flex: 1 1 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0.72rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.84rem;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .static-header-service .floating-cta-free {
+    background: #111111;
+    color: #ffffff;
+    border: 1px solid #111111;
+  }
+
+  .static-header-service .floating-cta-phone {
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #111111;
+  }
+}
