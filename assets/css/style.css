@@ -982,12 +982,6 @@ main {
   .nav.open {
     display: block
   }
-
-  .nav-list {
-    padding: 18px 20px;
-    display: grid;
-    gap: 12px;
-  }
 }
 
 /* ===== final mobile spacing adjust ===== */
@@ -1961,14 +1955,6 @@ body:not(.home-page) .service-local-nav li {
   flex-wrap: wrap;
 }
 
-.nav-cta-group {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-left: 0.45rem;
-  flex-shrink: 0;
-}
-
 .nav-cta-group .nav-item.cta {
   display: inline-flex;
   align-items: center;
@@ -2408,13 +2394,6 @@ body:not(.home-page) .service-local-nav li {
     width: 100%;
   }
 
-  .nav-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 16px;
-    align-items: center;
-  }
-
   .nav-item {
     font-size: 0.95rem;
     line-height: 1.4;
@@ -2539,13 +2518,6 @@ body:not(.home-page) .service-local-nav li {
     white-space: normal;
     word-break: keep-all;
     overflow-wrap: break-word;
-  }
-
-  .nav-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 12px;
-    align-items: center;
   }
 
   .nav-item {
@@ -2682,14 +2654,6 @@ body:not(.home-page) .service-local-nav li {
     width: 100%;
   }
 
-  .nav-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 10px;
-    align-items: center;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
 
   .nav-item {
     font-size: 0.76rem;
