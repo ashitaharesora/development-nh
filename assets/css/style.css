@@ -2145,8 +2145,8 @@ main {
   /* 本文とフッターも左右余白を少し詰める */
   .section,
   .page-hero {
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding-top: 18px;
+    padding-bottom: 18px;
   }
 
   .footer-inner {
