@@ -28,7 +28,7 @@
   --mobile-header-logo: 36px;
   --mobile-header-pad-y: 8px;
   --mobile-header-brand-name: 15px;
-  --mobile-header-kicker: 10px;
+  --mobile-header-kicker: 12px;
   --mobile-header-nav-font: 12.5px;
 }
 
@@ -687,7 +687,7 @@ main {
   }
 
   .home-page .brand-kicker-overlay {
-    font-size: 10px;
+    font-size: 12px;
     margin-bottom: 4px;
   }
 
@@ -801,7 +801,7 @@ main {
   }
 
   .hero-kicker {
-    font-size: 11px;
+    font-size: 12px;
     padding: 5px 10px;
   }
 
@@ -966,7 +966,7 @@ main {
     margin-top: -3px;
     margin-bottom: 10px;
     padding: 4px 9px;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.2;
   }
 
@@ -1866,8 +1866,8 @@ main {
 /* ===== smartphone typography tuning ===== */
 @media (max-width: 768px) {
   body {
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.75;
   }
 
   h1 {
