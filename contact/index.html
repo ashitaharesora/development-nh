@@ -89,24 +89,22 @@
 
             <div class="c-form__item">
               <label class="c-form__label" for="field-job">ご職業<span class="c-form__required">必須</span></label>
-              <input
-                class="c-form__input"
-                id="field-job"
-                name="entry.303009770"
-                type="text"
-                placeholder="個人事業主 / 法人代表 / 会社員 など"
-                required
-              />
+              <div class="c-form__choice-group">
+                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="個人事業主" required>個人事業主</label>
+                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="会社役員">会社役員</label>
+                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="会社員・公務員">会社員・公務員</label>
+                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="その他">その他</label>
+              </div>
             </div>
 
             <div class="c-form__item">
               <span class="c-form__label">お問い合わせの種類<span class="c-form__required">必須</span></span>
               <div class="c-form__choice-group">
-                <label class="c-form__choice"><input type="radio" name="entry.333722396" value="税務相談" required>税務相談</label>
-                <label class="c-form__choice"><input type="radio" name="entry.333722396" value="労務相談">労務相談</label>
-                <label class="c-form__choice"><input type="radio" name="entry.333722396" value="創業・法人化">創業・法人化</label>
-                <label class="c-form__choice"><input type="radio" name="entry.333722396" value="補助金・助成金">補助金・助成金</label>
-                <label class="c-form__choice"><input type="radio" name="entry.333722396" value="その他">その他</label>
+                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="スタートアップ支援に関すること">スタートアップ支援に関すること</label>
+                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="クラウド導入支援に関すること">クラウド導入支援に関すること</label>
+                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="補助金・助成金申請支援に関すること">補助金・助成金申請支援に関すること</label>
+                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="相続計画・相続対策に関すること">相続計画・相続対策に関すること</label>
+                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="プライベート税理士契約に関すること">プライベート税理士契約に関すること</label>
               </div>
             </div>
 
