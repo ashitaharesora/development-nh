@@ -143,7 +143,8 @@
               fetch(form.action, {
                 method: 'POST',
                 mode: 'no-cors',
-                body: new FormData(form)
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
               }).then(function() {
                 window.location = './thanks.html';
               }).catch(function() {
