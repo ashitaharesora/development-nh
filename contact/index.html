@@ -61,95 +61,57 @@
             id="contact-form"
             action="https://docs.google.com/forms/d/e/1FAIpQLSfVRJAhcmWNw9usFn9-19uO_OUwtYYvd1p2VY_w2omvUFCtPA/formResponse"
             method="POST"
+            target="hidden_iframe"
           >
+            <!-- Google用 hidden -->
+            <input type="hidden" name="fvv" value="1">
+            <input type="hidden" name="pageHistory" value="0">
+          
             <div class="c-form__item">
-              <label class="c-form__label" for="field-mail">メールアドレス<span class="c-form__required">必須</span></label>
-              <input
-                class="c-form__input"
-                id="field-mail"
-                name="entry.495569430"
-                type="email"
-                placeholder="sample@example.com"
-                required
-              />
+              <label>メールアドレス</label>
+              <input name="entry.495569430" type="email" required>
             </div>
-
+          
             <div class="c-form__item">
-              <label class="c-form__label" for="field-name">お名前<span class="c-form__required">必須</span></label>
-              <input
-                class="c-form__input"
-                id="field-name"
-                name="entry.2034928511"
-                type="text"
-                placeholder="山田 太郎"
-                required
-              />
+              <label>お名前</label>
+              <input name="entry.2034928511" type="text" required>
             </div>
-
+          
             <div class="c-form__item">
-              <label class="c-form__label" for="field-job">ご職業<span class="c-form__required">必須</span></label>
-              <div class="c-form__choice-group">
-                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="個人事業主" required>個人事業主</label>
-                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="会社役員">会社役員</label>
-                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="会社員・公務員">会社員・公務員</label>
-                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="その他">その他</label>
-              </div>
+              <label>ご職業</label>
+              <label><input type="radio" name="entry.303009770" value="個人事業主" required>個人事業主</label>
+              <label><input type="radio" name="entry.303009770" value="会社役員">会社役員</label>
+              <label><input type="radio" name="entry.303009770" value="会社員・公務員">会社員・公務員</label>
+              <label><input type="radio" name="entry.303009770" value="その他">その他</label>
             </div>
-
+          
             <div class="c-form__item">
-              <span class="c-form__label">お問い合わせの種類<span class="c-form__required">必須</span></span>
-              <div class="c-form__choice-group">
-                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="スタートアップ支援に関すること">スタートアップ支援に関すること</label>
-                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="クラウド導入支援に関すること">クラウド導入支援に関すること</label>
-                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="補助金・助成金申請支援に関すること">補助金・助成金申請支援に関すること</label>
-                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="相続計画・相続対策に関すること">相続計画・相続対策に関すること</label>
-                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="プライベート税理士契約に関すること">プライベート税理士契約に関すること</label>
-              </div>
+              <label>お問い合わせの種類</label>
+              <label><input type="checkbox" name="entry.333722396" value="スタートアップ支援に関すること">スタートアップ支援</label>
+              <label><input type="checkbox" name="entry.333722396" value="クラウド導入支援に関すること">クラウド導入</label>
             </div>
-
+          
             <div class="c-form__item">
-              <label class="c-form__label" for="field-detail">ご相談の具体的内容<span class="c-form__required">必須</span></label>
-              <textarea
-                class="c-form__input c-form__textarea"
-                id="field-detail"
-                name="entry.346431719"
-                placeholder="ご相談内容をご記入ください"
-                required
-              ></textarea>
+              <label>ご相談内容</label>
+              <textarea name="entry.346431719" required></textarea>
             </div>
-
+          
             <div class="c-form__item">
-              <label class="c-form__label" for="field-other">その他のご希望等</label>
-              <textarea
-                class="c-form__input c-form__textarea c-form__textarea-small"
-                id="field-other"
-                name="entry.2058381089"
-                placeholder="連絡希望時間帯などがあればご記入ください"
-              ></textarea>
+              <label>その他</label>
+              <textarea name="entry.2058381089"></textarea>
             </div>
-
-            <div class="c-form__submit">
-              <button type="submit">送信する</button>
-            </div>
+          
+            <button type="submit">送信する</button>
           </form>
-
+          
+          <!-- 非表示iframe -->
+          <iframe name="hidden_iframe" style="display:none;"></iframe>
+          
           <script>
-            document.getElementById('contact-form').addEventListener('submit', function(e) {
-              e.preventDefault();
-              var form = this;
-              var btn = form.querySelector('button[type="submit"]');
-              btn.disabled = true;
-              btn.textContent = '送信中...';
-              fetch(form.action, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(new FormData(form)).toString()
-              }).then(function() {
-                window.location = './thanks.html';
-              }).catch(function() {
-                window.location = './thanks.html';
-              });
+            document.getElementById('contact-form').addEventListener('submit', function() {
+              setTimeout(function(){
+                window.location.href = './thanks.html';
+              }, 500);
             });
           </script>
         </div>
