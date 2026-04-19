@@ -56,21 +56,14 @@
             <p>売上、経理、資金、法人化など、今気になっていることをお送りください。</p>
           </div>
 
-          <form
-            class="c-form"
-            id="contact-form"
-            action="https://docs.google.com/forms/d/e/1FAIpQLSfVRJAhcmWNw9usFn9-19uO_OUwtYYvd1p2VY_w2omvUFCtPA/formResponse"
-            method="POST"
-          >
-            <input type="hidden" name="fvv" value="1">
-            <input type="hidden" name="pageHistory" value="0">
+          <form class="c-form" id="contact-form">
 
             <div class="c-form__item">
               <label class="c-form__label" for="field-mail">メールアドレス<span class="c-form__required">必須</span></label>
               <input
                 class="c-form__input"
                 id="field-mail"
-                name="entry.495569430"
+                name="email"
                 type="email"
                 placeholder="sample@example.com"
                 required
@@ -82,7 +75,7 @@
               <input
                 class="c-form__input"
                 id="field-name"
-                name="entry.2034928511"
+                name="name"
                 type="text"
                 placeholder="山田 太郎"
                 required
@@ -90,23 +83,23 @@
             </div>
 
             <div class="c-form__item">
-              <label class="c-form__label" for="field-job">ご職業<span class="c-form__required">必須</span></label>
+              <label class="c-form__label">ご職業<span class="c-form__required">必須</span></label>
               <div class="c-form__choice-group">
-                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="個人事業主" required>個人事業主</label>
-                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="会社役員">会社役員</label>
-                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="会社員・公務員">会社員・公務員</label>
-                <label class="c-form__choice"><input type="radio" name="entry.303009770" value="その他">その他</label>
+                <label class="c-form__choice"><input type="radio" name="job" value="個人事業主" required>個人事業主</label>
+                <label class="c-form__choice"><input type="radio" name="job" value="会社役員">会社役員</label>
+                <label class="c-form__choice"><input type="radio" name="job" value="会社員・公務員">会社員・公務員</label>
+                <label class="c-form__choice"><input type="radio" name="job" value="その他">その他</label>
               </div>
             </div>
 
             <div class="c-form__item">
               <span class="c-form__label">お問い合わせの種類<span class="c-form__required">必須</span></span>
               <div class="c-form__choice-group">
-                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="スタートアップ支援に関すること">スタートアップ支援に関すること</label>
-                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="クラウド導入支援に関すること">クラウド導入支援に関すること</label>
-                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="補助金・助成金申請支援に関すること">補助金・助成金申請支援に関すること</label>
-                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="相続計画・相続対策に関すること">相続計画・相続対策に関すること</label>
-                <label class="c-form__choice"><input type="checkbox" name="entry.333722396" value="プライベート税理士契約に関すること">プライベート税理士契約に関すること</label>
+                <label class="c-form__choice"><input type="checkbox" name="inquiry" value="スタートアップ支援に関すること">スタートアップ支援に関すること</label>
+                <label class="c-form__choice"><input type="checkbox" name="inquiry" value="クラウド導入支援に関すること">クラウド導入支援に関すること</label>
+                <label class="c-form__choice"><input type="checkbox" name="inquiry" value="補助金・助成金申請支援に関すること">補助金・助成金申請支援に関すること</label>
+                <label class="c-form__choice"><input type="checkbox" name="inquiry" value="相続計画・相続対策に関すること">相続計画・相続対策に関すること</label>
+                <label class="c-form__choice"><input type="checkbox" name="inquiry" value="プライベート税理士契約に関すること">プライベート税理士契約に関すること</label>
               </div>
             </div>
 
@@ -115,7 +108,7 @@
               <textarea
                 class="c-form__input c-form__textarea"
                 id="field-detail"
-                name="entry.346431719"
+                name="detail"
                 placeholder="ご相談内容をご記入ください"
                 required
               ></textarea>
@@ -126,10 +119,14 @@
               <textarea
                 class="c-form__input c-form__textarea c-form__textarea-small"
                 id="field-other"
-                name="entry.2058381089"
+                name="other"
                 placeholder="連絡希望時間帯などがあればご記入ください"
               ></textarea>
             </div>
+
+            <p class="c-form__error" id="form-error" style="display:none; color:#c0392b; margin-top:12px;">
+              送信に失敗しました。お手数ですが、お電話またはしばらく経ってから再度お試しください。
+            </p>
 
             <div class="c-form__submit">
               <button type="submit">送信する</button>
@@ -137,21 +134,58 @@
           </form>
 
           <script>
+            var GAS_URL = 'https://script.google.com/macros/s/AKfycbxwoJSVbKlMqbzSAiXWq5-tjC-nhl92V2EFH2D8lkBtBWcDTbv89er948O1zOQND6xM/exec';
+
             document.getElementById('contact-form').addEventListener('submit', function(e) {
               e.preventDefault();
               var form = this;
               var btn = form.querySelector('button[type="submit"]');
+              var errorMsg = document.getElementById('form-error');
+              var fd = new FormData(form);
+
+              // フォームデータをJSONオブジェクトに変換
+              var data = {
+                email:   fd.get('email')  || '',
+                name:    fd.get('name')   || '',
+                job:     fd.get('job')    || '',
+                inquiry: fd.getAll('inquiry').join('、'), // 複数選択をカンマ区切り
+                detail:  fd.get('detail') || '',
+                other:   fd.get('other')  || ''
+              };
+
+              // 空のフィールドは送信しない
+              Object.keys(data).forEach(function(key) {
+                if (data[key] === '') delete data[key];
+              });
+
+              // お問い合わせ種類が未選択の場合は送信しない
+              if (!data.inquiry) {
+                alert('お問い合わせの種類を1つ以上選択してください。');
+                return;
+              }
+
               btn.disabled = true;
               btn.textContent = '送信中...';
-              fetch(form.action, {
+              errorMsg.style.display = 'none';
+
+              // GASへJSON送信（text/plainでCORSプリフライトを回避）
+              fetch(GAS_URL, {
                 method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(new FormData(form)).toString()
-              }).then(function() {
-                window.location = './thanks.html';
-              }).catch(function() {
-                window.location = './thanks.html';
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify(data)
+              })
+              .then(function(res) { return res.json(); })
+              .then(function(result) {
+                if (result.result === 'success') {
+                  window.location = './thanks.html';
+                } else {
+                  throw new Error(result.message);
+                }
+              })
+              .catch(function() {
+                btn.disabled = false;
+                btn.textContent = '送信する';
+                errorMsg.style.display = 'block';
               });
             });
           </script>
