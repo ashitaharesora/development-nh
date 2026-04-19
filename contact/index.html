@@ -168,19 +168,16 @@
               btn.textContent = '送信中...';
               errorMsg.style.display = 'none';
 
-              // GASへJSON送信（text/plainでCORSプリフライトを回避）
+              // GASへJSON送信（no-corsで302リダイレクト問題を回避）
               fetch(GAS_URL, {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: { 'Content-Type': 'text/plain' },
                 body: JSON.stringify(data)
               })
-              .then(function(res) { return res.json(); })
-              .then(function(result) {
-                if (result.result === 'success') {
-                  window.location = './thanks.html';
-                } else {
-                  throw new Error(result.message);
-                }
+              .then(function() {
+                // no-corsではレスポンス内容を読めないが送信は完了しているため遷移
+                window.location = './thanks.html';
               })
               .catch(function() {
                 btn.disabled = false;
