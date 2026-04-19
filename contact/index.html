@@ -64,6 +64,7 @@
           >
             <input type="hidden" name="fvv" value="1">
             <input type="hidden" name="pageHistory" value="0">
+            <input type="hidden" name="fbzx" id="fbzx">
 
             <div class="c-form__item">
               <label class="c-form__label" for="field-mail">メールアドレス<span class="c-form__required">必須</span></label>
@@ -137,6 +138,7 @@
           </form>
 
           <script>
+            document.getElementById('fbzx').value = Math.floor(Math.random() * 1e16);
             document.getElementById('contact-form').addEventListener('submit', function(e) {
               e.preventDefault();
               var form = this;
