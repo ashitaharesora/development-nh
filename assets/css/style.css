@@ -385,6 +385,10 @@ main {
   border-bottom: 1px solid var(--line)
 }
 
+.content h2:first-child {
+  margin-top: 0;
+}
+
 .content h3 {
   font-size: 22px;
   margin: 28px 0 8px
