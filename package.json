@@ -1,0 +1,10 @@
+{
+  "name": "ashitaharesora-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch:cms": "node scripts/fetch-microcms.mjs",
+    "build:cms": "node scripts/build-pages.mjs",
+    "build": "npm run fetch:cms && npm run build:cms"
+  }
+}

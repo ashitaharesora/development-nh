@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ashitaharesora.github.io/ashita-haresora/sitemap.xml

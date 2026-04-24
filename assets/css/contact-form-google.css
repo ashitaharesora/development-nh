@@ -1,0 +1,142 @@
+:root {
+  --form-bg: #f8fbff;
+  --form-border: #d7dfeb;
+  --form-text: #172033;
+  --form-muted: #5a6475;
+}
+
+.form-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px;
+  border: 1px solid var(--form-border);
+  background: linear-gradient(180deg, #ffffff, var(--form-bg));
+}
+
+.form-intro {
+  margin-bottom: 28px;
+}
+
+.form-intro h2 {
+  margin: 0 0 10px;
+}
+
+.form-intro p {
+  margin: 0;
+  color: var(--form-muted);
+}
+
+.c-form {
+  display: grid;
+  gap: 18px;
+}
+
+.c-form__item {
+  display: grid;
+  gap: 10px;
+}
+
+.c-form__label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--form-text);
+}
+
+.c-form__required {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #172033;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.c-form__input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--form-border);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--form-text);
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.c-form__input:focus {
+  outline: none;
+  border-color: #9cc7eb;
+  box-shadow: 0 0 0 4px rgba(156, 199, 235, 0.22);
+}
+
+.c-form__textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.c-form__textarea-small {
+  min-height: 120px;
+}
+
+.c-form__choice-group {
+  display: grid;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.c-form__choice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--form-text);
+  font-size: 14px;
+}
+
+.c-form__choice input[type="radio"] {
+  accent-color: #172033;
+}
+
+.c-form__submit {
+  margin-top: 8px;
+}
+
+.c-form__submit button {
+  appearance: none;
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+  min-height: 48px;
+  padding: 0 28px;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.c-form__submit button:hover {
+  background: #2a2a2a;
+  border-color: #2a2a2a;
+}
+
+@media (min-width: 801px) {
+  .c-form__item {
+    grid-template-columns: 220px 1fr;
+    align-items: start;
+  }
+
+  .c-form__label {
+    padding-top: 12px;
+  }
+
+  .c-form__submit {
+    padding-left: 220px;
+  }
+}
+
+@media (max-width: 800px) {
+  .form-wrap {
+    padding: 22px;
+  }
+}

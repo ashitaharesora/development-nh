@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="icon" href="../assets/img/Logo_1.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/img/Logo_1.svg">
+  <link rel="stylesheet" href="{{ prefix }}assets/css/style.css">
+  <script defer src="{{ prefix }}assets/js/main.js"></script>
+</head>
+<body>
+  <!-- 共通ヘッダーは固定ページに合わせて適宜差し込み -->
+  <main><section class="page-hero"><div class="container"><h1>{{ title }}</h1><p class="meta">{{ date }}</p></div></section><section class="section"><div class="container content">{{ body_html }}</div></section></main>
+</body>
+</html>
