@@ -21,6 +21,8 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Fetch data from microCMS
         run: |
