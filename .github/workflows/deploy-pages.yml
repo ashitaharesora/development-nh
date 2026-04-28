@@ -25,22 +25,33 @@ jobs:
           enablement: true
 
       - name: Fetch data from microCMS
+        env:
+          MICROCMS_SERVICE_ID: ${{ vars.MICROCMS_SERVICE_ID }}
+          MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
+          MICROCMS_ENDPOINT_BLOGS: ${{ vars.MICROCMS_ENDPOINT_BLOGS }}
+          MICROCMS_ENDPOINT_CATEGORIES: ${{ vars.MICROCMS_ENDPOINT_CATEGORIES }}
+          MICROCMS_ENDPOINT_NEWS: ${{ vars.MICROCMS_ENDPOINT_NEWS }}
         run: |
           mkdir -p assets/data
 
+          if [ -z "$MICROCMS_SERVICE_ID" ] || [ -z "$MICROCMS_API_KEY" ]; then
+            echo "microCMS variables not configured. Skipping fetch."
+            exit 0
+          fi
+
           curl --fail-with-body --silent --show-error \
-            "https://${{ vars.MICROCMS_SERVICE_ID }}.microcms.io/api/v1/${{ vars.MICROCMS_ENDPOINT_BLOGS }}?limit=100" \
-            -H "X-MICROCMS-API-KEY: ${{ secrets.MICROCMS_API_KEY }}" \
+            "https://$MICROCMS_SERVICE_ID.microcms.io/api/v1/$MICROCMS_ENDPOINT_BLOGS?limit=100" \
+            -H "X-MICROCMS-API-KEY: $MICROCMS_API_KEY" \
             -o assets/data/blog.json
 
           curl --fail-with-body --silent --show-error \
-            "https://${{ vars.MICROCMS_SERVICE_ID }}.microcms.io/api/v1/${{ vars.MICROCMS_ENDPOINT_CATEGORIES }}?limit=100" \
-            -H "X-MICROCMS-API-KEY: ${{ secrets.MICROCMS_API_KEY }}" \
+            "https://$MICROCMS_SERVICE_ID.microcms.io/api/v1/$MICROCMS_ENDPOINT_CATEGORIES?limit=100" \
+            -H "X-MICROCMS-API-KEY: $MICROCMS_API_KEY" \
             -o assets/data/category.json
 
           curl --fail-with-body --silent --show-error \
-            "https://${{ vars.MICROCMS_SERVICE_ID }}.microcms.io/api/v1/${{ vars.MICROCMS_ENDPOINT_NEWS }}?limit=100" \
-            -H "X-MICROCMS-API-KEY: ${{ secrets.MICROCMS_API_KEY }}" \
+            "https://$MICROCMS_SERVICE_ID.microcms.io/api/v1/$MICROCMS_ENDPOINT_NEWS?limit=100" \
+            -H "X-MICROCMS-API-KEY: $MICROCMS_API_KEY" \
             -o assets/data/news.json
 
       - name: Check output
