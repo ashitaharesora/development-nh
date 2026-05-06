@@ -2135,7 +2135,7 @@ main {
     padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
     background: rgba(255, 255, 255, 0.96);
     border-top: 1px solid var(--line);
-    box-shadow: 0 -8px 24px rgba(18, 45, 78, .08);
+    box-shadow: 0 -8px 24px rgba(0, 81, 131, .08);
 
     opacity: 0;
     visibility: hidden;
@@ -2157,51 +2157,51 @@ main {
     align-items: center;
     justify-content: center;
     min-height: 42px;
-    padding: 0.6rem 0.5rem;
-    border-radius: 3px;
-    font-size: 0.78rem;
-    line-height: 1.2;
+    padding: 0.72rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.84rem;
+    line-height: 1;
     text-decoration: none;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     letter-spacing: 0;
   }
 
   .floating-cta-free {
-    background: var(--text);
+    background: #005183;
     color: #fff;
-    border: 1px solid var(--text);
+    border: 1px solid #005183;
   }
 
   .floating-cta-phone {
     background: #fff;
-    color: var(--text);
-    border: 1px solid var(--text);
+    color: #005183;
+    border: 1px solid #005183;
   }
 }
 
 @media (max-width: 768px) {
   .floating-cta-free {
-    background: var(--text);
+    background: #005183;
     color: #ffffff;
-    border: 1px solid var(--text);
+    border: 1px solid #005183;
   }
 
   .floating-cta-free:hover {
-    opacity: 0.7;
+    background: #003d63;
     color: #ffffff;
+    border-color: #003d63;
   }
 
   .floating-cta-phone {
     background: #ffffff;
-    color: var(--text);
-    border: 1px solid var(--text);
+    color: #005183;
+    border: 1px solid #005183;
   }
 
   .floating-cta-phone:hover {
-    opacity: 0.7;
-    color: var(--text);
+    background: #e8f2f9;
+    color: #005183;
+    border-color: #005183;
   }
 }
 
@@ -2420,6 +2420,7 @@ main {
     top: 0;
     z-index: 1000;
     background: rgba(255, 255, 255, .95);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
     padding: 0;
   }
@@ -2472,25 +2473,22 @@ main {
   .brand-name,
   .home-page.static-header-home .brand-name,
   :is(.static-header-service, .static-header-unified) .brand-name {
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-flex;
     align-items: baseline;
-    gap: 0;
-    font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    gap: 0.18em;
+    font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
     font-size: var(--mobile-header-brand-name);
-    line-height: 1.35;
+    line-height: 1.3;
     white-space: normal;
     word-break: keep-all;
-    overflow-wrap: break-word;
+    overflow-wrap: normal;
     letter-spacing: 0;
     color: var(--text);
-    max-width: 100%;
   }
 
   .brand-name-tax,
   .brand-name-labor {
-    display: block;
-    min-width: 0;
+    display: inline-block;
   }
 
   /* --- ナビのコンテナ：2段目として横幅いっぱいに --- */
