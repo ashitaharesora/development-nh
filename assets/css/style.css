@@ -158,7 +158,7 @@ img {
 .nav-item.cta {
   padding: 9px 15px;
   border: 1px solid var(--text);
-  border-radius: 999px;
+  border-radius: 3px;
   background: #fff
 }
 
@@ -214,7 +214,7 @@ main {
 }
 
 .hero h1 {
-  font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   font-weight: 400;
   font-size: 25px;
   margin: 0 0 20px;
@@ -242,7 +242,7 @@ main {
   align-items: center;
   justify-content: center;
   padding: 13px 22px;
-  border-radius: 999px;
+  border-radius: 3px;
   border: 1px solid var(--text);
   background: #fff;
   min-width: 180px;
@@ -311,8 +311,8 @@ main {
 .fee-guide {
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 24px;
-  box-shadow: var(--shadow)
+  border-radius: 4px;
+  box-shadow: none
 }
 
 .card {
@@ -1229,8 +1229,8 @@ main {
 .price-panel {
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 24px;
-  box-shadow: var(--shadow);
+  border-radius: 4px;
+  box-shadow: none;
   padding: 24px;
   min-width: 0;
 }
