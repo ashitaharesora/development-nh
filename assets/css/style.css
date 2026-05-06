@@ -1865,6 +1865,12 @@ main {
   }
 }
 
+/* ===== services section: h3 underline ===== */
+.section-services .card h3 {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 /* ===== service icons ===== */
 .service-icon {
   width: 52px;
