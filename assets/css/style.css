@@ -2955,3 +2955,75 @@ main {
     text-decoration: none;
   }
 }
+
+/* =====================================================
+   モバイルタイポグラフィ調整（768px以下）
+   letter-spacing・line-height を引き締めて
+   情報密度・可読性を高める
+===================================================== */
+@media (max-width: 768px) {
+
+  /* 1. body 全体 */
+  body {
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+
+  /* 2. 見出し */
+  .hero h1,
+  .page-hero h1 {
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+  }
+
+  .section h2 {
+    letter-spacing: 0.1em;
+    line-height: 1.45;
+  }
+
+  .card h3 {
+    letter-spacing: 0.06em;
+    line-height: 1.45;
+  }
+
+  .news-item h3,
+  .blog-item h3 {
+    letter-spacing: 0.06em;
+    line-height: 1.45;
+  }
+
+  /* 3. 本文 */
+  .hero p {
+    letter-spacing: 0.04em;
+    line-height: 1.75;
+  }
+
+  .section-lead {
+    letter-spacing: 0.04em;
+    line-height: 1.75;
+  }
+
+  .content p,
+  .content li {
+    letter-spacing: 0.04em;
+    line-height: 1.75;
+  }
+
+  .card p {
+    letter-spacing: 0.04em;
+    line-height: 1.75;
+  }
+
+  /* 4. ナビ・ボタン */
+  .nav-list {
+    letter-spacing: 0.04em;
+  }
+
+  .nav-item {
+    letter-spacing: 0.04em;
+  }
+
+  .button {
+    letter-spacing: 0.06em;
+  }
+}
