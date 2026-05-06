@@ -209,7 +209,7 @@ main {
 .hero h1 {
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   font-weight: 400;
-  font-size: clamp(26px, 4vw, 46px);
+  font-size: 25px;
   line-height: 1.6;
   margin: 0 0 22px;
   max-width: 900px;
@@ -275,7 +275,7 @@ main {
 .section h2 {
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   font-weight: 400;
-  font-size: clamp(22px, 3.2vw, 30px);
+  font-size: 20px;
   line-height: 1.5;
   margin: 0 0 20px;
   color: var(--text);
@@ -369,7 +369,7 @@ main {
 .page-hero h1 {
   margin: 0 0 8px;
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
-  font-size: clamp(24px, 3.5vw, 36px);
+  font-size: 25px;
   font-weight: 400;
   color: var(--text);
   letter-spacing: 0.2em
@@ -397,7 +397,7 @@ main {
 }
 
 .content h2 {
-  font-size: 28px;
+  font-size: 20px;
   margin: 40px 0 12px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--line)
@@ -408,7 +408,7 @@ main {
 }
 
 .content h3 {
-  font-size: 22px;
+  font-size: 18px;
   margin: 28px 0 8px
 }
 
@@ -450,7 +450,7 @@ main {
 .blog-item h3,
 .work-item h3 {
   margin: 0 0 8px;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.5;
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   font-weight: 400
@@ -482,7 +482,7 @@ main {
 
 .faq-item h3 {
   margin: 0 0 8px;
-  font-size: 20px
+  font-size: 18px
 }
 
 .cta-box {
@@ -1245,7 +1245,7 @@ main {
 
 .price-panel h3 {
   margin: 0 0 8px;
-  font-size: 28px;
+  font-size: 18px;
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   font-weight: 400;
   line-height: 1.4;
@@ -2942,5 +2942,10 @@ main {
   .footer-inner {
     padding-left: 14px;
     padding-right: 14px;
+  }
+
+  /* 本文リンクの下線を非表示（h3のborder-bottomは維持） */
+  a {
+    text-decoration: none;
   }
 }
