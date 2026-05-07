@@ -27,7 +27,7 @@
   /* ===== スマホ共通ヘッダーの基本値（まとめて管理） ===== */
   --mobile-header-logo: 36px;
   --mobile-header-pad-y: 8px;
-  --mobile-header-brand-name: 17px;
+  --mobile-header-brand-name: 19px;
   --mobile-header-kicker: 12px;
   --mobile-header-nav-font: 12.5px;
 }
