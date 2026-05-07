@@ -1628,30 +1628,32 @@ main {
   letter-spacing: 0.1em;
 }
 
-/* 無料相談：赤ボタン */
+/* 無料相談：ブルーボタン */
 .nav-cta-group .nav-item.cta-free {
-  background: #cc2200;
+  background: #005183;
   color: #ffffff;
-  border: 1px solid #cc2200;
+  border: 1px solid #005183;
+  padding: 0.66rem 1.5rem;
 }
 
 .nav-cta-group .nav-item.cta-free:hover {
-  background: #a81b00;
+  background: #003d63;
   color: #ffffff;
-  border-color: #a81b00;
+  border-color: #003d63;
 }
 
-/* TEL：白地 + 赤枠 */
+/* TEL：白地 + ブルー枠 */
 .nav-cta-group .nav-item.cta-phone {
   background: #ffffff;
-  color: #cc2200;
-  border: 1px solid #cc2200;
+  color: #005183;
+  border: 1px solid #005183;
+  padding: 0.66rem 1.5rem;
 }
 
 .nav-cta-group .nav-item.cta-phone:hover {
-  background: #fff5f3;
-  color: #cc2200;
-  border-color: #cc2200;
+  background: #e8f2f9;
+  color: #005183;
+  border-color: #005183;
 }
 
 @media (min-width: 1201px) {
@@ -2177,7 +2179,7 @@ main {
     align-items: center;
     justify-content: center;
     min-height: 42px;
-    padding: 0.72rem 0.7rem;
+    padding: 0.72rem 1.05rem;
     border-radius: 0;
     font-size: 0.84rem;
     line-height: 1;
@@ -2187,41 +2189,41 @@ main {
   }
 
   .floating-cta-free {
-    background: #cc2200;
+    background: #005183;
     color: #fff;
-    border: 1px solid #cc2200;
+    border: 1px solid #005183;
   }
 
   .floating-cta-phone {
     background: #fff;
-    color: #cc2200;
-    border: 1px solid #cc2200;
+    color: #005183;
+    border: 1px solid #005183;
   }
 }
 
 @media (max-width: 768px) {
   .floating-cta-free {
-    background: #cc2200;
+    background: #005183;
     color: #ffffff;
-    border: 1px solid #cc2200;
+    border: 1px solid #005183;
   }
 
   .floating-cta-free:hover {
-    background: #a81b00;
+    background: #003d63;
     color: #ffffff;
-    border-color: #a81b00;
+    border-color: #003d63;
   }
 
   .floating-cta-phone {
     background: #ffffff;
-    color: #cc2200;
-    border: 1px solid #cc2200;
+    color: #005183;
+    border: 1px solid #005183;
   }
 
   .floating-cta-phone:hover {
-    background: #fff5f3;
-    color: #cc2200;
-    border-color: #cc2200;
+    background: #e8f2f9;
+    color: #005183;
+    border-color: #005183;
   }
 }
 
