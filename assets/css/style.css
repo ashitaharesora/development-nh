@@ -493,7 +493,8 @@ main {
 }
 
 .cta-box h3 {
-  color: #005183
+  color: #005183;
+  font-weight: 400
 }
 
 .site-footer {
