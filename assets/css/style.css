@@ -366,12 +366,13 @@ main {
   background: #fff
 }
 
-.page-hero h1 {
+.page-hero h1,
+.page-hero h2 {
   margin: 0 0 8px;
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   font-size: 25px;
   font-weight: 400;
-  color: var(--text);
+  color: #005183;
   letter-spacing: 0.2em
 }
 
@@ -489,6 +490,10 @@ main {
 .cta-box {
   background: #f2f2f3;
   padding: 36px 32px
+}
+
+.cta-box h3 {
+  color: #005183
 }
 
 .site-footer {
@@ -1038,7 +1043,8 @@ main {
   padding: 40px 0 24px;
 }
 
-.page-hero h1 {
+.page-hero h1,
+.page-hero h2 {
   margin: 0 0 6px;
 }
 
@@ -2053,7 +2059,8 @@ main {
   h1, h2, h3,
   .hero h1,
   .section h2,
-  .page-hero h1 {
+  .page-hero h1,
+  .page-hero h2 {
     letter-spacing: 0.1em;
   }
 
@@ -2561,7 +2568,8 @@ main {
 
   /* セクション見出しのletter-spacingを縮小 */
   .section h2,
-  .page-hero h1 {
+  .page-hero h1,
+  .page-hero h2 {
     letter-spacing: 0.1em;
   }
 
@@ -2637,7 +2645,8 @@ main {
 
   /* 2. 見出し */
   .hero h1,
-  .page-hero h1 {
+  .page-hero h1,
+  .page-hero h2 {
     letter-spacing: 0.08em;
     line-height: 1.35;
   }
