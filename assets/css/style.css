@@ -1627,28 +1627,30 @@ main {
   letter-spacing: 0.1em;
 }
 
-/* 無料相談：ブルーボタン */
+/* 無料相談：赤ボタン */
 .nav-cta-group .nav-item.cta-free {
-  background: var(--text);
+  background: #cc2200;
   color: #ffffff;
-  border: 1px solid var(--text);
+  border: 1px solid #cc2200;
 }
 
 .nav-cta-group .nav-item.cta-free:hover {
-  opacity: 0.7;
+  background: #a81b00;
   color: #ffffff;
+  border-color: #a81b00;
 }
 
-/* TEL：白地 + ブルー枠 */
+/* TEL：白地 + 赤枠 */
 .nav-cta-group .nav-item.cta-phone {
   background: #ffffff;
-  color: var(--text);
-  border: 1px solid var(--text);
+  color: #cc2200;
+  border: 1px solid #cc2200;
 }
 
 .nav-cta-group .nav-item.cta-phone:hover {
-  opacity: 0.7;
-  color: var(--text);
+  background: #fff5f3;
+  color: #cc2200;
+  border-color: #cc2200;
 }
 
 @media (min-width: 1201px) {
@@ -2184,41 +2186,41 @@ main {
   }
 
   .floating-cta-free {
-    background: #005183;
+    background: #cc2200;
     color: #fff;
-    border: 1px solid #005183;
+    border: 1px solid #cc2200;
   }
 
   .floating-cta-phone {
     background: #fff;
-    color: #005183;
-    border: 1px solid #005183;
+    color: #cc2200;
+    border: 1px solid #cc2200;
   }
 }
 
 @media (max-width: 768px) {
   .floating-cta-free {
-    background: #005183;
+    background: #cc2200;
     color: #ffffff;
-    border: 1px solid #005183;
+    border: 1px solid #cc2200;
   }
 
   .floating-cta-free:hover {
-    background: #003d63;
+    background: #a81b00;
     color: #ffffff;
-    border-color: #003d63;
+    border-color: #a81b00;
   }
 
   .floating-cta-phone {
     background: #ffffff;
-    color: #005183;
-    border: 1px solid #005183;
+    color: #cc2200;
+    border: 1px solid #cc2200;
   }
 
   .floating-cta-phone:hover {
-    background: #e8f2f9;
-    color: #005183;
-    border-color: #005183;
+    background: #fff5f3;
+    color: #cc2200;
+    border-color: #cc2200;
   }
 }
 
