@@ -2489,6 +2489,7 @@ main {
   .brand-name-tax,
   .brand-name-labor {
     display: inline-block;
+    font-size: 19px;
   }
 
   /* --- ナビのコンテナ：2段目として横幅いっぱいに --- */
