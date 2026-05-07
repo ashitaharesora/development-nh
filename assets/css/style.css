@@ -1915,12 +1915,21 @@ main {
     letter-spacing: 0.1em;
   }
 
-  h2 {
+  h2,
+  .page-hero h2,
+  .section h2,
+  .content h2 {
     font-size: 20px;
     line-height: 1.4;
   }
 
-  h3 {
+  h3,
+  .page-hero h3,
+  .card h3,
+  .faq-item h3,
+  .content h3,
+  .news-item h3,
+  .blog-item h3 {
     font-size: 18px;
     line-height: 1.45;
   }
