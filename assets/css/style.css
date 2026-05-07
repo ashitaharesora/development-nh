@@ -482,7 +482,8 @@ main {
 
 .faq-item h3 {
   margin: 0 0 8px;
-  font-size: 18px
+  font-size: 18px;
+  color: #005183
 }
 
 .cta-box {
