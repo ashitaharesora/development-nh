@@ -2845,7 +2845,7 @@ main {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   color: #fff;
-  font-size: 24px;
+  font-size: 20px;
   font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
   letter-spacing: 0.22em;
   line-height: 2;
@@ -2854,7 +2854,7 @@ main {
 }
 
 .home-page.static-header-home .hero-vertical-emphasis {
-  font-size: 32px;
+  font-size: 28px;
 }
 
 /* ===== ヒーロー：白説明ボックス（右下） ===== */
@@ -2880,12 +2880,8 @@ main {
 
 /* モバイル */
 @media (max-width: 900px) {
-  .hero-vertical-box {
-    padding: 12px 12px;
-  }
-
   .home-page.static-header-home .hero-vertical-text {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .hero-desc-box {
