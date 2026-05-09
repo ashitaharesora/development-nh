@@ -2809,6 +2809,12 @@ main {
   /* 経歴・資格・趣味 の th/td 余白をプロフィールテーブル内だけ縮める */
   .about-profile-table .table th,
   .about-profile-table .table td {
-    padding: 8px 6px;
+    padding: 8px 4px;
+  }
+
+  /* 代表行（先頭行）の上余白を縮める */
+  .about-profile-table .table tr:first-child th,
+  .about-profile-table .table tr:first-child td {
+    padding-top: 0;
   }
 }
