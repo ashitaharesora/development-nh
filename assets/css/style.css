@@ -2792,12 +2792,28 @@ main {
   }
 }
 
-/* ===== ヒーロー：文字後ろの半透明ブルーボックス ===== */
+/* ===== ヒーロー：文字後ろの半透明ボックス ===== */
 .hero-content-box {
   display: inline-block;
-  background: rgba(0, 81, 131, 0.50);
+  background: rgba(255, 255, 255, 0.88);
   border-radius: 8px;
   padding: 28px 32px;
+}
+
+/* ボックス内テキストを黒系に（白継承を上書き） */
+.home-page.static-header-home .hero-content-box,
+.home-page.static-header-home .hero-content-box h1,
+.home-page.static-header-home .hero-content-box p,
+.home-page.static-header-home .hero-content-box .hero-emphasis {
+  color: #1a1a1a;
+  text-shadow: none;
+}
+
+.home-page.static-header-home .hero-content-box .hero-kicker {
+  color: #1a1a1a;
+  text-shadow: none;
+  border-color: rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 @media (max-width: 768px) {
