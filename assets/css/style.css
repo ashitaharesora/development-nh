@@ -2762,6 +2762,22 @@ main {
   }
 }
 
+/* ===== 代表プロフィール 経歴リスト ===== */
+.career-list {
+  margin: 0;
+  padding: 0;
+}
+.career-list dt {
+  font-weight: inherit;
+  margin-top: 6px;
+}
+.career-list dt:first-child {
+  margin-top: 0;
+}
+.career-list dd {
+  margin: 0;
+}
+
 /* ===== スマホ：トップページ セクション背景の交互切替 =====
    サービス一覧（白）とご相談の流れ（薄グレー）を
    視覚的に区切るためのモバイル専用クラス。
@@ -2774,5 +2790,19 @@ main {
   /* .section.alt のグレーをモバイルで白に上書き */
   .section.section-bg-white {
     background: #ffffff;
+  }
+}
+
+/* ===== スマホ：代表プロフィール 経歴 2列グリッド ===== */
+@media (max-width: 768px) {
+  .career-list {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 0.6em;
+    row-gap: 3px;
+    align-items: start;
+  }
+  .career-list dt {
+    margin-top: 0;
   }
 }
