@@ -27,7 +27,7 @@
   /* ===== スマホ共通ヘッダーの基本値（まとめて管理） ===== */
   --mobile-header-logo: 48px;
   --mobile-header-pad-y: 8px;
-  --mobile-header-brand-name: 19px;
+  --mobile-header-brand-name: 14.5px;
   --mobile-header-kicker: 12px;
   --mobile-header-nav-font: 12.5px;
 }
@@ -114,7 +114,7 @@ img {
 
 .brand-name {
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
-  font-size: 20px;
+  font-size: 14.5px;
   line-height: 1.35
 }
 
@@ -1180,7 +1180,7 @@ main {
 
 .brand-name {
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
-  font-size: clamp(16px, 1.7vw, 20px);
+  font-size: 14.5px;
   line-height: 1.3;
   white-space: nowrap;
   letter-spacing: 0;
@@ -1196,7 +1196,7 @@ main {
   }
 
   .brand-name {
-    font-size: clamp(15px, 1.5vw, 18px);
+    font-size: 14.5px;
   }
 
   .brand-logo {
@@ -1563,7 +1563,7 @@ main {
 
 .home-page.static-header-home .brand-name {
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
-  font-size: clamp(16px, 1.65vw, 20px);
+  font-size: 14.5px;
   line-height: 1.3;
   white-space: nowrap;
   color: var(--text);
@@ -1624,7 +1624,7 @@ main {
   }
 
   .home-page.static-header-home .brand-name {
-    font-size: clamp(15px, 1.5vw, 18px);
+    font-size: 14.5px;
   }
 }
 
@@ -1642,7 +1642,7 @@ main {
 
   .home-page.static-header-home .brand-name {
     white-space: normal;
-    font-size: 15.75px;
+    font-size: 14.5px;
     line-height: 1.35;
   }
 
@@ -1740,7 +1740,7 @@ main {
 
 @media (max-width: 1200px) {
   .brand-name {
-    font-size: 0.96rem;
+    font-size: 14.5px;
   }
 
   .nav-item {
@@ -2363,7 +2363,7 @@ main {
   align-items: baseline;
   gap: 0.18em;
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
-  font-size: clamp(16px, 1.65vw, 20px);
+  font-size: 14.5px;
   line-height: 1.3;
   white-space: nowrap;
   color: var(--text);
