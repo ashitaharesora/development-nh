@@ -1633,7 +1633,7 @@ main {
   background: #005183;
   color: #ffffff;
   border: 1px solid #005183;
-  padding: 1rem 1.5rem;
+  padding: 1.3rem 1.5rem;
 }
 
 .nav-cta-group .nav-item.cta-free:hover {
@@ -1647,7 +1647,7 @@ main {
   background: #ffffff;
   color: #005183;
   border: 1px solid #005183;
-  padding: 1rem 1.5rem;
+  padding: 1.3rem 1.5rem;
 }
 
 .nav-cta-group .nav-item.cta-phone:hover {
@@ -2179,7 +2179,7 @@ main {
     align-items: center;
     justify-content: center;
     min-height: 42px;
-    padding: 1.1rem 1.05rem;
+    padding: 1.4rem 1.05rem;
     border-radius: 0;
     font-size: 0.84rem;
     line-height: 1;
