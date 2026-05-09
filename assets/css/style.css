@@ -2528,6 +2528,8 @@ main {
     display: block;
     padding-top: var(--mobile-header-pad-y);
     padding-bottom: var(--mobile-header-pad-y);
+    padding-left: 0;
+    padding-right: 0;
     align-items: flex-start;
   }
 
