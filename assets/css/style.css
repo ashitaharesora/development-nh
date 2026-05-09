@@ -491,7 +491,12 @@ main {
 }
 
 .faq-item:first-child {
-  padding-top: 0
+  padding-top: 0;
+  overflow: hidden
+}
+
+.content .faq-item:first-child h3 {
+  margin-top: 0
 }
 
 .faq-item h3 {
