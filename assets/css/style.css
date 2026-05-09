@@ -2846,10 +2846,11 @@ main {
 
 /* ===== ヒーロー：縦書き青ボックス ===== */
 .hero-vertical-box {
-  background: rgba(0, 81, 131, 0.65);
+  background: #005183;
   border-radius: 0;
   padding: 32px 18px;
   flex-shrink: 0;
+  opacity: 1;
 }
 
 .home-page.static-header-home .hero-vertical-text {
@@ -2870,9 +2871,10 @@ main {
 
 .hero-white-bar {
   flex: 1;
-  background: rgba(255, 255, 255, 0.75);
+  background: #ffffff;
   border-radius: 0;
   width: 48px;
+  opacity: 1;
 }
 
 .hero-bottom-bar {
@@ -2881,9 +2883,10 @@ main {
   left: 0;
   right: 0;
   height: 48px;
-  background: rgba(255, 255, 255, 0.75);
+  background: #ffffff;
   border-radius: 0;
   z-index: 1;
+  opacity: 1;
 }
 
 /* ===== ヒーロー：白説明ボックス（右下） ===== */
@@ -2891,10 +2894,11 @@ main {
   position: absolute;
   bottom: 8%;
   right: 0;
-  background: rgba(255, 255, 255, 0.75);
+  background: #ffffff;
   border-radius: 0;
   padding: 24px 28px;
   max-width: 360px;
+  opacity: 1;
 }
 
 .hero .hero-desc-box p {
