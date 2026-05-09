@@ -2538,7 +2538,7 @@ main {
   :is(.static-header-service, .static-header-unified) .brand {
     display: grid;
     grid-template-columns: var(--mobile-header-logo) 1fr;
-    gap: 10px;
+    gap: 16px;
     align-items: center;
     width: 100%;
     margin: 0;
