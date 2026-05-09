@@ -2841,11 +2841,11 @@ main {
   z-index: 1;
 }
 
-.hero-vertical-text {
+.home-page.static-header-home .hero-vertical-text {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   color: #fff;
-  font-size: 26px;
+  font-size: 24px;
   font-family: 'はれのそら明朝', "Yu Mincho", "Hiragino Mincho ProN", serif;
   letter-spacing: 0.22em;
   line-height: 2;
@@ -2853,7 +2853,7 @@ main {
   text-shadow: none;
 }
 
-.hero-vertical-emphasis {
+.home-page.static-header-home .hero-vertical-emphasis {
   font-size: 32px;
 }
 
@@ -2884,7 +2884,7 @@ main {
     padding: 16px 12px;
   }
 
-  .hero-vertical-text {
+  .home-page.static-header-home .hero-vertical-text {
     font-size: 14px;
   }
 
