@@ -2799,6 +2799,12 @@ main {
   padding: 28px 32px;
 }
 
+@media (max-width: 768px) {
+  .hero-content-box {
+    padding: 10px 10px;
+  }
+}
+
 /* ===== 代表プロフィール 経歴リスト ===== */
 .career-list {
   margin: 0;
