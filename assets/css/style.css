@@ -613,6 +613,7 @@ main {
 
 .profile-body .list {
   margin: 0;
+  gap: 0;
 }
 
 .profile-body .list li {
