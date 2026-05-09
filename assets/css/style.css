@@ -564,6 +564,10 @@ main {
   font-size: inherit
 }
 
+.table td {
+  font-size: 0.88rem
+}
+
 .table th {
   width: 28%;
   color: var(--muted);
