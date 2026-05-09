@@ -25,7 +25,7 @@
   --side-pad-mobile: 16px;
 
   /* ===== スマホ共通ヘッダーの基本値（まとめて管理） ===== */
-  --mobile-header-logo: 36px;
+  --mobile-header-logo: 48px;
   --mobile-header-pad-y: 8px;
   --mobile-header-brand-name: 19px;
   --mobile-header-kicker: 12px;
@@ -94,9 +94,9 @@ img {
 }
 
 .brand-logo {
-  width: 62px;
-  height: 62px;
-  flex: 0 0 62px
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px
 }
 
 .brand-text {
@@ -1538,9 +1538,9 @@ main {
 }
 
 .home-page.static-header-home .brand-logo {
-  width: 62px;
-  height: 62px;
-  flex: 0 0 62px;
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px;
   margin-left: 0 !important;
 }
 
@@ -1635,9 +1635,9 @@ main {
   }
 
   .home-page.static-header-home .brand-logo {
-    width: 36px;
-    height: 36px;
-    flex-basis: 36px;
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
   }
 
   .home-page.static-header-home .brand-name {
@@ -2339,9 +2339,9 @@ main {
 }
 
 :is(.static-header-service, .static-header-unified) .brand-logo {
-  width: 62px;
-  height: 62px;
-  flex: 0 0 62px;
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px;
   margin-left: 0;
 }
 
