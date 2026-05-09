@@ -45,7 +45,7 @@ body {
   margin: 0;
   overflow-x: clip;
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
-  color: var(--muted);
+  color: #222222;
   background: var(--bg);
   line-height: 2.2;
   letter-spacing: 0.12em;
@@ -335,7 +335,7 @@ main {
 
 .card p {
   margin: 0;
-  color: var(--muted)
+  color: #222222
 }
 
 .list {
