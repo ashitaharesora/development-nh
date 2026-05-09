@@ -2835,10 +2835,10 @@ main {
 /* ===== ヒーロー：縦書き青ボックス ===== */
 .hero-vertical-box {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   background: rgba(0, 81, 131, 0.65);
-  border-radius: 0 0 4px 0;
+  border-radius: 0 4px 0 0;
   padding: 32px 18px;
   z-index: 1;
 }
@@ -2884,15 +2884,6 @@ main {
 @media (max-width: 900px) {
   .home-page.static-header-home .hero-vertical-text {
     font-size: 20px;
-  }
-
-  .home-page.static-header-home .hero-vertical-text::after {
-    content: '';
-    display: inline-block;
-    width: 1px;
-    height: 52px;
-    background: rgba(255, 255, 255, 0.75);
-    margin-top: 16px;
   }
 
   .hero-desc-box {
