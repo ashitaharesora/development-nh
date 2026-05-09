@@ -2862,12 +2862,12 @@ main {
 /* ===== ヒーロー：白説明ボックス（右下） ===== */
 .hero-desc-box {
   position: absolute;
-  bottom: 0;
+  bottom: 8%;
   right: 0;
   background: rgba(255, 255, 255, 0.90);
   border-radius: 8px 0 0 0;
   padding: 24px 28px;
-  max-width: 440px;
+  max-width: 360px;
 }
 
 .hero .hero-desc-box p {
@@ -2888,10 +2888,10 @@ main {
 
   .hero-desc-box {
     position: absolute;
-    bottom: 5%;
+    bottom: 12%;
     right: 0;
     left: auto;
-    max-width: 85vw;
+    max-width: 72vw;
     width: auto;
     border-radius: 8px 0 0 0;
     padding: 16px 18px;
