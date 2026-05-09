@@ -608,8 +608,12 @@ main {
 .profile-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
   margin-bottom: 16px;
+}
+
+.profile-body .list {
+  margin: 0;
 }
 
 .profile-header .mini-logo {
