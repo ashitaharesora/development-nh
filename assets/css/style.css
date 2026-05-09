@@ -2827,4 +2827,16 @@ main {
   .about-profile-table .table tr:first-child td {
     padding-top: 0;
   }
+
+  /* テーブル行間をさらに詰める */
+  .about-profile-table .table th,
+  .about-profile-table .table td {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  /* プロフィールカード（右側）の内側余白を縮める */
+  .about-profile-card .profile-body {
+    padding: 14px 12px;
+  }
 }
