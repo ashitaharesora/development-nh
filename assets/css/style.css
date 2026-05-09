@@ -605,6 +605,27 @@ main {
   margin: 0 0 18px
 }
 
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.profile-header .mini-logo {
+  width: 52px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.profile-header .profile-name {
+  margin: 0 0 2px;
+}
+
+.profile-header .profile-role {
+  margin: 0;
+}
+
 .logo-strip {
   display: grid;
   grid-template-columns: 1fr;
