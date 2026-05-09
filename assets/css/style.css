@@ -418,6 +418,10 @@ main {
   color: #005183
 }
 
+.content h3:first-child {
+  margin-top: 0
+}
+
 .content p {
   margin: 0 0 18px
 }
@@ -484,6 +488,10 @@ main {
 .faq-item {
   padding: 18px 0;
   border-bottom: 1px solid var(--line)
+}
+
+.faq-item:first-child {
+  padding-top: 0
 }
 
 .faq-item h3 {
