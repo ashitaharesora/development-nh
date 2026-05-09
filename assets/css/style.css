@@ -1604,7 +1604,8 @@ main {
 
 .home-page.static-header-home .hero .container {
   min-height: calc(100svh - 96px);
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: flex-start;
   padding-top: 72px;
   padding-bottom: 88px;
 }
@@ -1827,9 +1828,11 @@ main {
 /* スマホでは縦並びに戻す */
 @media (max-width: 900px) {
   .home-page.static-header-home .hero .container {
-    min-height: auto;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    min-height: 440px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-top: 48px;
+    padding-bottom: 40px;
   }
 
   .home-page.static-header-home .hero-kicker {
