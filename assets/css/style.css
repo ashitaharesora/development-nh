@@ -195,6 +195,21 @@ main {
   padding-bottom: 96px
 }
 
+/* トップページのみ：文字ブロックを左下寄りに配置 */
+.home-page .hero {
+  min-height: 560px;
+}
+
+.home-page .hero .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  min-height: 560px;
+  padding-top: 48px;
+  padding-bottom: 52px;
+}
+
 .hero-kicker {
   display: inline-flex;
   padding: 6px 14px;
@@ -2795,6 +2810,18 @@ main {
 }
 .career-list dd {
   margin: 0;
+}
+
+/* ===== スマホ：トップページ hero 左下配置 ===== */
+@media (max-width: 768px) {
+  .home-page .hero {
+    min-height: 440px;
+  }
+  .home-page .hero .container {
+    min-height: 440px;
+    padding-top: 32px;
+    padding-bottom: 36px;
+  }
 }
 
 /* ===== スマホ：トップページ セクション背景の交互切替 =====
