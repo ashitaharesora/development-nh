@@ -2888,7 +2888,7 @@ main {
 
   .hero-desc-box {
     position: absolute;
-    bottom: 0;
+    bottom: 5%;
     right: 0;
     left: auto;
     max-width: 85vw;
