@@ -2748,4 +2748,8 @@ main {
   .section-bg-light {
     background: #f2f2f3;
   }
+  /* .section.alt のグレーをモバイルで白に上書き */
+  .section.section-bg-white {
+    background: #ffffff;
+  }
 }
