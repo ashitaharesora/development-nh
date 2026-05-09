@@ -2805,4 +2805,10 @@ main {
   .career-list dt {
     margin-top: 0;
   }
+
+  /* 経歴・資格・趣味 の th/td 余白をプロフィールテーブル内だけ縮める */
+  .about-profile-table .table th,
+  .about-profile-table .table td {
+    padding: 8px 6px;
+  }
 }
