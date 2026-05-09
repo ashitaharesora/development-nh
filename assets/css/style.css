@@ -2871,8 +2871,19 @@ main {
 .hero-white-bar {
   flex: 1;
   background: rgba(255, 255, 255, 0.88);
-  border-radius: 0 0 4px 0;
-  width: 50%;
+  border-radius: 0;
+  width: 20%;
+}
+
+.hero-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 0;
+  z-index: 1;
 }
 
 /* ===== ヒーロー：白説明ボックス（右下） ===== */
