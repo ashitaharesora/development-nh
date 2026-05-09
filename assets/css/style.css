@@ -556,7 +556,8 @@ main {
   border-bottom: 1px solid var(--line);
   padding: 12px 8px;
   text-align: left;
-  vertical-align: top
+  vertical-align: top;
+  font-size: inherit
 }
 
 .table th {
