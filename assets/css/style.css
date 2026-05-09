@@ -2891,7 +2891,7 @@ main {
   position: absolute;
   bottom: 8%;
   right: 0;
-  background: rgba(255, 255, 255, 0.90);
+  background: rgba(255, 255, 255, 0.75);
   border-radius: 0;
   padding: 24px 28px;
   max-width: 360px;
