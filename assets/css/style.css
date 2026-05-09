@@ -2845,7 +2845,7 @@ main {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   color: #fff;
-  font-size: 32px;
+  font-size: 26px;
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   letter-spacing: 0.22em;
   line-height: 2;
@@ -2853,10 +2853,17 @@ main {
   text-shadow: none;
 }
 
+.hero-vertical-emphasis {
+  font-size: 32px;
+}
+
 /* ===== ヒーロー：白説明ボックス（右下） ===== */
 .hero-desc-box {
+  position: absolute;
+  bottom: 0;
+  right: 0;
   background: rgba(255, 255, 255, 0.90);
-  border-radius: 8px;
+  border-radius: 8px 0 0 0;
   padding: 24px 28px;
   max-width: 440px;
 }
@@ -2882,9 +2889,14 @@ main {
   }
 
   .hero-desc-box {
-    padding: 16px 18px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
     max-width: none;
     width: 100%;
+    border-radius: 0;
+    padding: 16px 18px;
     box-sizing: border-box;
   }
 
