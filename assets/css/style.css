@@ -1205,7 +1205,7 @@ main {
 
 @media (max-width: 900px) {
   .brand-logo {
-    margin-left: 0;
+    margin-left: 8px;
   }
 
   .brand-text {
@@ -2552,7 +2552,7 @@ main {
     height: var(--mobile-header-logo);
     flex: 0 0 var(--mobile-header-logo);
     flex-basis: var(--mobile-header-logo);
-    margin: 0;
+    margin: 0 0 0 8px;
   }
 
   /* --- 肩書き（元国税職員…） --- */
