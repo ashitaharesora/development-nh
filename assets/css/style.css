@@ -1609,11 +1609,10 @@ main {
 .home-page.static-header-home .hero .container {
   min-height: calc(100svh - 96px);
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-end;
   padding-top: 72px;
   padding-bottom: 60px;
-  gap: 24px;
 }
 
 .home-page.static-header-home .brand-name-group,
@@ -2833,11 +2832,13 @@ main {
 
 /* ===== ヒーロー：縦書き青ボックス ===== */
 .hero-vertical-box {
+  position: absolute;
+  top: 0;
+  left: 0;
   background: #005183;
-  border-radius: 4px;
+  border-radius: 0 0 4px 0;
   padding: 32px 18px;
-  flex-shrink: 0;
-  align-self: flex-start;
+  z-index: 1;
 }
 
 .hero-vertical-text {
@@ -2873,11 +2874,11 @@ main {
 /* モバイル */
 @media (max-width: 900px) {
   .hero-vertical-box {
-    padding: 20px 14px;
+    padding: 16px 12px;
   }
 
   .hero-vertical-text {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .hero-desc-box {
