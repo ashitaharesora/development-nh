@@ -25,7 +25,7 @@
   --side-pad-mobile: 16px;
 
   /* ===== スマホ共通ヘッダーの基本値（まとめて管理） ===== */
-  --mobile-header-logo: 48px;
+  --mobile-header-logo: 44px;
   --mobile-header-pad-y: 8px;
   --mobile-header-brand-name: 14.5px;
   --mobile-header-kicker: 12px;
@@ -94,9 +94,9 @@ img {
 }
 
 .brand-logo {
-  width: 80px;
-  height: 80px;
-  flex: 0 0 80px
+  width: 74px;
+  height: 74px;
+  flex: 0 0 74px
 }
 
 .brand-text {
@@ -1157,17 +1157,16 @@ main {
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   flex: 1 1 auto;
   min-width: 0;
 }
 
 .brand-logo {
-  width: 62px;
-  height: 62px;
-  flex: 0 0 62px;
-  margin-left: -8px;
-  /* 少し左へ */
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  margin-left: 8px;
 }
 
 .brand-text {
@@ -1538,10 +1537,10 @@ main {
 }
 
 .home-page.static-header-home .brand-logo {
-  width: 80px;
-  height: 80px;
-  flex: 0 0 80px;
-  margin-left: 0 !important;
+  width: 74px;
+  height: 74px;
+  flex: 0 0 74px;
+  margin-left: 8px;
 }
 
 .home-page.static-header-home .brand-text {
@@ -1635,9 +1634,9 @@ main {
   }
 
   .home-page.static-header-home .brand-logo {
-    width: 48px;
-    height: 48px;
-    flex-basis: 48px;
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
   }
 
   .home-page.static-header-home .brand-name {
@@ -2333,16 +2332,16 @@ main {
 :is(.static-header-service, .static-header-unified) .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
   min-width: 0;
   flex: 1 1 auto;
 }
 
 :is(.static-header-service, .static-header-unified) .brand-logo {
-  width: 80px;
-  height: 80px;
-  flex: 0 0 80px;
-  margin-left: 0;
+  width: 74px;
+  height: 74px;
+  flex: 0 0 74px;
+  margin-left: 8px;
 }
 
 :is(.static-header-service, .static-header-unified) .brand-text {
