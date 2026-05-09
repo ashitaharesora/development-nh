@@ -2817,6 +2817,11 @@ main {
     width: 20%;
   }
 
+  /* テーブルの外側マージンを削除 */
+  .about-profile-table .table {
+    margin: 0;
+  }
+
   /* 代表行（先頭行）の上余白を縮める */
   .about-profile-table .table tr:first-child th,
   .about-profile-table .table tr:first-child td {
