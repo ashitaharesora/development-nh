@@ -1603,10 +1603,12 @@ main {
 
 .home-page.static-header-home .hero .container {
   min-height: calc(100svh - 96px);
-  justify-content: flex-end;
-  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
   padding-top: 72px;
-  padding-bottom: 140px;
+  padding-bottom: 60px;
+  gap: 24px;
 }
 
 .home-page.static-header-home .brand-name-group,
@@ -1828,10 +1830,12 @@ main {
 @media (max-width: 900px) {
   .home-page.static-header-home .hero .container {
     min-height: 440px;
+    flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
     padding-top: 48px;
-    padding-bottom: 220px;
+    padding-bottom: 36px;
+    gap: 12px;
   }
 
   .home-page.static-header-home .hero-kicker {
@@ -2819,6 +2823,68 @@ main {
 @media (max-width: 768px) {
   .hero-content-box {
     padding: 10px 10px;
+  }
+}
+
+/* ===== ヒーロー：縦書き青ボックス ===== */
+.hero-vertical-box {
+  background: #005183;
+  border-radius: 4px;
+  padding: 32px 18px;
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.hero-vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  color: #fff;
+  font-size: 18px;
+  font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  letter-spacing: 0.22em;
+  line-height: 2;
+  margin: 0;
+  text-shadow: none;
+}
+
+/* ===== ヒーロー：白説明ボックス（右下） ===== */
+.hero-desc-box {
+  background: rgba(255, 255, 255, 0.90);
+  border-radius: 8px;
+  padding: 24px 28px;
+  max-width: 440px;
+}
+
+.hero .hero-desc-box p {
+  color: #1a1a1a;
+  font-size: 15px;
+  line-height: 1.85;
+  margin: 0 0 20px;
+  text-shadow: none;
+  letter-spacing: 0.08em;
+  max-width: none;
+}
+
+/* モバイル */
+@media (max-width: 900px) {
+  .hero-vertical-box {
+    padding: 20px 14px;
+  }
+
+  .hero-vertical-text {
+    font-size: 15px;
+  }
+
+  .hero-desc-box {
+    padding: 16px 18px;
+    max-width: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero .hero-desc-box p {
+    font-size: 14px;
+    margin: 0 0 14px;
   }
 }
 
