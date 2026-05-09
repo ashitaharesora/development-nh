@@ -2881,7 +2881,7 @@ main {
 /* モバイル */
 @media (max-width: 900px) {
   .hero-vertical-box {
-    padding: 16px 12px;
+    padding: 12px 12px;
   }
 
   .home-page.static-header-home .hero-vertical-text {
