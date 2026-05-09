@@ -2870,7 +2870,7 @@ main {
 
 .hero-white-bar {
   flex: 1;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.75);
   border-radius: 0;
   width: 48px;
 }
@@ -2881,7 +2881,7 @@ main {
   left: 0;
   right: 0;
   height: 48px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.75);
   border-radius: 0;
   z-index: 1;
 }
