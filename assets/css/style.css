@@ -1283,6 +1283,11 @@ main {
   margin: 0 0 22px;
 }
 
+.flow-list li:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
 .flow-list li:not(:last-child)::after {
   content: "↓";
   position: absolute;
