@@ -2886,6 +2886,15 @@ main {
     font-size: 20px;
   }
 
+  .home-page.static-header-home .hero-vertical-text::after {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.75);
+    margin-top: 16px;
+  }
+
   .hero-desc-box {
     position: absolute;
     bottom: 5%;
