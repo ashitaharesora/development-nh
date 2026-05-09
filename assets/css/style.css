@@ -2892,10 +2892,10 @@ main {
     position: absolute;
     bottom: 0;
     right: 0;
-    left: 0;
-    max-width: none;
-    width: 100%;
-    border-radius: 0;
+    left: auto;
+    max-width: 85vw;
+    width: auto;
+    border-radius: 8px 0 0 0;
     padding: 16px 18px;
     box-sizing: border-box;
   }
