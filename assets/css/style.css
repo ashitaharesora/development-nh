@@ -1607,7 +1607,7 @@ main {
   justify-content: flex-end;
   align-items: flex-start;
   padding-top: 72px;
-  padding-bottom: 88px;
+  padding-bottom: 140px;
 }
 
 .home-page.static-header-home .brand-name-group,
@@ -1832,7 +1832,7 @@ main {
     justify-content: flex-end;
     align-items: flex-start;
     padding-top: 48px;
-    padding-bottom: 40px;
+    padding-bottom: 80px;
   }
 
   .home-page.static-header-home .hero-kicker {
