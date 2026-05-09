@@ -951,7 +951,7 @@ main {
   }
 }
 
-/* ===== スマホでは太陽側（右側）が見えるようにする ===== */
+/* ===== スマホでは太陽側（右上）が見えるようにする ===== */
 @media (max-width: 900px) {
   .home-page .hero {
     min-height: 100svh;
@@ -960,9 +960,11 @@ main {
   .home-page .hero::before {
     background:
       linear-gradient(115deg, var(--hero-overlay), rgba(0, 50, 80, .22) 55%, rgba(0, 50, 80, .10)),
-      url('../img/photo1.jpg') 78% center / cover no-repeat;
+      url('../img/photo1.jpg') 70% 20% / cover no-repeat;
   }
+}
 
+@media (min-width: 901px) {
   .home-page .hero .container {
     min-height: 100svh;
     justify-content: flex-start;
