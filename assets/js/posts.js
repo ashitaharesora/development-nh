@@ -18,22 +18,24 @@
   }
 
   /**
-   * microCMS の画像フィールドを探して { url, alt } を返す。
-   * 対応フィールド名: eyecatch / thumbnail / image / mainImage
-   * 画像がない場合は null を返す。
+   * microCMS の画像フィールドを優先順で探して { url, alt } を返す。
+   * eyecatch → thumbnail → image → mainImage の順に試す。
    */
   function getImage(item) {
     var field = item.eyecatch || item.thumbnail || item.image || item.mainImage || null;
     if (!field) return null;
     var url = (typeof field === 'string') ? field : (field.url || '');
     if (!url) return null;
-    return {
-      url: url,
-      alt: field.alt || ''
-    };
+    return { url: url, alt: field.alt || '' };
   }
 
-  /** 画像付きカード HTML を生成（news / blog 共通） */
+  /**
+   * グリッドカード HTML を生成
+   * ・正方形サムネイル（画像なし→グレー背景）
+   * ・タイトル
+   * ・タグ（newsは「お知らせ」固定、blogはcategory名）
+   * ・日付
+   */
   function renderCard(item, type, prefix) {
     var slug = item.slug || item.id || '';
     var date = formatDate(item.publishedAtCustom || item.publishedAt);
@@ -43,22 +45,24 @@
       : prefix + 'blog/' + slug + '/';
 
     var img = getImage(item);
-    var thumbHtml = img
-      ? '<div class="post-card-thumb">'
-          + '<img src="' + esc(img.url) + '" alt="' + esc(img.alt || item.title || '') + '" loading="lazy">'
-          + '</div>'
-      : '';
+    var thumbHtml = '<div class="post-card-thumb">'
+      + (img
+          ? '<img src="' + esc(img.url) + '" alt="' + esc(img.alt || item.title || '') + '" loading="lazy">'
+          : '')
+      + '</div>';
 
-    var cat = (type === 'blog' && item.category && item.category.name)
-      ? '<span class="tag">' + esc(item.category.name) + '</span>'
-      : '';
+    // タグ：newsは「お知らせ」固定、blogはcategory.name（なければ「ブログ」）
+    var tagLabel = type === 'news'
+      ? 'お知らせ'
+      : (item.category && item.category.name ? item.category.name : 'ブログ');
+    var tagsHtml = '<div class="post-card-tags"><span class="post-tag">' + esc(tagLabel) + '</span></div>';
 
-    return '<a class="' + (type === 'news' ? 'news-item' : 'blog-item') + ' post-card" href="' + href + '">'
+    return '<a class="post-card" href="' + href + '">'
       + thumbHtml
       + '<div class="post-card-body">'
-      + (cat ? cat : '')
-      + '<time datetime="' + date + '">' + date + '</time>'
       + '<p class="post-card-title">' + title + '</p>'
+      + tagsHtml
+      + '<time datetime="' + date + '">' + date + '</time>'
       + '</div>'
       + '</a>';
   }
@@ -110,7 +114,7 @@
     }).join('');
   }
 
-  // ---- お知らせ一覧ページ ----
+  // ---- お知らせ一覧ページ（既存レイアウト維持） ----
   async function loadNewsList() {
     var el = document.getElementById('newsList');
     var emptyEl = document.getElementById('newsEmpty');
