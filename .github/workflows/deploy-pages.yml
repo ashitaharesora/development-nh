@@ -35,28 +35,82 @@ jobs:
         run: |
           mkdir -p assets/data
 
-          if [ -z "$MICROCMS_SERVICE_ID" ] || [ -z "$MICROCMS_API_KEY" ]; then
-            echo "microCMS variables not configured. Skipping fetch."
-            exit 0
+          # --- [1] 設定値の確認（APIキーの値は出力しない）---
+          echo "=== [1] 設定確認 ==="
+          if [ -z "$MICROCMS_SERVICE_ID" ]; then
+            echo "ERROR: MICROCMS_SERVICE_ID (Variable) が未設定です。"
+            exit 1
           fi
+          if [ -z "$MICROCMS_API_KEY" ]; then
+            echo "ERROR: MICROCMS_API_KEY (Secret) が未設定です。"
+            exit 1
+          fi
+          echo "MICROCMS_SERVICE_ID: $MICROCMS_SERVICE_ID"
+          echo "MICROCMS_API_KEY: [set, length=$(echo -n "$MICROCMS_API_KEY" | wc -c)]"
 
           ENDPOINT_NEWS="${MICROCMS_ENDPOINT_NEWS:-news}"
           ENDPOINT_BLOGS="${MICROCMS_ENDPOINT_BLOGS:-blog}"
           BASE_URL="https://$MICROCMS_SERVICE_ID.microcms.io/api/v1"
+          echo "ENDPOINT_NEWS: $ENDPOINT_NEWS"
+          echo "ENDPOINT_BLOGS: $ENDPOINT_BLOGS"
+          echo "BASE_URL: $BASE_URL"
 
-          echo "Fetching news from $ENDPOINT_NEWS ..."
-          curl --fail-with-body --silent --show-error \
+          # --- [2] お知らせ取得 ---
+          echo ""
+          echo "=== [2] お知らせ（$ENDPOINT_NEWS）取得 ==="
+          HTTP_STATUS=$(curl --silent --show-error --write-out "%{http_code}" \
             "$BASE_URL/$ENDPOINT_NEWS?limit=100&orders=-publishedAt" \
             -H "X-MICROCMS-API-KEY: $MICROCMS_API_KEY" \
-            -o /tmp/news_raw.json
+            -o /tmp/news_raw.json)
+          echo "HTTP Status: $HTTP_STATUS"
 
-          echo "Fetching blog from $ENDPOINT_BLOGS ..."
-          curl --fail-with-body --silent --show-error \
+          if [ "$HTTP_STATUS" != "200" ]; then
+            echo "ERROR: お知らせ取得失敗 (HTTP $HTTP_STATUS)"
+            echo "レスポンス内容:"
+            cat /tmp/news_raw.json
+            exit 1
+          fi
+
+          NEWS_TOTAL=$(jq '.totalCount // 0' /tmp/news_raw.json)
+          NEWS_COUNT=$(jq '.contents | length' /tmp/news_raw.json)
+          echo "totalCount (microCMS): $NEWS_TOTAL"
+          echo "contents件数: $NEWS_COUNT"
+
+          if [ "$NEWS_COUNT" = "0" ]; then
+            echo "WARN: お知らせが0件です。下書きのみ、またはエンドポイント名が違う可能性があります。"
+            echo "レスポンス全体:"
+            cat /tmp/news_raw.json
+          else
+            echo "最初の1件（title / slug / publishedAt フィールドのみ）:"
+            jq '.contents[0] | {id, title, slug, publishedAt, publishedAtCustom}' /tmp/news_raw.json
+          fi
+
+          # --- [3] ブログ取得 ---
+          echo ""
+          echo "=== [3] ブログ（$ENDPOINT_BLOGS）取得 ==="
+          HTTP_STATUS=$(curl --silent --show-error --write-out "%{http_code}" \
             "$BASE_URL/$ENDPOINT_BLOGS?limit=100&orders=-publishedAt" \
             -H "X-MICROCMS-API-KEY: $MICROCMS_API_KEY" \
-            -o /tmp/blog_raw.json
+            -o /tmp/blog_raw.json)
+          echo "HTTP Status: $HTTP_STATUS"
 
-          # Merge into a single posts.json (API key never written to output)
+          if [ "$HTTP_STATUS" != "200" ]; then
+            echo "WARN: ブログ取得失敗 (HTTP $HTTP_STATUS) — ブログなしで続行します"
+            echo '{"contents":[]}' > /tmp/blog_raw.json
+          else
+            BLOG_TOTAL=$(jq '.totalCount // 0' /tmp/blog_raw.json)
+            BLOG_COUNT=$(jq '.contents | length' /tmp/blog_raw.json)
+            echo "totalCount (microCMS): $BLOG_TOTAL"
+            echo "contents件数: $BLOG_COUNT"
+            if [ "$BLOG_COUNT" != "0" ]; then
+              echo "最初の1件（title / slug / publishedAt フィールドのみ）:"
+              jq '.contents[0] | {id, title, slug, publishedAt, publishedAtCustom, category}' /tmp/blog_raw.json
+            fi
+          fi
+
+          # --- [4] posts.json 生成 ---
+          echo ""
+          echo "=== [4] posts.json 生成 ==="
           jq -n \
             --slurpfile news /tmp/news_raw.json \
             --slurpfile blog /tmp/blog_raw.json \
@@ -66,8 +120,15 @@ jobs:
             }' \
             > assets/data/posts.json
 
-          echo "posts.json generated:"
-          jq '{news_count: (.news | length), blog_count: (.blog | length)}' assets/data/posts.json
+          FINAL_NEWS=$(jq '.news | length' assets/data/posts.json)
+          FINAL_BLOG=$(jq '.blog | length' assets/data/posts.json)
+          echo "posts.json に格納した件数 → news: $FINAL_NEWS 件 / blog: $FINAL_BLOG 件"
+
+          if [ "$FINAL_NEWS" = "0" ] && [ "$FINAL_BLOG" = "0" ]; then
+            echo "WARN: posts.json が空です。設定・記事の公開状態を確認してください。"
+          else
+            echo "OK: posts.json を正常に生成しました。"
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
