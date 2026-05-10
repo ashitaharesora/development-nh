@@ -17,6 +17,52 @@
       .replace(/'/g, '&#39;');
   }
 
+  /**
+   * microCMS の画像フィールドを探して { url, alt } を返す。
+   * 対応フィールド名: eyecatch / thumbnail / image / mainImage
+   * 画像がない場合は null を返す。
+   */
+  function getImage(item) {
+    var field = item.eyecatch || item.thumbnail || item.image || item.mainImage || null;
+    if (!field) return null;
+    var url = (typeof field === 'string') ? field : (field.url || '');
+    if (!url) return null;
+    return {
+      url: url,
+      alt: field.alt || ''
+    };
+  }
+
+  /** 画像付きカード HTML を生成（news / blog 共通） */
+  function renderCard(item, type, prefix) {
+    var slug = item.slug || item.id || '';
+    var date = formatDate(item.publishedAtCustom || item.publishedAt);
+    var title = esc(item.title || '');
+    var href = type === 'news'
+      ? prefix + 'news/' + slug + '/'
+      : prefix + 'blog/' + slug + '/';
+
+    var img = getImage(item);
+    var thumbHtml = img
+      ? '<div class="post-card-thumb">'
+          + '<img src="' + esc(img.url) + '" alt="' + esc(img.alt || item.title || '') + '" loading="lazy">'
+          + '</div>'
+      : '';
+
+    var cat = (type === 'blog' && item.category && item.category.name)
+      ? '<span class="tag">' + esc(item.category.name) + '</span>'
+      : '';
+
+    return '<a class="' + (type === 'news' ? 'news-item' : 'blog-item') + ' post-card" href="' + href + '">'
+      + thumbHtml
+      + '<div class="post-card-body">'
+      + (cat ? cat : '')
+      + '<time datetime="' + date + '">' + date + '</time>'
+      + '<p class="post-card-title">' + title + '</p>'
+      + '</div>'
+      + '</a>';
+  }
+
   async function fetchJson(url) {
     var res = await fetch(url);
     if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -60,27 +106,7 @@
     }
 
     el.innerHTML = items.map(function (item) {
-      var slug = item.slug || item.id;
-      var date = formatDate(item.publishedAtCustom || item.publishedAt);
-      var title = esc(item.title);
-      var href = item._type === 'news'
-        ? prefix + 'news/' + slug + '/'
-        : prefix + 'blog/' + slug + '/';
-
-      if (item._type === 'news') {
-        return '<a class="news-item" href="' + href + '">'
-          + '<time datetime="' + date + '">' + date + '</time>'
-          + '<p>' + title + '</p>'
-          + '</a>';
-      } else {
-        var cat = (item.category && item.category.name)
-          ? '<span class="tag">' + esc(item.category.name) + '</span>'
-          : '';
-        return '<a class="blog-item" href="' + href + '">'
-          + cat
-          + '<p>' + title + '</p>'
-          + '</a>';
-      }
+      return renderCard(item, item._type, prefix);
     }).join('');
   }
 
@@ -102,9 +128,9 @@
       }
 
       el.innerHTML = items.map(function (item) {
-        var slug = item.slug || item.id;
+        var slug = item.slug || item.id || '';
         var date = formatDate(item.publishedAtCustom || item.publishedAt);
-        var title = esc(item.title);
+        var title = esc(item.title || '');
         var excerpt = esc(item.excerpt || '');
         var href = slug ? slug + '/' : '#';
 
