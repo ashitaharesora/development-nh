@@ -2802,11 +2802,11 @@ main {
   }
 }
 
-/* ===== ヒーロー：文字後ろの半透明ボックス ===== */
+/* ===== ヒーロー：文字後ろのボックス ===== */
 .hero-content-box {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.88);
-  border-radius: 8px;
+  background: none;
+  border-radius: 0;
   padding: 28px 32px;
 }
 
@@ -2817,6 +2817,10 @@ main {
 .home-page.static-header-home .hero-content-box .hero-emphasis {
   color: #1a1a1a;
   text-shadow: none;
+}
+
+.home-page.static-header-home .hero-content-box p {
+  font-size: 14px;
 }
 
 .home-page.static-header-home .hero-content-box .hero-kicker {
