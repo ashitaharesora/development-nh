@@ -1612,7 +1612,7 @@ main {
   min-height: calc(100svh - 96px);
   flex-direction: row;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
   padding-top: 72px;
   padding-bottom: 60px;
 }
@@ -1837,7 +1837,7 @@ main {
   .home-page.static-header-home .hero .container {
     min-height: 440px;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-start;
     padding-top: 48px;
     padding-bottom: 36px;
@@ -2810,12 +2810,12 @@ main {
   padding: 28px 32px;
 }
 
-/* ボックス内テキストを黒系に（白継承を上書き） */
+/* ボックス内テキストを白に */
 .home-page.static-header-home .hero-content-box,
 .home-page.static-header-home .hero-content-box h1,
 .home-page.static-header-home .hero-content-box p,
 .home-page.static-header-home .hero-content-box .hero-emphasis {
-  color: #1a1a1a;
+  color: #fff;
   text-shadow: none;
 }
 
@@ -2824,10 +2824,10 @@ main {
 }
 
 .home-page.static-header-home .hero-content-box .hero-kicker {
-  color: #1a1a1a;
+  color: #fff;
   text-shadow: none;
-  border-color: rgba(0, 0, 0, 0.18);
-  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(255, 255, 255, 0.4);
+  background: none;
 }
 
 @media (max-width: 768px) {
