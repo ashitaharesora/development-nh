@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+  repository_dispatch:
+    types: [microcms-update]
 
 permissions:
   contents: read
@@ -24,13 +26,12 @@ jobs:
         with:
           enablement: true
 
-      - name: Fetch data from microCMS
+      - name: Fetch posts from microCMS and generate posts.json
         env:
           MICROCMS_SERVICE_ID: ${{ vars.MICROCMS_SERVICE_ID }}
           MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
-          MICROCMS_ENDPOINT_BLOGS: ${{ vars.MICROCMS_ENDPOINT_BLOGS }}
-          MICROCMS_ENDPOINT_CATEGORIES: ${{ vars.MICROCMS_ENDPOINT_CATEGORIES }}
           MICROCMS_ENDPOINT_NEWS: ${{ vars.MICROCMS_ENDPOINT_NEWS }}
+          MICROCMS_ENDPOINT_BLOGS: ${{ vars.MICROCMS_ENDPOINT_BLOGS }}
         run: |
           mkdir -p assets/data
 
@@ -39,25 +40,34 @@ jobs:
             exit 0
           fi
 
-          curl --fail-with-body --silent --show-error \
-            "https://$MICROCMS_SERVICE_ID.microcms.io/api/v1/$MICROCMS_ENDPOINT_BLOGS?limit=100" \
-            -H "X-MICROCMS-API-KEY: $MICROCMS_API_KEY" \
-            -o assets/data/blog.json
+          ENDPOINT_NEWS="${MICROCMS_ENDPOINT_NEWS:-news}"
+          ENDPOINT_BLOGS="${MICROCMS_ENDPOINT_BLOGS:-blog}"
+          BASE_URL="https://$MICROCMS_SERVICE_ID.microcms.io/api/v1"
 
+          echo "Fetching news from $ENDPOINT_NEWS ..."
           curl --fail-with-body --silent --show-error \
-            "https://$MICROCMS_SERVICE_ID.microcms.io/api/v1/$MICROCMS_ENDPOINT_CATEGORIES?limit=100" \
+            "$BASE_URL/$ENDPOINT_NEWS?limit=100&orders=-publishedAt" \
             -H "X-MICROCMS-API-KEY: $MICROCMS_API_KEY" \
-            -o assets/data/category.json
+            -o /tmp/news_raw.json
 
+          echo "Fetching blog from $ENDPOINT_BLOGS ..."
           curl --fail-with-body --silent --show-error \
-            "https://$MICROCMS_SERVICE_ID.microcms.io/api/v1/$MICROCMS_ENDPOINT_NEWS?limit=100" \
+            "$BASE_URL/$ENDPOINT_BLOGS?limit=100&orders=-publishedAt" \
             -H "X-MICROCMS-API-KEY: $MICROCMS_API_KEY" \
-            -o assets/data/news.json
+            -o /tmp/blog_raw.json
 
-      - name: Check output
-        run: |
-          ls -la assets/data
-          head -c 300 assets/data/blog.json || true
+          # Merge into a single posts.json (API key never written to output)
+          jq -n \
+            --slurpfile news /tmp/news_raw.json \
+            --slurpfile blog /tmp/blog_raw.json \
+            '{
+              news: ($news[0].contents // []),
+              blog: ($blog[0].contents // [])
+            }' \
+            > assets/data/posts.json
+
+          echo "posts.json generated:"
+          jq '{news_count: (.news | length), blog_count: (.blog | length)}' assets/data/posts.json
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
