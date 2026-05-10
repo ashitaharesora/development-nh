@@ -3025,10 +3025,29 @@ main {
   }
 }
 
-/* スマホ：1列 */
+/* スマホ：2列 */
 @media (max-width: 480px) {
   .posts-feed {
-    grid-template-columns: 1fr;
-    gap: 14px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .post-card-body {
+    padding: 10px 10px 14px;
+    gap: 6px;
+  }
+
+  .post-card-title {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .post-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .post-card time {
+    font-size: 11px;
   }
 }
