@@ -26,13 +26,13 @@ jobs:
 
       - name: Build microCMS pages
         env:
-          MICROCMS_SERVICE_ID: ${{ vars.MICROCMS_SERVICE_ID }}
+          MICROCMS_SERVICE_DOMAIN: ${{ vars.MICROCMS_SERVICE_DOMAIN }}
           MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
           MICROCMS_ENDPOINT_NEWS: ${{ vars.MICROCMS_ENDPOINT_NEWS }}
           MICROCMS_ENDPOINT_BLOGS: ${{ vars.MICROCMS_ENDPOINT_BLOGS }}
           MICROCMS_ENDPOINT_CATEGORIES: ${{ vars.MICROCMS_ENDPOINT_CATEGORIES }}
         run: |
-          if [ -n "$MICROCMS_SERVICE_ID" ] && [ -n "$MICROCMS_API_KEY" ]; then
+          if [ -n "$MICROCMS_SERVICE_DOMAIN" ] && [ -n "$MICROCMS_API_KEY" ]; then
             npm run build
           else
             echo "microCMS secrets are not configured. Skipping CMS build."

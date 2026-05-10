@@ -21,119 +21,51 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
 
-      - name: Fetch posts from microCMS and generate posts.json
+      - name: Fetch posts from microCMS
         env:
-          MICROCMS_SERVICE_ID: ${{ vars.MICROCMS_SERVICE_ID }}
+          MICROCMS_SERVICE_DOMAIN: ${{ vars.MICROCMS_SERVICE_DOMAIN }}
           MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
           MICROCMS_ENDPOINT_NEWS: ${{ vars.MICROCMS_ENDPOINT_NEWS }}
           MICROCMS_ENDPOINT_BLOGS: ${{ vars.MICROCMS_ENDPOINT_BLOGS }}
           MICROCMS_ENDPOINT_CATEGORIES: ${{ vars.MICROCMS_ENDPOINT_CATEGORIES }}
         run: |
-          mkdir -p assets/data
-
-          # --- [1] 設定値の確認（APIキーの値は出力しない）---
-          echo "=== [1] 設定確認 ==="
-          if [ -z "$MICROCMS_SERVICE_ID" ]; then
-            echo "SKIP: MICROCMS_SERVICE_ID (Variable) が未設定のため、fetchをスキップします。"
-            echo "  → GitHub: Settings > Secrets and variables > Actions > Variables タブ"
-            echo "  → MICROCMS_SERVICE_ID にサービスドメイン（xxx.microcms.io の xxx 部分）を設定してください。"
+          echo "=== 設定確認 ==="
+          if [ -z "$MICROCMS_SERVICE_DOMAIN" ]; then
+            echo "SKIP: MICROCMS_SERVICE_DOMAIN (Variable) が未設定のためfetchをスキップします。"
             exit 0
           fi
           if [ -z "$MICROCMS_API_KEY" ]; then
-            echo "SKIP: MICROCMS_API_KEY (Secret) が未設定のため、fetchをスキップします。"
-            echo "  → GitHub: Settings > Secrets and variables > Actions > Secrets タブ"
-            echo "  → MICROCMS_API_KEY にAPIキーを設定してください。"
+            echo "SKIP: MICROCMS_API_KEY (Secret) が未設定のためfetchをスキップします。"
             exit 0
           fi
-          echo "MICROCMS_SERVICE_ID: $MICROCMS_SERVICE_ID"
-          echo "MICROCMS_API_KEY: [set, length=$(echo -n "$MICROCMS_API_KEY" | wc -c)]"
+          echo "MICROCMS_SERVICE_DOMAIN: $MICROCMS_SERVICE_DOMAIN"
+          echo "MICROCMS_API_KEY: [set, length=$(echo -n "$MICROCMS_API_KEY" | wc -c | tr -d ' ')]"
+          echo "ENDPOINT_NEWS: ${MICROCMS_ENDPOINT_NEWS:-news}"
+          echo "ENDPOINT_BLOGS: ${MICROCMS_ENDPOINT_BLOGS:-blog}"
+          echo "ENDPOINT_CATEGORIES: ${MICROCMS_ENDPOINT_CATEGORIES:-(未設定)}"
 
-          ENDPOINT_NEWS="${MICROCMS_ENDPOINT_NEWS:-news}"
-          ENDPOINT_BLOGS="${MICROCMS_ENDPOINT_BLOGS:-blog}"
-          BASE_URL="https://$MICROCMS_SERVICE_ID.microcms.io/api/v1"
-          echo "ENDPOINT_NEWS: $ENDPOINT_NEWS"
-          echo "ENDPOINT_BLOGS: $ENDPOINT_BLOGS"
-          echo "BASE_URL: $BASE_URL"
+          npm ci || npm install
+          npm run fetch:cms
 
-          # --- [2] お知らせ取得 ---
-          echo ""
-          echo "=== [2] お知らせ（$ENDPOINT_NEWS）取得 ==="
-          HTTP_STATUS=$(curl --silent --show-error --write-out "%{http_code}" \
-            "$BASE_URL/$ENDPOINT_NEWS?limit=100&orders=-publishedAt" \
-            -H "X-MICROCMS-API-KEY: $MICROCMS_API_KEY" \
-            -o /tmp/news_raw.json)
-          echo "HTTP Status: $HTTP_STATUS"
-
-          if [ "$HTTP_STATUS" != "200" ]; then
-            echo "ERROR: お知らせ取得失敗 (HTTP $HTTP_STATUS)"
-            echo "レスポンス内容:"
-            cat /tmp/news_raw.json
-            exit 1
-          fi
-
-          NEWS_TOTAL=$(jq '.totalCount // 0' /tmp/news_raw.json)
-          NEWS_COUNT=$(jq '.contents | length' /tmp/news_raw.json)
-          echo "totalCount (microCMS): $NEWS_TOTAL"
-          echo "contents件数: $NEWS_COUNT"
-
-          if [ "$NEWS_COUNT" = "0" ]; then
-            echo "WARN: お知らせが0件です。下書きのみ、またはエンドポイント名が違う可能性があります。"
-            echo "レスポンス全体:"
-            cat /tmp/news_raw.json
-          else
-            echo "最初の1件（title / slug / publishedAt フィールドのみ）:"
-            jq '.contents[0] | {id, title, slug, publishedAt, publishedAtCustom}' /tmp/news_raw.json
-          fi
-
-          # --- [3] ブログ取得 ---
-          echo ""
-          echo "=== [3] ブログ（$ENDPOINT_BLOGS）取得 ==="
-          HTTP_STATUS=$(curl --silent --show-error --write-out "%{http_code}" \
-            "$BASE_URL/$ENDPOINT_BLOGS?limit=100&orders=-publishedAt" \
-            -H "X-MICROCMS-API-KEY: $MICROCMS_API_KEY" \
-            -o /tmp/blog_raw.json)
-          echo "HTTP Status: $HTTP_STATUS"
-
-          if [ "$HTTP_STATUS" != "200" ]; then
-            echo "WARN: ブログ取得失敗 (HTTP $HTTP_STATUS) — ブログなしで続行します"
-            echo '{"contents":[]}' > /tmp/blog_raw.json
-          else
-            BLOG_TOTAL=$(jq '.totalCount // 0' /tmp/blog_raw.json)
-            BLOG_COUNT=$(jq '.contents | length' /tmp/blog_raw.json)
-            echo "totalCount (microCMS): $BLOG_TOTAL"
-            echo "contents件数: $BLOG_COUNT"
-            if [ "$BLOG_COUNT" != "0" ]; then
-              echo "最初の1件（title / slug / publishedAt フィールドのみ）:"
-              jq '.contents[0] | {id, title, slug, publishedAt, publishedAtCustom, category}' /tmp/blog_raw.json
+          echo "=== 生成結果 ==="
+          for f in assets/data/news.json assets/data/blogs.json assets/data/categories.json; do
+            if [ -f "$f" ]; then
+              COUNT=$(jq '.contents | length' "$f" 2>/dev/null || echo "?")
+              echo "$f: $COUNT 件"
+            else
+              echo "$f: 生成されていません"
             fi
-          fi
-
-          # --- [4] posts.json 生成 ---
-          echo ""
-          echo "=== [4] posts.json 生成 ==="
-          jq -n \
-            --slurpfile news /tmp/news_raw.json \
-            --slurpfile blog /tmp/blog_raw.json \
-            '{
-              news: ($news[0].contents // []),
-              blog: ($blog[0].contents // [])
-            }' \
-            > assets/data/posts.json
-
-          FINAL_NEWS=$(jq '.news | length' assets/data/posts.json)
-          FINAL_BLOG=$(jq '.blog | length' assets/data/posts.json)
-          echo "posts.json に格納した件数 → news: $FINAL_NEWS 件 / blog: $FINAL_BLOG 件"
-
-          if [ "$FINAL_NEWS" = "0" ] && [ "$FINAL_BLOG" = "0" ]; then
-            echo "WARN: posts.json が空です。設定・記事の公開状態を確認してください。"
-          else
-            echo "OK: posts.json を正常に生成しました。"
-          fi
+          done
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
