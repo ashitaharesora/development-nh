@@ -24,42 +24,61 @@ async function ensureDir(dir) {
   await fs.mkdir(dir, { recursive: true });
 }
 
+// ---- お知らせ詳細ページを生成 ----
 async function buildNews() {
   const data = await readJson("news.json");
   const template = await readTemplate("news-detail.html");
+
   for (const item of data.contents ?? []) {
     const slug = item.slug || item.id;
+    if (!slug) continue;
+
     const outDir = path.join(root, "news", slug);
     await ensureDir(outDir);
+
+    const title = item.title || "";
+    const date = item.publishedAt?.slice(0, 10) || "";
+
     const html = applyTemplate(template, {
-      title: item.seoTitle || item.title,
-      description: item.seoDescription || item.excerpt || item.title,
-      prefix: "../../",
-      date: item.publishedAt?.slice(0, 10) || "",
+      seo_title: item.seoTitle || title,
+      title,
+      description: item.seoDescription || item.excerpt || title,
+      date,
       body_html: item.body || "<p>本文を追加してください。</p>",
     });
+
     await fs.writeFile(path.join(outDir, "index.html"), html, "utf-8");
-    console.log(`[news] ${slug}`);
+    console.log(`[news] ${slug} (${date})`);
   }
 }
 
+// ---- ブログ詳細ページを生成 ----
 async function buildBlog() {
   const data = await readJson("blogs.json");
   const template = await readTemplate("blog-detail.html");
+
   for (const item of data.contents ?? []) {
     const slug = item.slug || item.id;
+    if (!slug) continue;
+
     const outDir = path.join(root, "blog", slug);
     await ensureDir(outDir);
+
+    const title = item.title || "";
+    const date = item.publishedAt?.slice(0, 10) || "";
+    const categoryName = item.category?.name || "";
+
     const html = applyTemplate(template, {
-      title: item.seoTitle || item.title,
-      description: item.seoDescription || item.excerpt || item.title,
-      prefix: "../../",
-      date: item.publishedAt?.slice(0, 10) || "",
-      category: item.category?.name || "",
+      seo_title: item.seoTitle || title,
+      title,
+      description: item.seoDescription || item.excerpt || title,
+      date,
+      category_label: categoryName ? ` / ${categoryName}` : "",
       body_html: item.body || "<p>本文を追加してください。</p>",
     });
+
     await fs.writeFile(path.join(outDir, "index.html"), html, "utf-8");
-    console.log(`[blog] ${slug}`);
+    console.log(`[blog] ${slug} (${date})`);
   }
 }
 
