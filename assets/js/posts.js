@@ -3,7 +3,7 @@
 
   function formatDate(value) {
     if (!value) return '';
-    const d = new Date(value);
+    var d = new Date(value);
     if (isNaN(d.getTime())) return '';
     return d.toISOString().slice(0, 10);
   }
@@ -17,70 +17,72 @@
       .replace(/'/g, '&#39;');
   }
 
-  async function fetchJson(url) {
-    const res = await fetch(url);
+  // posts.json を取得する共通関数（APIキーはGitHub Actions側のみで使用）
+  async function fetchPosts(prefix) {
+    var res = await fetch(prefix + 'assets/data/posts.json');
     if (!res.ok) throw new Error('HTTP ' + res.status);
     return res.json();
   }
 
-  // ---- トップページ：お知らせ＋ブログ 最新3件 ----
+  // ---- トップページ：お知らせ＋ブログ 最新N件 ----
   async function loadPostsFeed() {
-    const el = document.getElementById('postsFeed');
+    var el = document.getElementById('postsFeed');
     if (!el) return;
 
-    const prefix = el.dataset.prefix || '';
-    const limit = parseInt(el.dataset.limit || '3', 10);
-    let items = [];
+    var prefix = el.dataset.prefix || './';
+    var limit = parseInt(el.dataset.limit || '3', 10);
 
-    await Promise.allSettled([
-      fetchJson(prefix + 'assets/data/news.json').then(function (data) {
-        (data.contents || []).forEach(function (item) {
-          items.push(Object.assign({ _type: 'news' }, item));
-        });
-      }),
-      fetchJson(prefix + 'assets/data/blog.json').then(function (data) {
-        (data.contents || []).forEach(function (item) {
-          items.push(Object.assign({ _type: 'blog' }, item));
-        });
-      }),
-    ]);
+    try {
+      var data = await fetchPosts(prefix);
 
-    items = items
-      .filter(function (item) { return item.slug; })
-      .sort(function (a, b) {
-        var da = new Date(a.publishedAtCustom || a.publishedAt || 0);
-        var db = new Date(b.publishedAtCustom || b.publishedAt || 0);
-        return db - da;
-      })
-      .slice(0, limit);
+      var newsItems = (data.news || []).map(function (item) {
+        return Object.assign({ _type: 'news' }, item);
+      });
+      var blogItems = (data.blog || []).map(function (item) {
+        return Object.assign({ _type: 'blog' }, item);
+      });
 
-    if (!items.length) {
-      el.innerHTML = '<p class="meta">現在お知らせはありません。</p>';
-      return;
-    }
+      var merged = newsItems.concat(blogItems)
+        .filter(function (item) { return item.slug; })
+        .sort(function (a, b) {
+          var da = new Date(a.publishedAtCustom || a.publishedAt || 0);
+          var db = new Date(b.publishedAtCustom || b.publishedAt || 0);
+          return db - da;
+        })
+        .slice(0, limit);
 
-    el.innerHTML = items.map(function (item) {
-      var date = formatDate(item.publishedAtCustom || item.publishedAt);
-      var title = esc(item.title);
-      var href = item._type === 'news'
-        ? prefix + 'news/' + item.slug + '/'
-        : prefix + 'blog/' + item.slug + '/';
-
-      if (item._type === 'news') {
-        return '<a class="news-item" href="' + href + '">'
-          + '<time datetime="' + date + '">' + date + '</time>'
-          + '<p>' + title + '</p>'
-          + '</a>';
-      } else {
-        var cat = (item.category && item.category.name)
-          ? '<span class="tag">' + esc(item.category.name) + '</span>'
-          : '';
-        return '<a class="blog-item" href="' + href + '">'
-          + cat
-          + '<p>' + title + '</p>'
-          + '</a>';
+      if (!merged.length) {
+        el.innerHTML = '<p class="meta">現在お知らせはありません。</p>';
+        return;
       }
-    }).join('');
+
+      el.innerHTML = merged.map(function (item) {
+        var date = formatDate(item.publishedAtCustom || item.publishedAt);
+        var title = esc(item.title);
+        var href = item._type === 'news'
+          ? prefix + 'news/' + item.slug + '/'
+          : prefix + 'blog/' + item.slug + '/';
+
+        if (item._type === 'news') {
+          return '<a class="news-item" href="' + href + '">'
+            + '<time datetime="' + date + '">' + date + '</time>'
+            + '<p>' + title + '</p>'
+            + '</a>';
+        } else {
+          var cat = (item.category && item.category.name)
+            ? '<span class="tag">' + esc(item.category.name) + '</span>'
+            : '';
+          return '<a class="blog-item" href="' + href + '">'
+            + cat
+            + '<p>' + title + '</p>'
+            + '</a>';
+        }
+      }).join('');
+
+    } catch (e) {
+      console.error('お知らせ・ブログの取得に失敗しました', e);
+      el.innerHTML = '<p class="meta">現在お知らせはありません。</p>';
+    }
   }
 
   // ---- お知らせ一覧ページ ----
@@ -89,11 +91,11 @@
     var emptyEl = document.getElementById('newsEmpty');
     if (!el) return;
 
-    var prefix = el.dataset.prefix || '';
+    var prefix = el.dataset.prefix || '../';
 
     try {
-      var data = await fetchJson(prefix + 'assets/data/news.json');
-      var items = data.contents || [];
+      var data = await fetchPosts(prefix);
+      var items = data.news || [];
 
       if (!items.length) {
         if (emptyEl) emptyEl.style.display = 'block';
@@ -113,6 +115,7 @@
           + (excerpt ? '<p>' + excerpt + '</p>' : '')
           + '</a>';
       }).join('');
+
     } catch (e) {
       console.error('お知らせ一覧の取得に失敗しました', e);
       if (emptyEl) {
