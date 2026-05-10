@@ -19,6 +19,7 @@
   <link rel="apple-touch-icon" href="assets/img/Logo_1.svg">
   <link rel="stylesheet" href="assets/css/style.css">
   <script defer src="assets/js/main.js"></script>
+  <script defer src="assets/js/posts.js"></script>
 
   <script type="application/ld+json">
 {
@@ -196,20 +197,7 @@
       <div class="container split">
         <div>
           <h2 class="js-fade-up">お知らせ・ブログ</h2>
-          <div class="news-list">
-            <a class="news-item js-fade-up delay-1" href="news/2025-12-office-move/"><time
-                datetime="2025-12-01">2026-04-01</time>
-              <p>アシタハレソラ′マネジメント、税理士事務所を移転しました</p>
-            </a>
-            <a class="news-item js-fade-up delay-2" href="news/2025-10-anniversary/"><time
-                datetime="2025-10-01">2025-10-01</time>
-              <p>独立開業1周年を迎えました</p>
-            </a>
-            <a class="blog-item js-fade-up delay-3" href="blog/first-three-foundations/"><span
-                class="tag">独立初期の経営整理</span>
-              <p>売上が増えた個人事業主が最初に整えるべき3つ</p>
-            </a>
-          </div>
+          <div class="news-list" id="postsFeed" data-prefix="./"></div>
           <div style="margin-top:24px">
             <a class="button js-fade-up delay-1" href="news/">お知らせ・ブログを見る</a>
           </div>
