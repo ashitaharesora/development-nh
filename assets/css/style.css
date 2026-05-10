@@ -2931,17 +2931,40 @@ main {
   }
 }
 
-/* ===== トップページ お知らせ・ブログ 画像カード ===== */
-.post-card {
-  display: flex;
-  align-items: stretch;
-  padding: 0;
-  overflow: hidden;
+/* ===== トップページ お知らせ・ブログ グリッド ===== */
+
+/* コンテナ：3列グリッド */
+.posts-feed {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-.post-card-thumb {
-  flex: 0 0 140px;
+/* 各カード */
+.post-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease;
+  padding: 0;
+}
+
+.post-card:hover {
+  opacity: 0.82;
+}
+
+/* 正方形サムネイル */
+.post-card-thumb {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden;
+  background: #f0f0f0;
+  flex-shrink: 0;
 }
 
 .post-card-thumb img {
@@ -2951,41 +2974,61 @@ main {
   display: block;
 }
 
+/* カード本文エリア */
 .post-card-body {
-  flex: 1;
-  min-width: 0;
-  padding: 16px 20px;
+  padding: 14px 16px 18px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 6px;
+  gap: 8px;
+  flex: 1;
 }
 
 .post-card-title {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.65;
   color: var(--text);
+  font-weight: 400;
 }
 
 .post-card time {
   display: block;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
+  letter-spacing: 0.05em;
 }
 
-.post-card .tag {
-  align-self: flex-start;
+/* タグ（小ラベル） */
+.post-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: transparent;
+  border: 1px solid var(--muted, #999);
+  border-radius: 2px;
+  font-size: 11px;
+  color: var(--muted, #666);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
 }
 
-@media (max-width: 600px) {
-  .post-card {
-    flex-direction: column;
+.post-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* タブレット：2列 */
+@media (max-width: 900px) {
+  .posts-feed {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
+}
 
-  .post-card-thumb {
-    flex: none;
-    width: 100%;
-    height: 180px;
+/* スマホ：1列 */
+@media (max-width: 480px) {
+  .posts-feed {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 }
