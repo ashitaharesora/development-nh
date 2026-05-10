@@ -38,12 +38,16 @@ jobs:
           # --- [1] 設定値の確認（APIキーの値は出力しない）---
           echo "=== [1] 設定確認 ==="
           if [ -z "$MICROCMS_SERVICE_ID" ]; then
-            echo "ERROR: MICROCMS_SERVICE_ID (Variable) が未設定です。"
-            exit 1
+            echo "SKIP: MICROCMS_SERVICE_ID (Variable) が未設定のため、fetchをスキップします。"
+            echo "  → GitHub: Settings > Secrets and variables > Actions > Variables タブ"
+            echo "  → MICROCMS_SERVICE_ID にサービスドメイン（xxx.microcms.io の xxx 部分）を設定してください。"
+            exit 0
           fi
           if [ -z "$MICROCMS_API_KEY" ]; then
-            echo "ERROR: MICROCMS_API_KEY (Secret) が未設定です。"
-            exit 1
+            echo "SKIP: MICROCMS_API_KEY (Secret) が未設定のため、fetchをスキップします。"
+            echo "  → GitHub: Settings > Secrets and variables > Actions > Secrets タブ"
+            echo "  → MICROCMS_API_KEY にAPIキーを設定してください。"
+            exit 0
           fi
           echo "MICROCMS_SERVICE_ID: $MICROCMS_SERVICE_ID"
           echo "MICROCMS_API_KEY: [set, length=$(echo -n "$MICROCMS_API_KEY" | wc -c)]"
