@@ -1,5 +1,3 @@
-// ブログ一覧ページ用スクリプト
-// APIキーはGitHub Actions側のみで使用し、ブラウザからはposts.jsonを参照する
 (function () {
   'use strict';
 
@@ -9,11 +7,11 @@
     if (!listEl) return;
 
     try {
-      var res = await fetch('../assets/data/posts.json');
+      var res = await fetch('../assets/data/blogs.json');
       if (!res.ok) throw new Error('HTTP ' + res.status);
 
       var data = await res.json();
-      var items = Array.isArray(data.blog) ? data.blog : [];
+      var items = data.contents || [];
 
       if (!items.length) {
         if (emptyEl) emptyEl.style.display = 'block';
@@ -21,9 +19,9 @@
       }
 
       listEl.innerHTML = items.map(function (item) {
+        var slug = item.slug || item.id || '';
         var title = esc(item.title || '');
         var excerpt = esc(item.excerpt || '');
-        var slug = item.slug || '';
         var categoryName = esc((item.category && item.category.name) || '');
         var eyecatchUrl = (item.eyecatch && item.eyecatch.url) || '';
         var published = formatDate(item.publishedAtCustom || item.publishedAt);

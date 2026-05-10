@@ -17,9 +17,8 @@
       .replace(/'/g, '&#39;');
   }
 
-  // posts.json を取得する共通関数（APIキーはGitHub Actions側のみで使用）
-  async function fetchPosts(prefix) {
-    var res = await fetch(prefix + 'assets/data/posts.json');
+  async function fetchJson(url) {
+    var res = await fetch(url);
     if (!res.ok) throw new Error('HTTP ' + res.status);
     return res.json();
   }
@@ -31,58 +30,58 @@
 
     var prefix = el.dataset.prefix || './';
     var limit = parseInt(el.dataset.limit || '3', 10);
+    var items = [];
 
-    try {
-      var data = await fetchPosts(prefix);
+    await Promise.allSettled([
+      fetchJson(prefix + 'assets/data/news.json').then(function (data) {
+        (data.contents || []).forEach(function (item) {
+          items.push(Object.assign({ _type: 'news' }, item));
+        });
+      }),
+      fetchJson(prefix + 'assets/data/blogs.json').then(function (data) {
+        (data.contents || []).forEach(function (item) {
+          items.push(Object.assign({ _type: 'blog' }, item));
+        });
+      }),
+    ]);
 
-      var newsItems = (data.news || []).map(function (item) {
-        return Object.assign({ _type: 'news' }, item);
-      });
-      var blogItems = (data.blog || []).map(function (item) {
-        return Object.assign({ _type: 'blog' }, item);
-      });
+    items = items
+      .filter(function (item) { return item.slug || item.id; })
+      .sort(function (a, b) {
+        var da = new Date(a.publishedAtCustom || a.publishedAt || 0);
+        var db = new Date(b.publishedAtCustom || b.publishedAt || 0);
+        return db - da;
+      })
+      .slice(0, limit);
 
-      var merged = newsItems.concat(blogItems)
-        .filter(function (item) { return item.slug; })
-        .sort(function (a, b) {
-          var da = new Date(a.publishedAtCustom || a.publishedAt || 0);
-          var db = new Date(b.publishedAtCustom || b.publishedAt || 0);
-          return db - da;
-        })
-        .slice(0, limit);
-
-      if (!merged.length) {
-        el.innerHTML = '<p class="meta">現在お知らせはありません。</p>';
-        return;
-      }
-
-      el.innerHTML = merged.map(function (item) {
-        var date = formatDate(item.publishedAtCustom || item.publishedAt);
-        var title = esc(item.title);
-        var href = item._type === 'news'
-          ? prefix + 'news/' + item.slug + '/'
-          : prefix + 'blog/' + item.slug + '/';
-
-        if (item._type === 'news') {
-          return '<a class="news-item" href="' + href + '">'
-            + '<time datetime="' + date + '">' + date + '</time>'
-            + '<p>' + title + '</p>'
-            + '</a>';
-        } else {
-          var cat = (item.category && item.category.name)
-            ? '<span class="tag">' + esc(item.category.name) + '</span>'
-            : '';
-          return '<a class="blog-item" href="' + href + '">'
-            + cat
-            + '<p>' + title + '</p>'
-            + '</a>';
-        }
-      }).join('');
-
-    } catch (e) {
-      console.error('お知らせ・ブログの取得に失敗しました', e);
+    if (!items.length) {
       el.innerHTML = '<p class="meta">現在お知らせはありません。</p>';
+      return;
     }
+
+    el.innerHTML = items.map(function (item) {
+      var slug = item.slug || item.id;
+      var date = formatDate(item.publishedAtCustom || item.publishedAt);
+      var title = esc(item.title);
+      var href = item._type === 'news'
+        ? prefix + 'news/' + slug + '/'
+        : prefix + 'blog/' + slug + '/';
+
+      if (item._type === 'news') {
+        return '<a class="news-item" href="' + href + '">'
+          + '<time datetime="' + date + '">' + date + '</time>'
+          + '<p>' + title + '</p>'
+          + '</a>';
+      } else {
+        var cat = (item.category && item.category.name)
+          ? '<span class="tag">' + esc(item.category.name) + '</span>'
+          : '';
+        return '<a class="blog-item" href="' + href + '">'
+          + cat
+          + '<p>' + title + '</p>'
+          + '</a>';
+      }
+    }).join('');
   }
 
   // ---- お知らせ一覧ページ ----
@@ -94,8 +93,8 @@
     var prefix = el.dataset.prefix || '../';
 
     try {
-      var data = await fetchPosts(prefix);
-      var items = data.news || [];
+      var data = await fetchJson(prefix + 'assets/data/news.json');
+      var items = data.contents || [];
 
       if (!items.length) {
         if (emptyEl) emptyEl.style.display = 'block';
@@ -103,10 +102,10 @@
       }
 
       el.innerHTML = items.map(function (item) {
+        var slug = item.slug || item.id;
         var date = formatDate(item.publishedAtCustom || item.publishedAt);
         var title = esc(item.title);
         var excerpt = esc(item.excerpt || '');
-        var slug = item.slug || '';
         var href = slug ? slug + '/' : '#';
 
         return '<a class="news-item" href="' + href + '">'
