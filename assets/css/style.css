@@ -2680,13 +2680,13 @@ main {
     justify-content: center;
   }
 
-  /* 2行目の2項目：auto幅で中央寄せ（gap分の余白を詰める） */
+  /* 2行目の2項目：auto幅で中央寄せ */
   .nav-list > .nav-item:nth-child(3),
   .nav-list > .nav-item:nth-child(4) {
     flex: 0 0 auto;
     justify-content: center;
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 
