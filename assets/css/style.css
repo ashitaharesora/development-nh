@@ -2931,7 +2931,33 @@ main {
   }
 }
 
-/* ===== トップページ お知らせ・ブログ グリッド ===== */
+/* ===== お知らせ・コラム フィルタータブ ===== */
+
+.feed-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.feed-tab {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 6px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.feed-tab.is-active,
+.feed-tab:hover {
+  background: var(--primary, #2b5f9e);
+  color: #fff;
+  border-color: var(--primary, #2b5f9e);
+}
+
+/* ===== トップページ お知らせ・コラム グリッド ===== */
 
 /* コンテナ：3列グリッド */
 .posts-feed {
