@@ -17,10 +17,6 @@
       .replace(/'/g, '&#39;');
   }
 
-  /**
-   * microCMS の画像フィールドを優先順で探して { url, alt } を返す。
-   * eyecatch → thumbnail → image → mainImage の順に試す。
-   */
   function getImage(item) {
     var field = item.eyecatch || item.thumbnail || item.image || item.mainImage || null;
     if (!field) return null;
@@ -31,18 +27,15 @@
 
   /**
    * グリッドカード HTML を生成
-   * ・正方形サムネイル（画像なし→グレー背景）
-   * ・タイトル
-   * ・タグ（newsは「お知らせ」固定、blogはcategory名）
-   * ・日付
+   * showTag: true のときカテゴリタグを表示
    */
-  function renderCard(item, type, prefix) {
+  function renderCard(item, type, prefix, showTag) {
     var slug = item.slug || item.id || '';
     var date = formatDate(item.publishedAtCustom || item.publishedAt);
     var title = esc(item.title || '');
     var href = type === 'news'
       ? prefix + 'news/' + slug + '/'
-      : prefix + 'blog/' + slug + '/';
+      : prefix + 'column/' + slug + '/';
 
     var img = getImage(item);
     var thumbHtml = '<div class="post-card-thumb">'
@@ -51,11 +44,13 @@
           : '')
       + '</div>';
 
-    // タグ：newsは「お知らせ」固定、blogはcategory.name（なければ「コラム」）
-    var tagLabel = type === 'news'
-      ? 'お知らせ'
-      : (item.category && item.category.name ? item.category.name : 'コラム');
-    var tagsHtml = '<div class="post-card-tags"><span class="post-tag">' + esc(tagLabel) + '</span></div>';
+    var tagsHtml = '';
+    if (showTag !== false) {
+      var tagLabel = type === 'news'
+        ? 'お知らせ'
+        : (item.category && item.category.name ? item.category.name : 'コラム');
+      tagsHtml = '<div class="post-card-tags"><span class="post-tag">' + esc(tagLabel) + '</span></div>';
+    }
 
     return '<a class="post-card" href="' + href + '">'
       + thumbHtml
@@ -73,7 +68,7 @@
     return res.json();
   }
 
-  // ---- トップページ：お知らせ＋コラム 最新N件 ----
+  // ---- トップページ：お知らせ＋コラム 最新N件（タグあり） ----
   async function loadPostsFeed() {
     var el = document.getElementById('postsFeed');
     if (!el) return;
@@ -110,11 +105,11 @@
     }
 
     el.innerHTML = items.map(function (item) {
-      return renderCard(item, item._type, prefix);
+      return renderCard(item, item._type, prefix, true);
     }).join('');
   }
 
-  // ---- お知らせ一覧ページ（既存レイアウト維持） ----
+  // ---- お知らせ一覧ページ（タグなし・テキストリスト） ----
   async function loadNewsList() {
     var el = document.getElementById('newsList');
     var emptyEl = document.getElementById('newsEmpty');
@@ -154,39 +149,35 @@
     }
   }
 
-  // ---- お知らせ・コラム 合同一覧ページ（フィルタータブ付き） ----
-  async function loadCombinedFeed() {
-    var el = document.getElementById('combinedFeed');
-    var emptyEl = document.getElementById('combinedEmpty');
-    var tabsEl = document.getElementById('feedTabs');
+  // ---- コラム一覧ページ（カテゴリフィルター付き・タグあり） ----
+  async function loadColumnList() {
+    var el = document.getElementById('columnList');
+    var emptyEl = document.getElementById('columnEmpty');
+    var tabsEl = document.getElementById('categoryTabs');
     if (!el) return;
 
     var prefix = el.dataset.prefix || '../';
     var allItems = [];
 
-    await Promise.allSettled([
-      fetchJson(prefix + 'assets/data/news.json').then(function (data) {
-        (data.contents || []).forEach(function (item) {
-          allItems.push(Object.assign({ _type: 'news' }, item));
-        });
-      }),
-      fetchJson(prefix + 'assets/data/blogs.json').then(function (data) {
-        (data.contents || []).forEach(function (item) {
-          allItems.push(Object.assign({ _type: 'blog' }, item));
-        });
-      }),
-    ]);
+    try {
+      var data = await fetchJson(prefix + 'assets/data/blogs.json');
+      allItems = (data.contents || []).filter(function (item) { return item.slug || item.id; });
+    } catch (e) {
+      console.error('コラム一覧の取得に失敗しました', e);
+      if (emptyEl) {
+        emptyEl.textContent = '現在コラムはありません。';
+        emptyEl.style.display = 'block';
+      }
+      return;
+    }
 
-    allItems = allItems
-      .filter(function (item) { return item.slug || item.id; })
-      .sort(function (a, b) {
-        var da = new Date(a.publishedAtCustom || a.publishedAt || 0);
-        var db = new Date(b.publishedAtCustom || b.publishedAt || 0);
-        return db - da;
-      });
+    function renderFiltered(category) {
+      var filtered = category
+        ? allItems.filter(function (item) {
+            return item.category && item.category.name === category;
+          })
+        : allItems;
 
-    function renderFiltered(filter) {
-      var filtered = filter === 'all' ? allItems : allItems.filter(function (item) { return item._type === filter; });
       if (!filtered.length) {
         el.innerHTML = '';
         if (emptyEl) emptyEl.style.display = 'block';
@@ -194,7 +185,7 @@
       }
       if (emptyEl) emptyEl.style.display = 'none';
       el.innerHTML = filtered.map(function (item) {
-        return renderCard(item, item._type, prefix);
+        return renderCard(item, 'blog', prefix, true);
       }).join('');
     }
 
@@ -204,24 +195,16 @@
         if (!btn) return;
         tabsEl.querySelectorAll('.feed-tab').forEach(function (b) { b.classList.remove('is-active'); });
         btn.classList.add('is-active');
-        renderFiltered(btn.dataset.filter);
+        renderFiltered(btn.dataset.category);
       });
     }
 
-    // URL パラメータ ?filter=news|blog があれば初期フィルターに反映
-    var urlFilter = new URLSearchParams(window.location.search).get('filter');
-    var initialFilter = (urlFilter === 'news' || urlFilter === 'blog') ? urlFilter : 'all';
-    if (tabsEl && initialFilter !== 'all') {
-      tabsEl.querySelectorAll('.feed-tab').forEach(function (b) {
-        b.classList.toggle('is-active', b.dataset.filter === initialFilter);
-      });
-    }
-    renderFiltered(initialFilter);
+    renderFiltered('');
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     loadPostsFeed();
     loadNewsList();
-    loadCombinedFeed();
+    loadColumnList();
   });
 })();

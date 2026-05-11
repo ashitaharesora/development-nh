@@ -52,7 +52,7 @@ async function buildNews() {
   }
 }
 
-// ---- ブログ詳細ページを生成 ----
+// ---- コラム詳細ページを生成 ----
 async function buildBlog() {
   const data = await readJson("blogs.json");
   const template = await readTemplate("blog-detail.html");
@@ -61,7 +61,7 @@ async function buildBlog() {
     const slug = item.slug || item.id;
     if (!slug) continue;
 
-    const outDir = path.join(root, "blog", slug);
+    const outDir = path.join(root, "column", slug);
     await ensureDir(outDir);
 
     const title = item.title || "";
@@ -78,7 +78,7 @@ async function buildBlog() {
     });
 
     await fs.writeFile(path.join(outDir, "index.html"), html, "utf-8");
-    console.log(`[blog] ${slug} (${date})`);
+    console.log(`[column] ${slug} (${date})`);
   }
 }
 

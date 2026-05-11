@@ -2661,32 +2661,34 @@ main {
     display: none !important;
   }
 
-  /* --- スマホ：ナビの改行位置調整 ---
-     1行目：ホーム(1) / サービス・料金(2) / FAQ(5)
-     2行目：お知らせ・コラム(3) / 事務所案内(4)
+  /* --- スマホ：ナビの改行位置調整（6項目）---
+     1行目：ホーム(1) / サービス・料金(2) / FAQ(6)
+     2行目：お知らせ(3) / コラム(4) / 事務所案内(5)
   */
   /* 表示順を制御 */
   .nav-list > .nav-item:nth-child(1) { order: 1; }
   .nav-list > .nav-item:nth-child(2) { order: 2; }
-  .nav-list > .nav-item:nth-child(3) { order: 4; } /* お知らせ・コラム → 2行目 */
-  .nav-list > .nav-item:nth-child(4) { order: 5; } /* 事務所案内 → 2行目 */
-  .nav-list > .nav-item:nth-child(5) { order: 3; } /* FAQ → 1行目末尾 */
+  .nav-list > .nav-item:nth-child(3) { order: 4; } /* お知らせ → 2行目 */
+  .nav-list > .nav-item:nth-child(4) { order: 5; } /* コラム → 2行目 */
+  .nav-list > .nav-item:nth-child(5) { order: 6; } /* 事務所案内 → 2行目 */
+  .nav-list > .nav-item:nth-child(6) { order: 3; } /* FAQ → 1行目末尾 */
 
   /* 1行目の3項目：各33%幅 */
   .nav-list > .nav-item:nth-child(1),
   .nav-list > .nav-item:nth-child(2),
-  .nav-list > .nav-item:nth-child(5) {
+  .nav-list > .nav-item:nth-child(6) {
     flex: 0 0 calc(33.333% - 8px);
     justify-content: center;
   }
 
-  /* 2行目の2項目：auto幅で中央寄せ */
+  /* 2行目の3項目：auto幅で中央寄せ */
   .nav-list > .nav-item:nth-child(3),
-  .nav-list > .nav-item:nth-child(4) {
+  .nav-list > .nav-item:nth-child(4),
+  .nav-list > .nav-item:nth-child(5) {
     flex: 0 0 auto;
     justify-content: center;
-    padding-left: 22px;
-    padding-right: 22px;
+    padding-left: 14px;
+    padding-right: 14px;
   }
 }
 
@@ -2959,20 +2961,39 @@ main {
   }
 }
 
-/* ===== お知らせ・コラム フィルタータブ ===== */
+/* ===== フィルタータブ / カテゴリタブ ===== */
 
-.feed-tabs {
+.feed-tabs,
+.category-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 28px;
+}
+
+/* スマホ：カテゴリタブは横スクロール */
+@media (max-width: 768px) {
+  .category-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+  }
+  .category-tabs::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .feed-tab {
   background: none;
   border: 1px solid var(--line);
   border-radius: 2px;
-  padding: 6px 18px;
-  font-size: 14px;
+  padding: 6px 14px;
+  font-size: 13px;
+  white-space: nowrap;
+  flex-shrink: 0;
   cursor: pointer;
   color: var(--muted);
   transition: background 0.2s, color 0.2s, border-color 0.2s;

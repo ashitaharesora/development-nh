@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>お知らせ | ashitaHARESORA′</title>
-  <meta name="description" content="事務所からのお知らせ・更新情報の一覧です。">
+  <title>税務・労務コラム | ashitaHARESORA′</title>
+  <meta name="description" content="税務・労務・創業支援に関するコラムを掲載しています。">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <link rel="canonical" href="https://ashitaharesora.github.io/ashita-haresora/news/">
-  <meta property="og:title" content="お知らせ | ashitaHARESORA′">
-  <meta property="og:description" content="事務所からのお知らせ・更新情報の一覧です。">
+  <link rel="canonical" href="https://ashitaharesora.github.io/ashita-haresora/column/">
+  <meta property="og:title" content="税務・労務コラム | ashitaHARESORA′">
+  <meta property="og:description" content="税務・労務・創業支援に関するコラムを掲載しています。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ashitaharesora.github.io/ashita-haresora/news/">
+  <meta property="og:url" content="https://ashitaharesora.github.io/ashita-haresora/column/">
   <meta property="og:site_name" content="ashitaHARESORA′">
   <meta property="og:image" content="https://ashitaharesora.github.io/ashita-haresora/assets/img/ogp.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -54,15 +54,27 @@
   <main>
     <section class="page-hero">
       <div class="container">
-        <p class="breadcrumbs"><a href="../">ホーム</a> / <span>お知らせ</span></p>
-        <h2>お知らせ</h2>
-        <p class="meta">事務所からのご案内・更新情報を掲載しています。</p>
+        <p class="breadcrumbs"><a href="../">ホーム</a> / <span>税務・労務コラム</span></p>
+        <h2>税務・労務コラム</h2>
+        <p class="meta">税務・労務・創業支援に関するコラムを掲載しています。</p>
       </div>
     </section>
     <section class="section">
       <div class="container">
-        <div class="news-list" id="newsList" data-prefix="../"></div>
-        <p id="newsEmpty" class="meta" style="display:none;">現在お知らせはありません。</p>
+        <div class="category-tabs" id="categoryTabs">
+          <button class="feed-tab is-active" data-category="">すべて</button>
+          <button class="feed-tab" data-category="税務">税務</button>
+          <button class="feed-tab" data-category="労務">労務</button>
+          <button class="feed-tab" data-category="資金調達">資金調達</button>
+          <button class="feed-tab" data-category="法人化">法人化</button>
+          <button class="feed-tab" data-category="補助金・助成金">補助金・助成金</button>
+          <button class="feed-tab" data-category="相続">相続</button>
+          <button class="feed-tab" data-category="暗号資産">暗号資産</button>
+          <button class="feed-tab" data-category="独立初期の経営整理">独立初期の経営整理</button>
+          <button class="feed-tab" data-category="その他">その他</button>
+        </div>
+        <div class="posts-feed" id="columnList" data-prefix="../"></div>
+        <p id="columnEmpty" class="meta" style="display:none;">現在コラムはありません。</p>
       </div>
     </section>
   </main>
