@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>お知らせ | ashitaHARESORA′</title>
-  <meta name="description" content="事務所からのお知らせ・更新情報の一覧です。">
+  <title>お知らせ・コラム | ashitaHARESORA′</title>
+  <meta name="description" content="事務所からのお知らせとコラム記事の一覧です。">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://ashitaharesora.github.io/ashita-haresora/news/">
-  <meta property="og:title" content="お知らせ | ashitaHARESORA′">
-  <meta property="og:description" content="事務所からのお知らせ・更新情報の一覧です。">
+  <meta property="og:title" content="お知らせ・コラム | ashitaHARESORA′">
+  <meta property="og:description" content="事務所からのお知らせとコラム記事の一覧です。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ashitaharesora.github.io/ashita-haresora/news/">
   <meta property="og:site_name" content="ashitaHARESORA′">
@@ -53,15 +53,20 @@
   <main>
     <section class="page-hero">
       <div class="container">
-        <p class="breadcrumbs"><a href="../">ホーム</a> / <span>お知らせ</span></p>
-        <h2>お知らせ</h2>
-        <p class="meta">事務所からのご案内・更新情報を掲載しています。</p>
+        <p class="breadcrumbs"><a href="../">ホーム</a> / <span>お知らせ・コラム</span></p>
+        <h2>お知らせ・コラム</h2>
+        <p class="meta">事務所からのご案内やコラム記事を掲載しています。</p>
       </div>
     </section>
     <section class="section">
       <div class="container">
-        <div class="news-list" id="newsList" data-prefix="../"></div>
-        <p id="newsEmpty" class="meta" style="display:none;">現在お知らせはありません。</p>
+        <div class="feed-tabs" id="feedTabs">
+          <button class="feed-tab is-active" data-filter="all">すべて</button>
+          <button class="feed-tab" data-filter="news">お知らせ</button>
+          <button class="feed-tab" data-filter="blog">コラム</button>
+        </div>
+        <div class="posts-feed" id="combinedFeed" data-prefix="../"></div>
+        <p id="combinedEmpty" class="meta" style="display:none;">現在記事はありません。</p>
       </div>
     </section>
   </main>
