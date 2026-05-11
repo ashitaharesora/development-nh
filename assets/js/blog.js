@@ -40,9 +40,9 @@
       }).join('');
 
     } catch (e) {
-      console.error('ブログ一覧の取得に失敗しました', e);
+      console.error('コラム一覧の取得に失敗しました', e);
       if (emptyEl) {
-        emptyEl.textContent = 'ブログ一覧を読み込めませんでした。';
+        emptyEl.textContent = 'コラム一覧を読み込めませんでした。';
         emptyEl.style.display = 'block';
       }
     }
