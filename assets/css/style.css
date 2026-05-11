@@ -2662,11 +2662,27 @@ main {
   }
 
   /* --- スマホ：ナビの改行位置調整 ---
-     1行目：ホーム / サービス・料金（各50%で行を埋める）
-     2行目：お知らせ・コラム / 事務所案内 / FAQ（残り3項目が自動で折り返す）
+     1行目：ホーム(1) / サービス・料金(2) / FAQ(5)
+     2行目：お知らせ・コラム(3) / 事務所案内(4)
   */
+  /* 表示順を制御 */
+  .nav-list > .nav-item:nth-child(1) { order: 1; }
+  .nav-list > .nav-item:nth-child(2) { order: 2; }
+  .nav-list > .nav-item:nth-child(3) { order: 4; } /* お知らせ・コラム → 2行目 */
+  .nav-list > .nav-item:nth-child(4) { order: 5; } /* 事務所案内 → 2行目 */
+  .nav-list > .nav-item:nth-child(5) { order: 3; } /* FAQ → 1行目末尾 */
+
+  /* 1行目の3項目：各33%幅 */
   .nav-list > .nav-item:nth-child(1),
-  .nav-list > .nav-item:nth-child(2) {
+  .nav-list > .nav-item:nth-child(2),
+  .nav-list > .nav-item:nth-child(5) {
+    flex: 0 0 calc(33.333% - 8px);
+    justify-content: center;
+  }
+
+  /* 2行目の2項目：各50%幅 */
+  .nav-list > .nav-item:nth-child(3),
+  .nav-list > .nav-item:nth-child(4) {
     flex: 0 0 calc(50% - 6px);
     justify-content: center;
   }
