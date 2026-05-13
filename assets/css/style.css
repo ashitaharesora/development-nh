@@ -1523,7 +1523,7 @@ main {
 }
 
 /* ===== top page: standard header without hamburger ===== */
-.home-page.static-header-home .site-header {
+.home-page.static-header-unified .site-header {
   position: sticky;
   top: 0;
   left: auto;
@@ -1533,11 +1533,11 @@ main {
   border-bottom: 1px solid var(--line);
 }
 
-.home-page.static-header-home .header-inner {
+.home-page.static-header-unified .header-inner {
   align-items: center;
 }
 
-.home-page.static-header-home .brand {
+.home-page.static-header-unified .brand {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1545,14 +1545,14 @@ main {
   flex: 1 1 auto;
 }
 
-.home-page.static-header-home .brand-logo {
+.home-page.static-header-unified .brand-logo {
   width: 74px;
   height: 74px;
   flex: 0 0 74px;
   margin-left: 8px;
 }
 
-.home-page.static-header-home .brand-text {
+.home-page.static-header-unified .brand-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -1561,7 +1561,7 @@ main {
   color: var(--text);
 }
 
-.home-page.static-header-home .brand-kicker {
+.home-page.static-header-unified .brand-kicker {
   font-size: 12px;
   letter-spacing: .08em;
   color: var(--muted);
@@ -1569,7 +1569,7 @@ main {
   margin-bottom: 0;
 }
 
-.home-page.static-header-home .brand-name {
+.home-page.static-header-unified .brand-name {
   display: inline-flex;
   align-items: baseline;
   gap: 0.18em;
@@ -1580,17 +1580,17 @@ main {
   color: var(--text);
 }
 
-.home-page.static-header-home .brand-name-tax,
-.home-page.static-header-home .brand-name-labor {
+.home-page.static-header-unified .brand-name-tax,
+.home-page.static-header-unified .brand-name-labor {
   display: inline-block;
 }
 
-.home-page.static-header-home .nav-item {
+.home-page.static-header-unified .nav-item {
   font-size: 15px;
 }
 
-.home-page.static-header-home .nav,
-.home-page.static-header-home .site-nav-static {
+.home-page.static-header-unified .nav,
+.home-page.static-header-unified .site-nav-static {
   display: block !important;
   position: static !important;
   inset: auto !important;
@@ -1602,7 +1602,7 @@ main {
   flex: 0 0 auto !important;
 }
 
-.home-page.static-header-home .nav-list {
+.home-page.static-header-unified .nav-list {
   display: flex !important;
   gap: 22px;
   align-items: center;
@@ -1612,11 +1612,11 @@ main {
   list-style: none;
 }
 
-.home-page.static-header-home .nav-item.cta {
+.home-page.static-header-unified .nav-item.cta {
   border-radius: 999px;
 }
 
-.home-page.static-header-home .nav-cta-group {
+.home-page.static-header-unified .nav-cta-group {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -1624,38 +1624,38 @@ main {
   flex-shrink: 0;
 }
 
-.home-page.static-header-home .nav-cta-group .cta-free {
+.home-page.static-header-unified .nav-cta-group .cta-free {
   background: var(--text);
   color: #ffffff;
   border: 1px solid var(--text);
 }
 
-.home-page.static-header-home .nav-cta-group .cta-free:hover {
+.home-page.static-header-unified .nav-cta-group .cta-free:hover {
   background: #333;
   border-color: #333;
 }
 
-.home-page.static-header-home .nav-cta-group .cta-phone {
+.home-page.static-header-unified .nav-cta-group .cta-phone {
   background: #ffffff;
   color: var(--text);
   border: 1px solid var(--text);
 }
 
-.home-page.static-header-home .nav-cta-group .cta-phone:hover {
+.home-page.static-header-unified .nav-cta-group .cta-phone:hover {
   background: #f4f4f4;
 }
 
-.home-page.static-header-home .nav-toggle,
-.home-page.static-header-home .nav-close,
-.home-page.static-header-home .nav-toggle-overlay {
+.home-page.static-header-unified .nav-toggle,
+.home-page.static-header-unified .nav-close,
+.home-page.static-header-unified .nav-toggle-overlay {
   display: none !important;
 }
 
-.home-page.static-header-home .hero {
+.home-page.static-header-unified .hero {
   min-height: calc(100svh - 96px);
 }
 
-.home-page.static-header-home .hero .container {
+.home-page.static-header-unified .hero .container {
   min-height: calc(100svh - 96px);
   flex-direction: row;
   justify-content: flex-end;
@@ -1664,55 +1664,55 @@ main {
   padding-bottom: 60px;
 }
 
-.home-page.static-header-home .brand-name-group,
-.home-page.static-header-home .brand-name-line,
-.home-page.static-header-home .brand-overlay,
-.home-page.static-header-home .brand-text-overlay,
-.home-page.static-header-home .nav-overlay-panel {
+.home-page.static-header-unified .brand-name-group,
+.home-page.static-header-unified .brand-name-line,
+.home-page.static-header-unified .brand-overlay,
+.home-page.static-header-unified .brand-text-overlay,
+.home-page.static-header-unified .nav-overlay-panel {
   all: unset;
 }
 
 @media (max-width: 1200px) {
-  .home-page.static-header-home .header-inner {
+  .home-page.static-header-unified .header-inner {
     max-width: 1120px;
   }
 
-  .home-page.static-header-home .brand-name {
+  .home-page.static-header-unified .brand-name {
     font-size: 14.5px;
   }
 }
 
 @media (max-width: 900px) {
-  .home-page.static-header-home .header-inner {
+  .home-page.static-header-unified .header-inner {
     padding: 3px 3px;
     align-items: flex-start;
   }
 
-  .home-page.static-header-home .brand-logo {
+  .home-page.static-header-unified .brand-logo {
     width: 44px;
     height: 44px;
     flex-basis: 44px;
   }
 
-  .home-page.static-header-home .brand-name {
+  .home-page.static-header-unified .brand-name {
     white-space: normal;
     font-size: 14.5px;
     line-height: 1.35;
   }
 
-  .home-page.static-header-home .nav,
-  .home-page.static-header-home .site-nav-static {
+  .home-page.static-header-unified .nav,
+  .home-page.static-header-unified .site-nav-static {
     width: 100%;
     margin-left: 0 !important;
   }
 
-  .home-page.static-header-home .nav-list {
+  .home-page.static-header-unified .nav-list {
     gap: 4px 16px;
     justify-content: center;
     padding-top: 3px !important;
   }
 
-  .home-page.static-header-home .nav-item {
+  .home-page.static-header-unified .nav-item {
     font-size: 14px;
     display: inline-flex;
     align-items: center;
@@ -1720,11 +1720,11 @@ main {
     padding: 0px 10px;
   }
 
-  .home-page.static-header-home .nav-item.cta {
+  .home-page.static-header-unified .nav-item.cta {
     padding: 2px 6px;
   }
 
-  .home-page.static-header-home .hero .container {
+  .home-page.static-header-unified .hero .container {
     min-height: auto;
     padding-top: 72px;
     padding-bottom: 36px;
@@ -1834,7 +1834,7 @@ main {
 }
 
 
-.home-page.static-header-home .hero-kicker {
+.home-page.static-header-unified .hero-kicker {
   margin-top: -8px;
   margin-bottom: 14px;
 }
@@ -1881,7 +1881,7 @@ main {
 
 /* スマホでは縦並びに戻す */
 @media (max-width: 900px) {
-  .home-page.static-header-home .hero .container {
+  .home-page.static-header-unified .hero .container {
     min-height: 440px;
     flex-direction: column;
     justify-content: center;
@@ -1891,7 +1891,7 @@ main {
     gap: 12px;
   }
 
-  .home-page.static-header-home .hero-kicker {
+  .home-page.static-header-unified .hero-kicker {
     margin-top: 0;
     margin-bottom: 12px;
   }
@@ -2267,12 +2267,12 @@ main {
 /* スマホだけ：ヘッダーCTAとヒーローボタンを消す */
 @media (max-width: 768px) {
 
-  .home-page.static-header-home .nav-cta-group,
-  .home-page.static-header-home .hero-actions {
+  .home-page.static-header-unified .nav-cta-group,
+  .home-page.static-header-unified .hero-actions {
     display: none !important;
   }
 
-  .home-page.static-header-home {
+  .home-page.static-header-unified {
     padding-bottom: 68px;
   }
 
@@ -2357,7 +2357,7 @@ main {
   }
 }
 
-.home-page.static-header-home .brand {
+.home-page.static-header-unified .brand {
   display: flex;
   width: 100%;
 }
@@ -2539,9 +2539,9 @@ main {
 
 /* =========================================================
    ★ UNIFIED MOBILE HEADER & SIDE PADDING  （全ページ共通）
-   - 2種類のレイアウト（.home-page.static-header-home と
-     .static-header-unified / .static-header-service）を
-     スマホ（768px以下）で同じ見た目に揃える統合ブロック。
+   - .home-page.static-header-unified / .static-header-unified /
+     .static-header-service をスマホ（768px以下）で
+     同じ見た目に揃える統合ブロック。
    - 左右余白は --side-pad-mobile（:root で管理）に統一。
    - 見た目を変更したい場合は :root の変数を変えるだけで
      全ページに反映される。
@@ -2566,9 +2566,9 @@ main {
   .container,
   .header-inner,
   .footer-inner,
-  .home-page.static-header-home .container,
-  .home-page.static-header-home .header-inner,
-  .home-page.static-header-home .footer-inner,
+  .home-page.static-header-unified .container,
+  .home-page.static-header-unified .header-inner,
+  .home-page.static-header-unified .footer-inner,
   :is(.static-header-service, .static-header-unified) .container,
   :is(.static-header-service, .static-header-unified) .header-inner,
   :is(.static-header-service, .static-header-unified) .footer-inner {
@@ -2580,7 +2580,7 @@ main {
 
   /* --- ヘッダー本体（背景・固定位置） --- */
   .site-header,
-  .home-page.static-header-home .site-header,
+  .home-page.static-header-unified .site-header,
   :is(.static-header-service, .static-header-unified) .site-header {
     position: sticky;
     top: 0;
@@ -2593,7 +2593,7 @@ main {
 
   /* --- ヘッダー中身：ロゴ＋屋号を1段目、ナビを2段目 --- */
   .header-inner,
-  .home-page.static-header-home .header-inner,
+  .home-page.static-header-unified .header-inner,
   :is(.static-header-service, .static-header-unified) .header-inner {
     display: block;
     padding-top: var(--mobile-header-pad-y);
@@ -2605,7 +2605,7 @@ main {
 
   /* --- ロゴ＋屋号テキストの並び --- */
   .brand,
-  .home-page.static-header-home .brand,
+  .home-page.static-header-unified .brand,
   :is(.static-header-service, .static-header-unified) .brand {
     display: grid;
     grid-template-columns: var(--mobile-header-logo) 1fr;
@@ -2617,7 +2617,7 @@ main {
 
   /* --- ロゴサイズ --- */
   .brand-logo,
-  .home-page.static-header-home .brand-logo,
+  .home-page.static-header-unified .brand-logo,
   :is(.static-header-service, .static-header-unified) .brand-logo {
     width: var(--mobile-header-logo);
     height: var(--mobile-header-logo);
@@ -2628,7 +2628,7 @@ main {
 
   /* --- 肩書き（元国税職員…） --- */
   .brand-kicker,
-  .home-page.static-header-home .brand-kicker,
+  .home-page.static-header-unified .brand-kicker,
   :is(.static-header-service, .static-header-unified) .brand-kicker {
     font-size: var(--mobile-header-kicker);
     line-height: 1.2;
@@ -2639,7 +2639,7 @@ main {
 
   /* --- 屋号（高野晶弘税理士事務所 はれそら社労士事務所） --- */
   .brand-name,
-  .home-page.static-header-home .brand-name,
+  .home-page.static-header-unified .brand-name,
   :is(.static-header-service, .static-header-unified) .brand-name {
     display: inline-flex;
     align-items: baseline;
@@ -2663,8 +2663,8 @@ main {
   /* --- ナビのコンテナ：2段目として横幅いっぱいに --- */
   .nav,
   .site-nav-static,
-  .home-page.static-header-home .nav,
-  .home-page.static-header-home .site-nav-static,
+  .home-page.static-header-unified .nav,
+  .home-page.static-header-unified .site-nav-static,
   :is(.static-header-service, .static-header-unified) .nav,
   :is(.static-header-service, .static-header-unified) .site-nav-static {
     display: block !important;
@@ -2681,7 +2681,7 @@ main {
 
   /* --- ナビ項目のリスト --- */
   .nav-list,
-  .home-page.static-header-home .nav-list,
+  .home-page.static-header-unified .nav-list,
   :is(.static-header-service, .static-header-unified) .nav-list {
     display: flex !important;
     flex-wrap: wrap;
@@ -2695,7 +2695,7 @@ main {
 
   /* --- ナビ項目（ホーム / サービス・料金 など） --- */
   .nav-item,
-  .home-page.static-header-home .nav-item,
+  .home-page.static-header-unified .nav-item,
   :is(.static-header-service, .static-header-unified) .nav-item {
     font-size: var(--mobile-header-nav-font);
     line-height: 1.2;
@@ -2707,7 +2707,7 @@ main {
 
   /* --- ヘッダー内のCTAボタンはフローティングCTAに委ねて非表示 --- */
   .nav-cta-group,
-  .home-page.static-header-home .nav-cta-group,
+  .home-page.static-header-unified .nav-cta-group,
   :is(.static-header-service, .static-header-unified) .nav-cta-group {
     display: none !important;
   }
@@ -2716,9 +2716,9 @@ main {
   .nav-toggle,
   .nav-close,
   .nav-toggle-overlay,
-  .home-page.static-header-home .nav-toggle,
-  .home-page.static-header-home .nav-close,
-  .home-page.static-header-home .nav-toggle-overlay {
+  .home-page.static-header-unified .nav-toggle,
+  .home-page.static-header-unified .nav-close,
+  .home-page.static-header-unified .nav-toggle-overlay {
     display: none !important;
   }
 
@@ -2745,7 +2745,7 @@ main {
   /* hero-kicker */
   .hero-kicker,
   .home-page .hero-kicker,
-  .home-page.static-header-home .hero-kicker {
+  .home-page.static-header-unified .hero-kicker {
     letter-spacing: 0.04em;
     font-size: 11px;
   }
@@ -2881,19 +2881,19 @@ main {
 }
 
 /* ボックス内テキストを白に */
-.home-page.static-header-home .hero-content-box,
-.home-page.static-header-home .hero-content-box h1,
-.home-page.static-header-home .hero-content-box p,
-.home-page.static-header-home .hero-content-box .hero-emphasis {
+.home-page.static-header-unified .hero-content-box,
+.home-page.static-header-unified .hero-content-box h1,
+.home-page.static-header-unified .hero-content-box p,
+.home-page.static-header-unified .hero-content-box .hero-emphasis {
   color: #fff;
   text-shadow: none;
 }
 
-.home-page.static-header-home .hero-content-box p {
+.home-page.static-header-unified .hero-content-box p {
   font-size: 14px;
 }
 
-.home-page.static-header-home .hero-content-box .hero-kicker {
+.home-page.static-header-unified .hero-content-box .hero-kicker {
   color: #fff;
   text-shadow: none;
   border-color: rgba(255, 255, 255, 0.4);
