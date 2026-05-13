@@ -97,7 +97,7 @@
     var tagsHtml = '';
     if (showTag !== false) {
       var tagLabel = type === 'news'
-        ? 'お知らせ'
+        ? (getCategoryName(item) || 'お知らせ')
         : (getCategoryName(item) || 'コラム');
       tagsHtml = '<div class="post-card-tags"><span class="post-tag">' + esc(tagLabel) + '</span></div>';
     }
@@ -159,7 +159,7 @@
     }).join('');
   }
 
-  // ---- お知らせ一覧ページ（タグなし・テキストリスト） ----
+  // ---- お知らせ一覧ページ（カード型） ----
   async function loadNewsList() {
     var el = document.getElementById('newsList');
     var emptyEl = document.getElementById('newsEmpty');
@@ -169,7 +169,7 @@
 
     try {
       var data = await fetchJson(prefix + 'assets/data/news.json');
-      var items = data.contents || [];
+      var items = (data.contents || []).filter(function (item) { return item.slug || item.id; });
 
       if (!items.length) {
         if (emptyEl) emptyEl.style.display = 'block';
@@ -177,17 +177,7 @@
       }
 
       el.innerHTML = items.map(function (item) {
-        var slug = item.slug || item.id || '';
-        var date = formatDate(item.publishedAtCustom || item.publishedAt);
-        var title = esc(item.title || '');
-        var excerpt = esc(item.excerpt || '');
-        var href = slug ? slug + '/' : '#';
-
-        return '<a class="news-item" href="' + href + '">'
-          + '<time datetime="' + date + '">' + date + '</time>'
-          + '<h3>' + title + '</h3>'
-          + (excerpt ? '<p>' + excerpt + '</p>' : '')
-          + '</a>';
+        return renderCard(item, 'news', prefix, true);
       }).join('');
 
     } catch (e) {
@@ -250,9 +240,68 @@
     renderFiltered('');
   }
 
+  // ---- 支援事例一覧ページ ----
+  async function loadWorksList() {
+    var el = document.getElementById('worksList');
+    var emptyEl = document.getElementById('worksEmpty');
+    if (!el) return;
+
+    var prefix = el.dataset.prefix || '../';
+
+    try {
+      var data = await fetchJson(prefix + 'assets/data/works.json');
+      var items = (data.contents || []).filter(function (item) { return item.slug || item.id; });
+
+      if (!items.length) {
+        if (emptyEl) emptyEl.style.display = 'block';
+        return;
+      }
+
+      el.innerHTML = items.map(function (item) {
+        var slug = item.slug || item.id || '';
+        var date = formatDate(item.publishedAtCustom || item.publishedAt);
+        var title = esc(item.title || '');
+        var href = prefix + 'works/' + slug + '/';
+
+        var img = getImage(item);
+        var thumbHtml = '<div class="post-card-thumb">'
+          + (img
+              ? '<img src="' + esc(img.url) + '" alt="' + esc(img.alt || item.title || '') + '" loading="lazy">'
+              : '')
+          + '</div>';
+
+        var categoryName = (item.category && item.category.name) ? item.category.name : '支援事例';
+        var tagsHtml = '<div class="post-card-tags"><span class="post-tag">' + esc(categoryName) + '</span></div>';
+
+        // consultation の抜粋（HTMLタグを除去して最大80文字）
+        var consultationText = (item.consultation || '').replace(/<[^>]*>/g, '').trim();
+        var excerpt = consultationText.length > 80 ? consultationText.slice(0, 80) + '…' : consultationText;
+        var excerptHtml = excerpt ? '<p class="post-card-excerpt">' + esc(excerpt) + '</p>' : '';
+
+        return '<a class="post-card" href="' + esc(href) + '">'
+          + thumbHtml
+          + '<div class="post-card-body">'
+          + '<p class="post-card-title">' + title + '</p>'
+          + tagsHtml
+          + excerptHtml
+          + '<time datetime="' + date + '">' + date + '</time>'
+          + '</div>'
+          + '</a>';
+      }).join('');
+
+    } catch (e) {
+      console.error('支援事例一覧の取得に失敗しました', e);
+      if (emptyEl) {
+        emptyEl.textContent = '現在支援事例はありません。';
+        emptyEl.style.display = 'block';
+      }
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     loadPostsFeed();
     loadNewsList();
     loadColumnList();
+    loadWorksList();
   });
 })();
