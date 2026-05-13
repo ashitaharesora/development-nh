@@ -46,9 +46,22 @@
 
     var tagsHtml = '';
     if (showTag !== false) {
-      var tagLabel = type === 'news'
-        ? 'お知らせ'
-        : (item.category && item.category.name ? item.category.name : 'コラム');
+      var tagLabel;
+      if (type === 'news') {
+        tagLabel = 'お知らせ';
+      } else {
+        // category が文字列・{name}オブジェクト・配列のいずれにも対応
+        var cat = item.category;
+        if (typeof cat === 'string' && cat) {
+          tagLabel = cat;
+        } else if (Array.isArray(cat) && cat.length && cat[0].name) {
+          tagLabel = cat[0].name;
+        } else if (cat && cat.name) {
+          tagLabel = cat.name;
+        } else {
+          tagLabel = 'コラム';
+        }
+      }
       tagsHtml = '<div class="post-card-tags"><span class="post-tag">' + esc(tagLabel) + '</span></div>';
     }
 

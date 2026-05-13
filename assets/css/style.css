@@ -2971,18 +2971,11 @@ main {
   margin-bottom: 28px;
 }
 
-/* スマホ：カテゴリタブは横スクロール */
+/* スマホ：カテゴリタブは折り返し表示 */
 @media (max-width: 768px) {
   .category-tabs {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 6px;
+    gap: 8px 10px;
     margin-bottom: 20px;
-  }
-  .category-tabs::-webkit-scrollbar {
-    display: none;
   }
 }
 
