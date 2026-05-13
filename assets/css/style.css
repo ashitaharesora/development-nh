@@ -1568,11 +1568,23 @@ main {
 }
 
 .home-page.static-header-home .brand-name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.18em;
   font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   font-size: 14.5px;
   line-height: 1.3;
   white-space: nowrap;
   color: var(--text);
+}
+
+.home-page.static-header-home .brand-name-tax,
+.home-page.static-header-home .brand-name-labor {
+  display: inline-block;
+}
+
+.home-page.static-header-home .nav-item {
+  font-size: 15px;
 }
 
 .home-page.static-header-home .nav,
@@ -2500,15 +2512,15 @@ main {
      全ページに反映される。
 ========================================================= */
 
-/* ===== PC：ナビ特定ペアの間隔を狭める =====
-   狭くするペア: 1↔2 / 2↔3 / 4↔5 / 5↔6
-   そのまま: 3↔4（支援事例 と FAQ の間）
+/* ===== PC：ナビ 5項目の間隔調整 =====
+   ホーム / サービス・料金 / お知らせ・コラム / 事務所案内 / FAQ
+   狭くするペア: 1↔2 / 2↔3 / 4↔5
+   そのまま: 3↔4（お知らせ・コラム と 事務所案内 の間）
 */
 @media (min-width: 769px) {
   .nav-list > .nav-item:nth-child(1),
   .nav-list > .nav-item:nth-child(2),
-  .nav-list > .nav-item:nth-child(4),
-  .nav-list > .nav-item:nth-child(5) {
+  .nav-list > .nav-item:nth-child(4) {
     margin-right: -6px;
   }
 }
@@ -2638,7 +2650,7 @@ main {
   :is(.static-header-service, .static-header-unified) .nav-list {
     display: flex !important;
     flex-wrap: wrap;
-    gap: 4px 12px;
+    gap: 4px;
     align-items: center;
     justify-content: center;
     padding: 4px 0 0 !important;
@@ -2675,9 +2687,9 @@ main {
     display: none !important;
   }
 
-  /* --- スマホ：ナビ 3+3グリッド ---
-     1行目：ホーム / サービス・料金 / 支援事例
-     2行目：FAQ / 事務所案内 / コラム
+  /* --- スマホ：ナビ 3+2グリッド ---
+     1行目：ホーム / サービス・料金 / お知らせ・コラム
+     2行目：事務所案内 / FAQ
   */
   .nav-list > .nav-item {
     flex: 0 0 calc(33.333% - 8px);
@@ -3078,6 +3090,14 @@ main {
   gap: 6px;
 }
 
+/* consultation 抜粋テキスト */
+.post-card-excerpt {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
 /* タブレット：2列 */
 @media (max-width: 900px) {
   .posts-feed {
@@ -3086,11 +3106,23 @@ main {
   }
 }
 
-/* スマホ：2列 */
+/* スマホ：2列（お知らせ一覧のみ1列） */
+@media (max-width: 768px) {
+  #newsList.posts-feed {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
 @media (max-width: 480px) {
   .posts-feed {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+  }
+
+  #newsList.posts-feed {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .post-card-body {
@@ -3110,5 +3142,59 @@ main {
 
   .post-card time {
     font-size: 11px;
+  }
+}
+
+/* ===== 支援事例 詳細ページ ===== */
+
+/* アイキャッチ帯 */
+.works-eyecatch {
+  background: var(--bg-light, #f8f7f4);
+  padding: 32px 0;
+}
+
+.works-eyecatch img {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* 各セクション（ご相談の経緯 / サポート内容 / 成果） */
+.works-detail-body {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.works-section {
+  border-left: 3px solid var(--text);
+  padding-left: 20px;
+}
+
+.works-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0 0 14px;
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .works-eyecatch {
+    padding: 20px 0;
+  }
+
+  .works-eyecatch img {
+    max-height: 260px;
+  }
+
+  .works-detail-body {
+    gap: 32px;
+  }
+
+  .works-section {
+    padding-left: 14px;
   }
 }
