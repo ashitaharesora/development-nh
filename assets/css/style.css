@@ -2499,6 +2499,20 @@ main {
    - 見た目を変更したい場合は :root の変数を変えるだけで
      全ページに反映される。
 ========================================================= */
+
+/* ===== PC：ナビ特定ペアの間隔を狭める =====
+   狭くするペア: 1↔2 / 2↔3 / 4↔5 / 5↔6
+   そのまま: 3↔4（支援事例 と FAQ の間）
+*/
+@media (min-width: 769px) {
+  .nav-list > .nav-item:nth-child(1),
+  .nav-list > .nav-item:nth-child(2),
+  .nav-list > .nav-item:nth-child(4),
+  .nav-list > .nav-item:nth-child(5) {
+    margin-right: -6px;
+  }
+}
+
 @media (max-width: 768px) {
 
   /* --- 左右余白をすべてのページで統一 --- */
