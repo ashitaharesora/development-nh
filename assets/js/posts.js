@@ -26,6 +26,56 @@
   }
 
   /**
+   * 記事からカテゴリ名を取得する。
+   * microCMS の field 形式（文字列 / {name} オブジェクト / 配列）と
+   * category / tags の両フィールドに対応。
+   */
+  function getCategoryName(item) {
+    // --- category フィールド（単一参照 or 文字列）---
+    var cat = item.category;
+    if (cat) {
+      if (typeof cat === 'string' && cat) return cat;
+      if (cat.name) return cat.name;
+      // content reference が配列で返ってくる場合
+      if (Array.isArray(cat) && cat.length) {
+        return cat[0].name || cat[0] || null;
+      }
+    }
+    // --- tags フィールド（複数参照）---
+    var tags = item.tags;
+    if (tags && Array.isArray(tags) && tags.length) {
+      return tags[0].name || tags[0] || null;
+    }
+    return null;
+  }
+
+  /**
+   * 記事がカテゴリ名に一致するか判定。
+   * category / tags 両方を確認し、name での比較のみ行う。
+   */
+  function matchesCategory(item, categoryName) {
+    if (!categoryName) return true; // 「すべて」
+
+    // category フィールド（単一参照 or 文字列）
+    var cat = item.category;
+    if (cat) {
+      if (typeof cat === 'string' && cat === categoryName) return true;
+      if (cat.name === categoryName) return true;
+      if (Array.isArray(cat)) {
+        if (cat.some(function (c) { return (c.name || c) === categoryName; })) return true;
+      }
+    }
+
+    // tags フィールド（複数参照）
+    var tags = item.tags;
+    if (tags && Array.isArray(tags)) {
+      if (tags.some(function (t) { return (t.name || t) === categoryName; })) return true;
+    }
+
+    return false;
+  }
+
+  /**
    * グリッドカード HTML を生成
    * showTag: true のときカテゴリタグを表示
    */
@@ -46,22 +96,9 @@
 
     var tagsHtml = '';
     if (showTag !== false) {
-      var tagLabel;
-      if (type === 'news') {
-        tagLabel = 'お知らせ';
-      } else {
-        // category が文字列・{name}オブジェクト・配列のいずれにも対応
-        var cat = item.category;
-        if (typeof cat === 'string' && cat) {
-          tagLabel = cat;
-        } else if (Array.isArray(cat) && cat.length && cat[0].name) {
-          tagLabel = cat[0].name;
-        } else if (cat && cat.name) {
-          tagLabel = cat.name;
-        } else {
-          tagLabel = 'コラム';
-        }
-      }
+      var tagLabel = type === 'news'
+        ? 'お知らせ'
+        : (getCategoryName(item) || 'コラム');
       tagsHtml = '<div class="post-card-tags"><span class="post-tag">' + esc(tagLabel) + '</span></div>';
     }
 
@@ -185,11 +222,9 @@
     }
 
     function renderFiltered(category) {
-      var filtered = category
-        ? allItems.filter(function (item) {
-            return item.category && item.category.name === category;
-          })
-        : allItems;
+      var filtered = allItems.filter(function (item) {
+        return matchesCategory(item, category);
+      });
 
       if (!filtered.length) {
         el.innerHTML = '';
