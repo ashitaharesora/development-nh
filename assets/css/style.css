@@ -2356,15 +2356,6 @@ main {
    style.css の一番下に追加
 ========================================= */
 
-/* 共通 */
-:is(.static-header-service, .static-header-unified) .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(255, 255, 255, .97);
-  border-bottom: 1px solid var(--line);
-}
-
 :is(.static-header-service, .static-header-unified) .header-inner {
   max-width: 1180px;
   margin: 0 auto;
