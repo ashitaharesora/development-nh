@@ -1522,17 +1522,6 @@ main {
   padding: 22px;
 }
 
-/* ===== top page: standard header without hamburger ===== */
-.home-page.static-header-unified .site-header {
-  position: sticky;
-  top: 0;
-  left: auto;
-  right: auto;
-  z-index: 1000;
-  background: rgba(255, 255, 255, .97);
-  border-bottom: 1px solid var(--line);
-}
-
 .home-page.static-header-unified .header-inner {
   align-items: center;
 }
