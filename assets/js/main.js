@@ -1,3 +1,25 @@
+// ── ヘッダー高さを CSS 変数に反映（トップページヒーロー用）──
+// .home-page のときだけ実行。ResizeObserver でリサイズにも追従する。
+(function () {
+  if (!document.body.classList.contains('home-page')) return;
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  function syncHeaderHeight() {
+    document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+  }
+
+  // DOMContentLoaded 直後 + レンダリング後の2段階で確実に取得
+  syncHeaderHeight();
+  requestAnimationFrame(syncHeaderHeight);
+
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncHeaderHeight).observe(header);
+  } else {
+    window.addEventListener('resize', syncHeaderHeight, { passive: true });
+  }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   const navToggle = document.querySelector('.home-page .nav-toggle');
   const nav = document.querySelector('.home-page .nav');
