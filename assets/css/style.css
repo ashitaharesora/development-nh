@@ -1640,15 +1640,12 @@ main {
   display: none !important;
 }
 
-/* トップページヒーロー：ヘッダーの下から画面底辺までを埋める。
-   --header-h は main.js の ResizeObserver が実測値を注入する。
-   フォールバック 102px = padding(14×2) + ロゴ(74px) の見積もり値。 */
 .home-page.static-header-unified .hero {
-  min-height: calc(100svh - var(--header-h, 102px));
+  min-height: calc(100svh - 96px);
 }
 
 .home-page.static-header-unified .hero .container {
-  min-height: calc(100svh - var(--header-h, 102px));
+  min-height: calc(100svh - 96px);
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
@@ -1874,7 +1871,7 @@ main {
 /* スマホでは縦並びに戻す */
 @media (max-width: 900px) {
   .home-page.static-header-unified .hero .container {
-    min-height: calc(100svh - var(--header-h, 80px));
+    min-height: 440px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
