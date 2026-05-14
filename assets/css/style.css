@@ -3133,6 +3133,18 @@ main {
   color: var(--muted);
 }
 
+/* トップページ 支援事例フィード：PC 2列・スマホ 1列 */
+.posts-feed.works-feed {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 768px) {
+  .posts-feed.works-feed {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
 /* タブレット：2列 */
 @media (max-width: 900px) {
   .posts-feed {
