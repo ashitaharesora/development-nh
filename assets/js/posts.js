@@ -240,6 +240,38 @@
     renderFiltered('');
   }
 
+  /** 支援事例カード1件のHTMLを生成（一覧・フィード共通） */
+  function renderWorkCard(item, prefix) {
+    var slug = item.slug || item.id || '';
+    var date = formatDate(item.publishedAtCustom || item.publishedAt);
+    var title = esc(item.title || '');
+    var href = prefix + 'works/' + slug + '/';
+
+    var img = getImage(item);
+    var thumbHtml = '<div class="post-card-thumb">'
+      + (img
+          ? '<img src="' + esc(img.url) + '" alt="' + esc(img.alt || item.title || '') + '" loading="lazy">'
+          : '')
+      + '</div>';
+
+    var categoryName = (item.category && item.category.name) ? item.category.name : '支援事例';
+    var tagsHtml = '<div class="post-card-tags"><span class="post-tag">' + esc(categoryName) + '</span></div>';
+
+    var consultationText = (item.consultation || '').replace(/<[^>]*>/g, '').trim();
+    var excerpt = consultationText.length > 80 ? consultationText.slice(0, 80) + '…' : consultationText;
+    var excerptHtml = excerpt ? '<p class="post-card-excerpt">' + esc(excerpt) + '</p>' : '';
+
+    return '<a class="post-card" href="' + esc(href) + '">'
+      + thumbHtml
+      + '<div class="post-card-body">'
+      + '<p class="post-card-title">' + title + '</p>'
+      + tagsHtml
+      + excerptHtml
+      + '<time datetime="' + date + '">' + date + '</time>'
+      + '</div>'
+      + '</a>';
+  }
+
   // ---- 支援事例一覧ページ ----
   async function loadWorksList() {
     var el = document.getElementById('worksList');
@@ -258,35 +290,7 @@
       }
 
       el.innerHTML = items.map(function (item) {
-        var slug = item.slug || item.id || '';
-        var date = formatDate(item.publishedAtCustom || item.publishedAt);
-        var title = esc(item.title || '');
-        var href = prefix + 'works/' + slug + '/';
-
-        var img = getImage(item);
-        var thumbHtml = '<div class="post-card-thumb">'
-          + (img
-              ? '<img src="' + esc(img.url) + '" alt="' + esc(img.alt || item.title || '') + '" loading="lazy">'
-              : '')
-          + '</div>';
-
-        var categoryName = (item.category && item.category.name) ? item.category.name : '支援事例';
-        var tagsHtml = '<div class="post-card-tags"><span class="post-tag">' + esc(categoryName) + '</span></div>';
-
-        // consultation の抜粋（HTMLタグを除去して最大80文字）
-        var consultationText = (item.consultation || '').replace(/<[^>]*>/g, '').trim();
-        var excerpt = consultationText.length > 80 ? consultationText.slice(0, 80) + '…' : consultationText;
-        var excerptHtml = excerpt ? '<p class="post-card-excerpt">' + esc(excerpt) + '</p>' : '';
-
-        return '<a class="post-card" href="' + esc(href) + '">'
-          + thumbHtml
-          + '<div class="post-card-body">'
-          + '<p class="post-card-title">' + title + '</p>'
-          + tagsHtml
-          + excerptHtml
-          + '<time datetime="' + date + '">' + date + '</time>'
-          + '</div>'
-          + '</a>';
+        return renderWorkCard(item, prefix);
       }).join('');
 
     } catch (e) {
@@ -298,10 +302,46 @@
     }
   }
 
+  // ---- トップページ：支援事例フィード（最新N件） ----
+  async function loadWorksFeed() {
+    var el = document.getElementById('worksFeed');
+    var emptyEl = document.getElementById('worksFeedEmpty');
+    if (!el) return;
+
+    var prefix = el.dataset.prefix || './';
+    var limit = parseInt(el.dataset.limit || '2', 10);
+
+    try {
+      var data = await fetchJson(prefix + 'assets/data/works.json');
+      var items = (data.contents || [])
+        .filter(function (item) { return item.slug || item.id; })
+        .sort(function (a, b) {
+          var da = new Date(a.publishedAtCustom || a.publishedAt || 0);
+          var db = new Date(b.publishedAtCustom || b.publishedAt || 0);
+          return db - da;
+        })
+        .slice(0, limit);
+
+      if (!items.length) {
+        if (emptyEl) emptyEl.style.display = 'block';
+        return;
+      }
+
+      el.innerHTML = items.map(function (item) {
+        return renderWorkCard(item, prefix);
+      }).join('');
+
+    } catch (e) {
+      console.error('支援事例フィードの取得に失敗しました', e);
+      if (emptyEl) emptyEl.style.display = 'block';
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     loadPostsFeed();
     loadNewsList();
     loadColumnList();
     loadWorksList();
+    loadWorksFeed();
   });
 })();
