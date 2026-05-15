@@ -1592,10 +1592,10 @@ main {
 }
 
 .home-page.static-header-unified .nav-list {
-  display: grid !important;
-  grid-template-columns: repeat(3, auto);
-  gap: 4px 16px;
+  display: flex !important;
+  gap: 22px;
   align-items: center;
+  flex-wrap: wrap;
   padding: 0 !important;
   margin: 0 !important;
   list-style: none;
@@ -2424,10 +2424,10 @@ main {
 }
 
 :is(.static-header-service, .static-header-unified) .nav-list {
-  display: grid !important;
-  grid-template-columns: repeat(3, auto);
-  gap: 4px 16px;
+  display: flex !important;
+  gap: 22px;
   align-items: center;
+  flex-wrap: wrap;
   padding: 0 !important;
   margin: 0 !important;
   list-style: none;
@@ -2435,15 +2435,14 @@ main {
 
 :is(.static-header-service, .static-header-unified) .nav-item {
   font-size: 15px;
-  text-align: center;
 }
 
 :is(.static-header-service, .static-header-unified) .nav-item.cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 36px;
-  padding: 0.5rem 0.9rem;
+  min-height: 40px;
+  padding: 0.66rem 1rem;
   border-radius: 999px;
   line-height: 1;
   white-space: nowrap;
@@ -2453,8 +2452,8 @@ main {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  grid-column: 1 / -1;
-  margin-top: 2px;
+  margin-left: 0.45rem;
+  flex-shrink: 0;
 }
 
 :is(.static-header-service, .static-header-unified) .nav-cta-group .cta-free {
@@ -2528,7 +2527,19 @@ main {
      全ページに反映される。
 ========================================================= */
 
-/* PC：nav-list はグリッドで 3列管理するため個別 margin 調整は不要 */
+/* ===== PC：ナビ 6項目の間隔調整 =====
+   ホーム / サービス・料金 / 支援事例 / FAQ / 事務所案内 / コラム
+   狭くするペア: 1↔2 / 2↔3 / 4↔5 / 5↔6
+   そのまま: 3↔4（支援事例 と FAQ の間）
+*/
+@media (min-width: 769px) {
+  .nav-list > .nav-item:nth-child(1),
+  .nav-list > .nav-item:nth-child(2),
+  .nav-list > .nav-item:nth-child(4),
+  .nav-list > .nav-item:nth-child(5) {
+    margin-right: -6px;
+  }
+}
 
 @media (max-width: 768px) {
 
@@ -2649,17 +2660,18 @@ main {
     flex: 0 0 auto !important;
   }
 
-  /* --- ナビ項目のリスト：3列グリッド（PC・スマホ共通） --- */
+  /* --- ナビ項目のリスト --- */
   .nav-list,
   .home-page.static-header-unified .nav-list,
   :is(.static-header-service, .static-header-unified) .nav-list {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex !important;
+    flex-wrap: wrap;
     gap: 4px;
+    align-items: center;
+    justify-content: center;
     padding: 4px 0 0 !important;
     margin: 0 !important;
     list-style: none;
-    width: 100%;
   }
 
   /* --- ナビ項目（ホーム / サービス・料金 など） --- */
@@ -2672,7 +2684,6 @@ main {
     align-items: center;
     justify-content: center;
     padding: 2px 8px;
-    text-align: center;
   }
 
   /* --- ヘッダー内のCTAボタンはフローティングCTAに委ねて非表示 --- */
@@ -2690,6 +2701,15 @@ main {
   .home-page.static-header-unified .nav-close,
   .home-page.static-header-unified .nav-toggle-overlay {
     display: none !important;
+  }
+
+  /* --- スマホ：ナビ 3+3グリッド ---
+     1行目：ホーム / サービス・料金 / 支援事例
+     2行目：FAQ / 事務所案内 / コラム
+  */
+  .nav-list > .nav-item {
+    flex: 0 0 calc(33.333% - 8px);
+    justify-content: center;
   }
 }
 

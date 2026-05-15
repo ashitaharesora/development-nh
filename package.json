@@ -5,7 +5,6 @@
   "scripts": {
     "fetch:cms": "node scripts/fetch-microcms.js",
     "build:pages": "node scripts/build-pages.mjs",
-    "build:header": "node scripts/build-header.mjs",
-    "build": "npm run fetch:cms && npm run build:pages && npm run build:header"
+    "build": "npm run fetch:cms && npm run build:pages"
   }
 }
