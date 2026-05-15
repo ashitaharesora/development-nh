@@ -1528,6 +1528,7 @@ main {
   align-items: center;
   padding-top: 72px;
   padding-bottom: 60px;
+  padding-right: 8%;
 }
 
 .home-page.static-header-unified .brand-name-group,
@@ -2706,13 +2707,6 @@ main {
 }
 
 /* ===== トップページ hero: PC/スマホ 位置微調整 ===== */
-
-/* PC版：文字ブロックを少し左に移動 */
-@media (min-width: 769px) {
-  .home-page.static-header-unified .hero-content-box {
-    transform: translateX(-48px);
-  }
-}
 
 /* ===== 代表プロフィール 経歴・資格リスト ===== */
 .career-list {
