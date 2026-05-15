@@ -1185,6 +1185,12 @@ main {
   padding-right: 8%;
 }
 
+@media (min-width: 901px) {
+  .home-page.static-header-unified .hero .container {
+    padding-right: 12%;
+  }
+}
+
 @media (max-width: 900px) {
   .home-page.static-header-unified .hero .container {
     min-height: auto;
