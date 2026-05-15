@@ -171,7 +171,6 @@ main {
   overflow: hidden;
   background: #003a60;
   color: #fff
-  min-height: calc(100svh - 80px);
 }
 }
 
