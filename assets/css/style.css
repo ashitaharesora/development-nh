@@ -937,11 +937,6 @@ main {
   align-items: stretch;
 }
 
-@media (max-width: 768px) {
-  .home-page .hero {
-    min-height: calc(100svh - 110px);
-  }
-}
 
 .home-page .hero::before {
   background:
