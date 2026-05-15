@@ -118,24 +118,6 @@ img {
   line-height: 1.35
 }
 
-.nav-toggle {
-  display: none;
-  border: none;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  width: 36px;
-  height: 28px
-}
-
-.nav-toggle span {
-  display: block;
-  height: 2px;
-  background: var(--text);
-  margin: 7px 0;
-  border-radius: 999px
-}
-
 .nav-list {
   display: flex;
   gap: 22px;
@@ -171,7 +153,6 @@ main {
   overflow: hidden;
   background: #003a60;
   color: #fff
-}
 }
 
 .hero::before {
@@ -323,12 +304,9 @@ main {
 }
 
 .card,
-.news-item,
 .blog-item,
-.work-item,
 .cta-box,
-.profile-card,
-.fee-guide {
+.profile-card {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 4px;
@@ -451,30 +429,23 @@ main {
   margin: 0 0 8px
 }
 
-.news-list,
 .blog-list {
   display: grid;
   gap: 16px
 }
 
-.news-item,
-.blog-item,
-.work-item {
+.blog-item {
   padding: 22px
 }
 
-.news-item time,
-.blog-item .meta,
-.work-item .meta {
+.blog-item .meta {
   display: block;
   color: var(--muted);
   font-size: 14px;
   margin-bottom: 8px
 }
 
-.news-item h3,
-.blog-item h3,
-.work-item h3 {
+.blog-item h3 {
   margin: 0 0 8px;
   font-size: 18px;
   line-height: 1.5;
@@ -650,206 +621,16 @@ main {
   margin: 0;
 }
 
-.logo-strip {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-
-.logo-strip img {
-  width: 64px;
-  height: 64px;
-}
-
-.logo-strip h3 {
-  margin: 0 0 6px;
-  line-height: 1.5;
-}
-
-.logo-strip .meta {
-  margin: 0;
-}
-
-.home-profile {
-  display: grid;
-  grid-template-columns: minmax(280px, 320px) minmax(280px, 1fr);
-  gap: 24px;
-  align-items: start;
-}
-
-.highlight-card {
-  background: #fff;
-  min-width: 0;
-}
-
-/* ===== top only: logoなし・右上ハンバーガー ===== */
-
-.home-page .site-header.home-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 30;
-  background: transparent;
-  border-bottom: none;
-  backdrop-filter: none;
-}
-
-.home-page .home-header .header-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 22px 20px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.home-page .brand-overlay {
-  display: block;
-  min-width: 0;
-}
-
-.home-page .brand-text-overlay {
-  color: #fff;
-}
-
-.home-page .brand-kicker-overlay {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 12px;
-  letter-spacing: .08em;
-  color: rgba(255, 255, 255, .88);
-  text-shadow: 0 4px 16px rgba(0, 0, 0, .20);
-}
-
-.home-page .brand-name-line {
-  display: block;
-  white-space: nowrap;
-  font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
-  font-size: clamp(24px, 2.6vw, 38px);
-  line-height: 1.35;
-  color: #fff;
-  text-shadow: 0 6px 24px rgba(0, 0, 0, .22);
-}
-
-/* 通常ナビはトップでは隠す */
-.home-page .nav {
-  display: none;
-}
-
-/* 開いた時だけ表示 */
-.home-page .nav.open {
-  display: block;
-}
-
-.home-page .nav-toggle {
-  display: block;
-}
-
-.home-page .nav-toggle-overlay {
-  width: 44px;
-  height: 44px;
-  padding: 6px 4px;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  backdrop-filter: none;
-  box-shadow: none;
-}
-
-.home-page .nav-toggle-overlay span {
-  display: block;
-  height: 2px;
-  margin: 6px 0;
-  border-radius: 999px;
-  background: #fff;
-}
-
-.home-page .nav-overlay-panel .nav-item.cta {
-  margin-top: 12px;
-  padding: 14px 18px;
-  text-align: center;
-  border: 1px solid var(--text);
-  border-radius: 3px;
-  background: #fff;
-  color: var(--text);
-}
-
 .home-page .hero .container {
   padding-top: 190px;
   padding-bottom: 110px;
 }
 
 @media (max-width: 900px) {
-  .home-page .home-header .header-inner {
-    padding: 16px 16px 0;
-    gap: 12px;
-  }
-
-  .home-page .brand-name-line {
-    font-size: clamp(17px, 5vw, 24px);
-    line-height: 1.4;
-    white-space: normal;
-  }
-
-  .home-page .brand-kicker-overlay {
-    font-size: 12px;
-    margin-bottom: 4px;
-  }
-
-  .home-page .nav-toggle-overlay {
-    width: 44px;
-    height: 44px;
-    padding: 8px;
-  }
-
-  .home-page .nav-overlay-panel {
-    width: 100%;
-    padding: 84px 20px 24px;
-  }
-
-  .home-page .nav-overlay-panel .nav-item {
-    font-size: 20px;
-  }
-
   .home-page .hero .container {
     padding-top: 150px;
     padding-bottom: 88px;
   }
-}
-
-.home-page .nav-toggle {
-  display: block !important;
-  position: relative;
-  z-index: 60;
-}
-
-.home-page .nav-overlay-panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: min(420px, 100%);
-  height: 100vh;
-  padding: 84px 28px 28px;
-  background: rgba(255, 255, 255, .98);
-  border-left: 1px solid var(--line);
-  box-shadow: -4px 0 20px rgba(0, 81, 131, .08);
-  z-index: 40;
-  display: none;
-}
-
-.home-page .nav-overlay-panel.open {
-  display: block;
-}
-
-/* ===== トップの屋号を少し下げる ===== */
-.home-page .brand-name-group {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-top: 20px;
 }
 
 /* ===== ヒーロー内の肩書きラベル幅を少し縮める ===== */
@@ -865,60 +646,10 @@ main {
   margin-bottom: 16px;
 }
 
-/* ===== 開いたメニューの見た目 ===== */
-.home-page .nav-overlay-panel .nav-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 14px;
-}
-
-.home-page .nav-overlay-panel .nav-list li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* ===== 閉じるボタン ===== */
-.home-page .nav-close {
-  position: absolute;
-  top: 22px;
-  right: 22px;
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: #fff;
-  color: var(--text);
-  font-size: 28px;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.home-page .nav-close:hover {
-  opacity: 0.6;
-}
-
 @media (max-width: 900px) {
-  .home-page .brand-name-group {
-    margin-top: 10px;
-  }
-
   .hero-kicker {
     font-size: 12px;
     padding: 5px 10px;
-  }
-
-  .home-page .nav-close {
-    top: 18px;
-    right: 18px;
-    width: 42px;
-    height: 42px;
-    font-size: 24px;
   }
 }
 
@@ -966,7 +697,7 @@ main {
   .home-page .hero::before {
     background:
       linear-gradient(115deg, var(--hero-overlay), rgba(0, 50, 80, .22) 55%, rgba(0, 50, 80, .10)),
-      url('../img/photo1.jpg') 22% 20% / cover no-repeat;
+      url('../img/photo1.jpg') 78% 20% / cover no-repeat;
   }
 }
 
@@ -974,15 +705,6 @@ main {
   .home-page .hero .container {
     padding-top: 130px;
     padding-bottom: 36px;
-  }
-
-  .home-page .brand-name-group {
-    margin-top: 6px;
-    gap: 0;
-  }
-
-  .home-page .brand-name-line {
-    line-height: 1.28;
   }
 
   .home-page .hero-kicker {
@@ -1007,62 +729,17 @@ main {
   }
 }
 
-.highlight-card h3,
-.highlight-card p,
-.highlight-card li {
-  word-break: normal;
-  overflow-wrap: break-word;
-}
-
-@media (max-width: 1200px) {
-  .home-profile {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 900px) {
 
   .grid.two,
   .grid.three,
-  .split,
-  .home-profile {
+  .split {
     grid-template-columns: 1fr;
-  }
-
-  .nav-toggle {
-    display: block
-  }
-
-  .nav {
-    position: fixed;
-    inset: 72px 0 auto 0;
-    background: #fff;
-    border-bottom: 1px solid var(--line);
-    display: none;
-  }
-
-  .nav.open {
-    display: block
   }
 }
 
 /* ===== final mobile spacing adjust ===== */
 @media (max-width: 900px) {
-  .home-page .home-header .header-inner {
-    padding: 12px 14px 0;
-    gap: 10px;
-  }
-
-  .home-page .brand-name-group {
-    margin-top: 12px;
-    gap: 0;
-  }
-
-  .home-page .brand-name-line {
-    font-size: clamp(16px, 4.8vw, 22px);
-    line-height: 1.18;
-  }
-
   .home-page .hero .container {
     padding-top: 112px;
     padding-bottom: 20px;
@@ -1434,29 +1111,6 @@ main {
   color: var(--text);
 }
 
-@media (min-width: 901px) {
-  .home-page .home-header .header-inner {
-    justify-content: space-between !important;
-  }
-
-  .home-page .brand-overlay {
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-
-  .home-page .nav-toggle-overlay {
-    margin-left: auto;
-    flex: 0 0 auto;
-  }
-}
-
-@media (min-width: 901px) {
-  .home-page .brand-name-group {
-    margin-top: 20px;
-    margin-left: 24px;
-  }
-}
-
 /* トップページ：代表プロフィール → お知らせ・記事 を縦並びにする */
 .home-page .split {
   grid-template-columns: 1fr !important;
@@ -1529,14 +1183,6 @@ main {
   padding-top: 72px;
   padding-bottom: 60px;
   padding-right: 8%;
-}
-
-.home-page.static-header-unified .brand-name-group,
-.home-page.static-header-unified .brand-name-line,
-.home-page.static-header-unified .brand-overlay,
-.home-page.static-header-unified .brand-text-overlay,
-.home-page.static-header-unified .nav-overlay-panel {
-  all: unset;
 }
 
 @media (max-width: 900px) {
@@ -1656,12 +1302,6 @@ main {
 }
 
 /* ===== トップ：代表プロフィールの写真を大きくして右側へ ===== */
-.home-page .home-profile {
-  grid-template-columns: minmax(320px, 1.1fr) minmax(300px, 0.9fr);
-  gap: 28px;
-  align-items: stretch;
-}
-
 .home-page .profile-card {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
@@ -1711,10 +1351,6 @@ main {
     margin-bottom: 12px;
   }
 
-  .home-page .home-profile {
-    grid-template-columns: 1fr;
-  }
-
   .home-page .profile-card {
     grid-template-columns: 1fr;
   }
@@ -1741,9 +1377,7 @@ main {
 
 /* ===== motion ===== */
 
-.js-fade-up,
-.js-slide-left,
-.js-slide-right {
+.js-fade-up {
   opacity: 0;
   transition:
     opacity 0.8s ease,
@@ -1755,17 +1389,7 @@ main {
   transform: translateY(22px);
 }
 
-.js-slide-left {
-  transform: translateX(-28px);
-}
-
-.js-slide-right {
-  transform: translateX(28px);
-}
-
-.js-fade-up.is-visible,
-.js-slide-left.is-visible,
-.js-slide-right.is-visible {
+.js-fade-up.is-visible {
   opacity: 1;
   transform: translate(0, 0);
 }
@@ -1797,13 +1421,11 @@ main {
 }
 
 .card,
-.news-item,
 .blog-item {
   transition: opacity 0.4s ease;
 }
 
 .card:hover,
-.news-item:hover,
 .blog-item:hover {
   opacity: 0.82;
 }
@@ -1811,10 +1433,7 @@ main {
 @media (prefers-reduced-motion: reduce) {
 
   .js-fade-up,
-  .js-slide-left,
-  .js-slide-right,
   .card,
-  .news-item,
   .blog-item {
     opacity: 1 !important;
     transform: none !important;
@@ -1893,7 +1512,6 @@ main {
   .card h3,
   .faq-item h3,
   .content h3,
-  .news-item h3,
   .blog-item h3 {
     font-size: 18px;
     line-height: 1.45;
@@ -1904,7 +1522,6 @@ main {
   .meta,
   .section-lead,
   .card p,
-  .news-item p,
   .blog-item p,
   .footer-links a {
     font-size: 0.92rem;
@@ -1956,7 +1573,6 @@ main {
   .meta,
   .section-lead,
   .card p,
-  .news-item p,
   .blog-item p,
   .button,
   .footer-links a {
@@ -1964,7 +1580,6 @@ main {
   }
 
   .grid.three,
-  .home-profile,
   .split {
     gap: 16px;
   }
@@ -2192,7 +1807,7 @@ main {
    style.css の一番下に追加
 ========================================= */
 
-:is(.static-header-service, .static-header-unified) .header-inner {
+.static-header-unified .header-inner {
   max-width: 1180px;
   margin: 0 auto;
   padding: 14px 20px;
@@ -2202,7 +1817,7 @@ main {
   gap: 20px;
 }
 
-:is(.static-header-service, .static-header-unified) .brand {
+.static-header-unified .brand {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2210,27 +1825,27 @@ main {
   flex: 1 1 auto;
 }
 
-:is(.static-header-service, .static-header-unified) .brand-logo {
+.static-header-unified .brand-logo {
   width: 74px;
   height: 74px;
   flex: 0 0 74px;
   margin-left: 8px;
 }
 
-:is(.static-header-service, .static-header-unified) .brand-text {
+.static-header-unified .brand-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
   min-width: 0;
 }
 
-:is(.static-header-service, .static-header-unified) .brand-kicker {
+.static-header-unified .brand-kicker {
   font-size: 12px;
   letter-spacing: .08em;
   color: var(--muted);
 }
 
-:is(.static-header-service, .static-header-unified) .brand-name {
+.static-header-unified .brand-name {
   display: inline-flex;
   align-items: baseline;
   gap: 0.18em;
@@ -2241,13 +1856,13 @@ main {
   color: var(--text);
 }
 
-:is(.static-header-service, .static-header-unified) .brand-name-tax,
-:is(.static-header-service, .static-header-unified) .brand-name-labor {
+.static-header-unified .brand-name-tax,
+.static-header-unified .brand-name-labor {
   display: inline-block;
 }
 
-:is(.static-header-service, .static-header-unified) .nav,
-:is(.static-header-service, .static-header-unified) .site-nav-static {
+.static-header-unified .nav,
+.static-header-unified .site-nav-static {
   display: block !important;
   position: static !important;
   inset: auto !important;
@@ -2259,7 +1874,7 @@ main {
   flex: 0 0 auto !important;
 }
 
-:is(.static-header-service, .static-header-unified) .nav-list {
+.static-header-unified .nav-list {
   display: flex !important;
   gap: 22px;
   align-items: center;
@@ -2269,11 +1884,11 @@ main {
   list-style: none;
 }
 
-:is(.static-header-service, .static-header-unified) .nav-item {
+.static-header-unified .nav-item {
   font-size: 15px;
 }
 
-:is(.static-header-service, .static-header-unified) .nav-item.cta {
+.static-header-unified .nav-item.cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2284,7 +1899,7 @@ main {
   white-space: nowrap;
 }
 
-:is(.static-header-service, .static-header-unified) .nav-cta-group {
+.static-header-unified .nav-cta-group {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -2292,13 +1907,13 @@ main {
   flex-shrink: 0;
 }
 
-:is(.static-header-service, .static-header-unified) .nav-cta-group .cta-free {
+.static-header-unified .nav-cta-group .cta-free {
   background: var(--text);
   color: #ffffff;
   border: 1px solid var(--text);
 }
 
-:is(.static-header-service, .static-header-unified) .nav-cta-group .cta-phone {
+.static-header-unified .nav-cta-group .cta-phone {
   background: #ffffff;
   color: var(--text);
   border: 1px solid var(--text);
@@ -2355,8 +1970,8 @@ main {
 
 /* =========================================================
    ★ UNIFIED MOBILE HEADER & SIDE PADDING  （全ページ共通）
-   - .home-page.static-header-unified / .static-header-unified /
-     .static-header-service をスマホ（768px以下）で
+   - .home-page.static-header-unified / .static-header-unified を
+     スマホ（768px以下）で
      同じ見た目に揃える統合ブロック。
    - 左右余白は --side-pad-mobile（:root で管理）に統一。
    - 見た目を変更したい場合は :root の変数を変えるだけで
@@ -2383,9 +1998,9 @@ main {
   .container,
   .header-inner,
   .footer-inner,
-  :is(.static-header-service, .static-header-unified) .container,
-  :is(.static-header-service, .static-header-unified) .header-inner,
-  :is(.static-header-service, .static-header-unified) .footer-inner {
+  .static-header-unified .container,
+  .static-header-unified .header-inner,
+  .static-header-unified .footer-inner {
     width: 100%;
     max-width: none;
     padding-left: var(--side-pad-mobile);
@@ -2394,7 +2009,7 @@ main {
 
   /* --- ヘッダー本体（背景・固定位置） --- */
   .site-header,
-  :is(.static-header-service, .static-header-unified) .site-header {
+  .static-header-unified .site-header {
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -2406,7 +2021,7 @@ main {
 
   /* --- ヘッダー中身：ロゴ＋屋号を1段目、ナビを2段目 --- */
   .header-inner,
-  :is(.static-header-service, .static-header-unified) .header-inner {
+  .static-header-unified .header-inner {
     display: block;
     padding-top: var(--mobile-header-pad-y);
     padding-bottom: var(--mobile-header-pad-y);
@@ -2417,7 +2032,7 @@ main {
 
   /* --- ロゴ＋屋号テキストの並び --- */
   .brand,
-  :is(.static-header-service, .static-header-unified) .brand {
+  .static-header-unified .brand {
     display: grid;
     grid-template-columns: var(--mobile-header-logo) 1fr;
     gap: 16px;
@@ -2428,7 +2043,7 @@ main {
 
   /* --- ロゴサイズ --- */
   .brand-logo,
-  :is(.static-header-service, .static-header-unified) .brand-logo {
+  .static-header-unified .brand-logo {
     width: var(--mobile-header-logo);
     height: var(--mobile-header-logo);
     flex: 0 0 var(--mobile-header-logo);
@@ -2438,7 +2053,7 @@ main {
 
   /* --- 肩書き（元国税職員…） --- */
   .brand-kicker,
-  :is(.static-header-service, .static-header-unified) .brand-kicker {
+  .static-header-unified .brand-kicker {
     font-size: var(--mobile-header-kicker);
     line-height: 1.2;
     margin-bottom: 1px;
@@ -2448,7 +2063,7 @@ main {
 
   /* --- 屋号（高野晶弘税理士事務所 はれそら社労士事務所） --- */
   .brand-name,
-  :is(.static-header-service, .static-header-unified) .brand-name {
+  .static-header-unified .brand-name {
     display: inline-flex;
     align-items: baseline;
     gap: 0.18em;
@@ -2471,8 +2086,8 @@ main {
   /* --- ナビのコンテナ：2段目として横幅いっぱいに --- */
   .nav,
   .site-nav-static,
-  :is(.static-header-service, .static-header-unified) .nav,
-  :is(.static-header-service, .static-header-unified) .site-nav-static {
+  .static-header-unified .nav,
+  .static-header-unified .site-nav-static {
     display: block !important;
     position: static !important;
     inset: auto !important;
@@ -2487,7 +2102,7 @@ main {
 
   /* --- ナビ項目のリスト --- */
   .nav-list,
-  :is(.static-header-service, .static-header-unified) .nav-list {
+  .static-header-unified .nav-list {
     display: flex !important;
     flex-wrap: wrap;
     gap: 4px;
@@ -2500,7 +2115,7 @@ main {
 
   /* --- ナビ項目（ホーム / サービス・料金 など） --- */
   .nav-item,
-  :is(.static-header-service, .static-header-unified) .nav-item {
+  .static-header-unified .nav-item {
     font-size: var(--mobile-header-nav-font);
     line-height: 1.2;
     display: inline-flex;
@@ -2511,14 +2126,7 @@ main {
 
   /* --- ヘッダー内のCTAボタンはフローティングCTAに委ねて非表示 --- */
   .nav-cta-group,
-  :is(.static-header-service, .static-header-unified) .nav-cta-group {
-    display: none !important;
-  }
-
-  /* --- ハンバーガー関連は使わないので完全に非表示 --- */
-  .nav-toggle,
-  .nav-close,
-  .nav-toggle-overlay {
+  .static-header-unified .nav-cta-group {
     display: none !important;
   }
 
@@ -2630,7 +2238,6 @@ main {
     line-height: 1.45;
   }
 
-  .news-item h3,
   .blog-item h3 {
     letter-spacing: 0.06em;
     line-height: 1.45;
@@ -2820,7 +2427,6 @@ main {
 
 /* ===== フィルタータブ / カテゴリタブ ===== */
 
-.feed-tabs,
 .category-tabs {
   display: flex;
   flex-wrap: wrap;
