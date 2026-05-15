@@ -966,7 +966,7 @@ main {
   .home-page .hero::before {
     background:
       linear-gradient(115deg, var(--hero-overlay), rgba(0, 50, 80, .22) 55%, rgba(0, 50, 80, .10)),
-      url('../img/photo1.jpg') 32% 20% / cover no-repeat;
+      url('../img/photo1.jpg') 22% 20% / cover no-repeat;
   }
 }
 
