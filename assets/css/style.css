@@ -171,6 +171,12 @@ main {
   overflow: hidden;
   background: #003a60;
   color: #fff
+  min-height: calc(100svh - 80px);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+}
 }
 
 .hero::before {
