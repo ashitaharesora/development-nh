@@ -2527,15 +2527,16 @@ main {
      全ページに反映される。
 ========================================================= */
 
-/* ===== PC：ナビ 5項目の間隔調整 =====
-   ホーム / サービス・料金 / お知らせ・コラム / 事務所案内 / FAQ
-   狭くするペア: 1↔2 / 2↔3 / 3↔4 / 4↔5
+/* ===== PC：ナビ 6項目の間隔調整 =====
+   ホーム / サービス・料金 / 支援事例 / FAQ / 事務所案内 / コラム
+   狭くするペア: 1↔2 / 2↔3 / 4↔5 / 5↔6
+   そのまま: 3↔4（支援事例 と FAQ の間）
 */
 @media (min-width: 769px) {
   .nav-list > .nav-item:nth-child(1),
   .nav-list > .nav-item:nth-child(2),
-  .nav-list > .nav-item:nth-child(3),
-  .nav-list > .nav-item:nth-child(4) {
+  .nav-list > .nav-item:nth-child(4),
+  .nav-list > .nav-item:nth-child(5) {
     margin-right: -6px;
   }
 }
@@ -2702,20 +2703,14 @@ main {
     display: none !important;
   }
 
-  /* --- スマホ：ナビ 3+2グリッド ---
-     1行目：ホーム / サービス・料金 / FAQ
-     2行目：お知らせ・コラム / 事務所案内
+  /* --- スマホ：ナビ 3+3グリッド ---
+     1行目：ホーム / サービス・料金 / 支援事例
+     2行目：FAQ / 事務所案内 / コラム
   */
   .nav-list > .nav-item {
+    flex: 0 0 calc(33.333% - 8px);
     justify-content: center;
   }
-  /* 1行目（3等分）*/
-  .nav-item.nav-home     { flex: 0 0 calc(33.333% - 8px); order: 1; }
-  .nav-item.nav-services { flex: 0 0 calc(33.333% - 8px); order: 2; }
-  .nav-item.nav-faq      { flex: 0 0 calc(33.333% - 8px); order: 3; }
-  /* 2行目（2等分）*/
-  .nav-item.nav-news     { flex: 0 0 calc(50% - 4px);     order: 4; }
-  .nav-item.nav-about    { flex: 0 0 calc(50% - 4px);     order: 5; }
 }
 
 /* ===== 375px スマホ最終調整 ===== */
