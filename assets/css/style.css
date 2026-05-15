@@ -2715,14 +2715,14 @@ main {
 /* PC版：文字ブロックを少し左に移動 */
 @media (min-width: 769px) {
   .home-page.static-header-unified .hero-content-box {
-    transform: translateX(-24px);
+    transform: translateX(-48px);
   }
 }
 
 /* スマホ版：背景画像の表示位置を少し左にずらして太陽が見えるように */
 @media (max-width: 768px) {
   .home-page .hero::before {
-    background-position: 42% 20%;
+    background-position: 32% 20%;
   }
 }
 
