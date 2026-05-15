@@ -961,12 +961,12 @@ main {
   }
 }
 
-/* ===== スマホでは太陽側（右上）が見えるようにする ===== */
+/* ===== スマホでは太陽が見えるよう背景画像を左寄りに ===== */
 @media (max-width: 900px) {
   .home-page .hero::before {
     background:
       linear-gradient(115deg, var(--hero-overlay), rgba(0, 50, 80, .22) 55%, rgba(0, 50, 80, .10)),
-      url('../img/photo1.jpg') 70% 20% / cover no-repeat;
+      url('../img/photo1.jpg') 32% 20% / cover no-repeat;
   }
 }
 
@@ -2711,13 +2711,6 @@ main {
 @media (min-width: 769px) {
   .home-page.static-header-unified .hero-content-box {
     transform: translateX(-48px);
-  }
-}
-
-/* スマホ版：背景画像の表示位置を少し左にずらして太陽が見えるように */
-@media (max-width: 768px) {
-  .home-page .hero::before {
-    background-position: 32% 20%;
   }
 }
 
