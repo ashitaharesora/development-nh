@@ -1994,6 +1994,21 @@ main {
   }
 }
 
+/* ===== .grid.three サービスカード：下線調整 =====
+   カード全体が <a> リンクのため、ブラウザデフォルトの a { underline } が
+   h3・p 両方に継承される。
+   - a.card の下線を消すことで p の下線を除去
+   - h3 は明示的に1本だけ指定（ブラウザデフォルト + CSS の二重線を防ぐ）
+   .grid.three 内にのみ適用し、他ページ・他セクションへの影響なし。
+============================================================= */
+.grid.three a.card {
+  text-decoration: none;
+}
+
+.grid.three .card p {
+  text-decoration: none;
+}
+
 /* ===== services section: h3 underline ===== */
 .section-services .card h3 {
   text-decoration: underline;
