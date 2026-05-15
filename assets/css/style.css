@@ -2752,6 +2752,24 @@ main {
   }
 }
 
+/* ===== PC版：トップページのみセクション背景を交互に =====
+   モバイルは上記 max-width:768px の指定で制御済み。
+   PC では .section.alt のグローバルグレーが常時効くため、
+   section-bg-white（代表紹介）だけ白に上書きし、
+   section-bg-light（サービス）にグレーを追加する。
+   スコープを .home-page に限定して他ページに影響しない。
+========================================================== */
+@media (min-width: 769px) {
+  /* 代表紹介：.section.alt のグレーを白に上書き */
+  .home-page .section.section-bg-white {
+    background: #ffffff;
+  }
+  /* サービス：PC版でもグレー背景を適用 */
+  .home-page .section.section-bg-light {
+    background: #f2f2f3;
+  }
+}
+
 /* ===== スマホ：代表プロフィール 経歴 2列グリッド ===== */
 @media (max-width: 768px) {
   .career-list {
