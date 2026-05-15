@@ -2710,6 +2710,22 @@ main {
   }
 }
 
+/* ===== トップページ hero: PC/スマホ 位置微調整 ===== */
+
+/* PC版：文字ブロックを少し左に移動 */
+@media (min-width: 769px) {
+  .home-page.static-header-unified .hero-content-box {
+    transform: translateX(-24px);
+  }
+}
+
+/* スマホ版：背景画像の表示位置を少し左にずらして太陽が見えるように */
+@media (max-width: 768px) {
+  .home-page .hero::before {
+    background-position: 42% 20%;
+  }
+}
+
 /* ===== 代表プロフィール 経歴・資格リスト ===== */
 .career-list {
   margin: 0;
