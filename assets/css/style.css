@@ -1640,12 +1640,13 @@ main {
   display: none !important;
 }
 
+/* PC：ヘッダー実測 ≈ padding14×2 + logo74 = 102px → 104px で余裕を持たせる */
 .home-page.static-header-unified .hero {
-  min-height: calc(100svh - 96px);
+  min-height: calc(100svh - 104px);
 }
 
 .home-page.static-header-unified .hero .container {
-  min-height: calc(100svh - 96px);
+  min-height: calc(100svh - 104px);
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
@@ -1868,10 +1869,15 @@ main {
   }
 }
 
-/* スマホでは縦並びに戻す */
+/* スマホでは縦並びに戻す
+   モバイルヘッダー実測 ≈ padding8×2 + logo44 + nav2行分 ≈ 106px → 110px */
 @media (max-width: 900px) {
+  .home-page.static-header-unified .hero {
+    min-height: calc(100svh - 110px);
+  }
+
   .home-page.static-header-unified .hero .container {
-    min-height: 440px;
+    min-height: calc(100svh - 110px);
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
