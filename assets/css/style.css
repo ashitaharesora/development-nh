@@ -2574,6 +2574,36 @@ main {
   }
 }
 
+/* ===== トップページ：スマホ版カード高さ統一 =====
+   同一フィード内でタイトル・タグ行数の違いによる
+   カードの高さズレをなくす。
+   ・カード全体を stretch でグリッドに引き伸ばす
+   ・post-card-body を flex 列にして time を下端に固定
+   ・works-feed の抜粋はトップでは非表示にしてカードを統一
+====================================================== */
+@media (max-width: 768px) {
+  .home-page .posts-feed {
+    align-items: stretch;
+  }
+
+  .home-page .posts-feed .post-card {
+    height: 100%;
+  }
+
+  .home-page .posts-feed .post-card-body {
+    flex: 1;
+  }
+
+  .home-page .posts-feed .post-card-body time {
+    margin-top: auto;
+  }
+
+  /* トップの works-feed は excerpt を非表示にして他カードと高さを揃える */
+  .home-page .works-feed .post-card-excerpt {
+    display: none;
+  }
+}
+
 /* タブレット：2列 */
 @media (max-width: 900px) {
   .posts-feed {

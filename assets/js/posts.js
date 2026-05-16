@@ -302,6 +302,76 @@
     }
   }
 
+  // ---- トップページ：コラムフィード（最新N件） ----
+  async function loadColumnFeed() {
+    var el = document.getElementById('columnFeed');
+    var emptyEl = document.getElementById('columnFeedEmpty');
+    if (!el) return;
+
+    var prefix = el.dataset.prefix || './';
+    var limit = parseInt(el.dataset.limit || '2', 10);
+
+    try {
+      var data = await fetchJson(prefix + 'assets/data/blogs.json');
+      var items = (data.contents || [])
+        .filter(function (item) { return item.slug || item.id; })
+        .sort(function (a, b) {
+          var da = new Date(a.publishedAtCustom || a.publishedAt || 0);
+          var db = new Date(b.publishedAtCustom || b.publishedAt || 0);
+          return db - da;
+        })
+        .slice(0, limit);
+
+      if (!items.length) {
+        if (emptyEl) emptyEl.style.display = 'block';
+        return;
+      }
+
+      el.innerHTML = items.map(function (item) {
+        return renderCard(item, 'blog', prefix, true);
+      }).join('');
+
+    } catch (e) {
+      console.error('コラムフィードの取得に失敗しました', e);
+      if (emptyEl) emptyEl.style.display = 'block';
+    }
+  }
+
+  // ---- トップページ：お知らせフィード（最新N件） ----
+  async function loadNewsFeed() {
+    var el = document.getElementById('newsFeed');
+    var emptyEl = document.getElementById('newsFeedEmpty');
+    if (!el) return;
+
+    var prefix = el.dataset.prefix || './';
+    var limit = parseInt(el.dataset.limit || '2', 10);
+
+    try {
+      var data = await fetchJson(prefix + 'assets/data/news.json');
+      var items = (data.contents || [])
+        .filter(function (item) { return item.slug || item.id; })
+        .sort(function (a, b) {
+          var da = new Date(a.publishedAtCustom || a.publishedAt || 0);
+          var db = new Date(b.publishedAtCustom || b.publishedAt || 0);
+          return db - da;
+        })
+        .slice(0, limit);
+
+      if (!items.length) {
+        if (emptyEl) emptyEl.style.display = 'block';
+        return;
+      }
+
+      el.innerHTML = items.map(function (item) {
+        return renderCard(item, 'news', prefix, true);
+      }).join('');
+
+    } catch (e) {
+      console.error('お知らせフィードの取得に失敗しました', e);
+      if (emptyEl) emptyEl.style.display = 'block';
+    }
+  }
+
   // ---- トップページ：支援事例フィード（最新N件） ----
   async function loadWorksFeed() {
     var el = document.getElementById('worksFeed');
@@ -338,10 +408,12 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    loadWorksFeed();
+    loadColumnFeed();
+    loadNewsFeed();
     loadPostsFeed();
     loadNewsList();
     loadColumnList();
     loadWorksList();
-    loadWorksFeed();
   });
 })();
