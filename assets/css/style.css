@@ -530,6 +530,7 @@ main {
 }
 
 .footer-links a {
+  display: inline-block;
   padding: 4px 0;
   color: var(--muted);
   text-decoration: none;
@@ -1723,7 +1724,8 @@ main {
     display: none !important;
   }
 
-  .home-page.static-header-unified {
+  /* 固定CTAがフッターを隠さないよう、floating-ctaがあるすべてのページに余白を確保 */
+  .static-header-unified {
     padding-bottom: 68px;
   }
 
