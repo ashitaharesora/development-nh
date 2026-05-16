@@ -1077,6 +1077,44 @@ main {
   color: var(--muted);
 }
 
+/* ===== シンプル料金リスト（税理士・社労士ページ） ===== */
+.price-dl {
+  margin: 0;
+}
+
+.price-dl-row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.price-dl-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.price-dl dt {
+  min-width: 40px;
+  font-size: 14px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.price-dl dd {
+  margin: 0;
+  font-size: 20px;
+  font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .price-dl dd {
+    font-size: 18px;
+  }
+}
+
 @media (max-width: 900px) {
   .pricing-panels {
     grid-template-columns: 1fr;
