@@ -114,12 +114,21 @@ async function buildWorks() {
 
     const title = item.title || "";
     const date = item.publishedAtCustom?.slice(0, 10) || item.publishedAt?.slice(0, 10) || "";
-    const categoryName = item.category?.name || "支援事例";
-    const categoryLabel = categoryName ? ` / ${categoryName}` : "";
 
-    // アイキャッチ画像HTML
-    const eyecatchField = item.eyecatch || null;
-    const eyecatchUrl = eyecatchField?.url || (typeof eyecatchField === "string" ? eyecatchField : "");
+    // category は文字列 / {name} オブジェクト / 配列のいずれかに対応
+    const cat = item.category;
+    const categoryName =
+      (typeof cat === "string" && cat) ? cat :
+      (cat?.name) ? cat.name :
+      (Array.isArray(cat) && cat.length) ? (cat[0]?.name || cat[0] || "") :
+      "";
+    const categoryLabel = categoryName || "支援事例";
+
+    // カテゴリタグHTML（詳細ページ用）
+    const categoryTagHtml = `<div class="post-card-tags" style="margin-top:10px"><span class="post-tag">${categoryLabel}</span></div>`;
+
+    // アイキャッチ画像HTML（getEyecatchUrl と同じロジック）
+    const eyecatchUrl = getEyecatchUrl(item);
     const eyecatchHtml = eyecatchUrl
       ? `<div class="works-eyecatch"><div class="container"><img src="${eyecatchUrl}" alt="${title}" loading="lazy"></div></div>`
       : "";
@@ -139,7 +148,7 @@ async function buildWorks() {
       title,
       description,
       date,
-      category_label: categoryLabel,
+      category_tag_html: categoryTagHtml,
       eyecatch_html: eyecatchHtml,
       consultation_html: sectionHtml("ご相談の経緯", item.consultation),
       support_html: sectionHtml("弊所でサポートした内容", item.support),

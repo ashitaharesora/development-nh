@@ -254,7 +254,7 @@
           : '')
       + '</div>';
 
-    var categoryName = (item.category && item.category.name) ? item.category.name : '支援事例';
+    var categoryName = getCategoryName(item) || '支援事例';
     var tagsHtml = '<div class="post-card-tags"><span class="post-tag">' + esc(categoryName) + '</span></div>';
 
     var consultationText = (item.consultation || '').replace(/<[^>]*>/g, '').trim();
