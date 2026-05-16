@@ -227,6 +227,16 @@
       }).join('');
     }
 
+    if (tabsEl) {
+      tabsEl.addEventListener('click', function (e) {
+        var btn = e.target.closest('.feed-tab');
+        if (!btn) return;
+        tabsEl.querySelectorAll('.feed-tab').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        renderFiltered(btn.dataset.category);
+      });
+    }
+
     renderFiltered('');
   }
 
