@@ -211,6 +211,35 @@
       return;
     }
 
+    // 記事に紐づくカテゴリを出現順で抽出（0件カテゴリは含まない）
+    var usedCategories = [];
+    allItems.forEach(function (item) {
+      var name = getCategoryName(item);
+      if (name && usedCategories.indexOf(name) === -1) {
+        usedCategories.push(name);
+      }
+    });
+
+    // タブを動的に再構築：「すべて」＋実在カテゴリのみ
+    if (tabsEl) {
+      tabsEl.innerHTML = '<button class="feed-tab is-active" data-category="">すべて</button>';
+      usedCategories.forEach(function (cat) {
+        var btn = document.createElement('button');
+        btn.className = 'feed-tab';
+        btn.dataset.category = cat;
+        btn.textContent = cat;
+        tabsEl.appendChild(btn);
+      });
+
+      tabsEl.addEventListener('click', function (e) {
+        var btn = e.target.closest('.feed-tab');
+        if (!btn) return;
+        tabsEl.querySelectorAll('.feed-tab').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        renderFiltered(btn.dataset.category);
+      });
+    }
+
     function renderFiltered(category) {
       var filtered = allItems.filter(function (item) {
         return matchesCategory(item, category);
@@ -225,16 +254,6 @@
       el.innerHTML = filtered.map(function (item) {
         return renderCard(item, 'blog', prefix, true);
       }).join('');
-    }
-
-    if (tabsEl) {
-      tabsEl.addEventListener('click', function (e) {
-        var btn = e.target.closest('.feed-tab');
-        if (!btn) return;
-        tabsEl.querySelectorAll('.feed-tab').forEach(function (b) { b.classList.remove('is-active'); });
-        btn.classList.add('is-active');
-        renderFiltered(btn.dataset.category);
-      });
     }
 
     renderFiltered('');
