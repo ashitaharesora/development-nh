@@ -24,6 +24,20 @@ async function ensureDir(dir) {
   await fs.mkdir(dir, { recursive: true });
 }
 
+/** eyecatch / thumbnail / image / mainImage フィールドから画像URLを取得 */
+function getEyecatchUrl(item) {
+  const field = item.eyecatch || item.thumbnail || item.image || item.mainImage || null;
+  if (!field) return "";
+  if (typeof field === "string") return field;
+  return field.url || "";
+}
+
+/** アイキャッチ画像HTML（未設定なら空文字） */
+function buildEyecatchHtml(url, alt) {
+  if (!url) return "";
+  return `<div class="article-eyecatch"><div class="container"><img src="${url}" alt="${alt}" loading="lazy"></div></div>`;
+}
+
 // ---- お知らせ詳細ページを生成 ----
 async function buildNews() {
   const data = await readJson("news.json");
@@ -38,12 +52,14 @@ async function buildNews() {
 
     const title = item.title || "";
     const date = item.publishedAt?.slice(0, 10) || "";
+    const eyecatchUrl = getEyecatchUrl(item);
 
     const html = applyTemplate(template, {
       seo_title: item.seoTitle || title,
       title,
       description: item.seoDescription || item.excerpt || title,
       date,
+      eyecatch_html: buildEyecatchHtml(eyecatchUrl, title),
       body_html: item.body || "<p>本文を追加してください。</p>",
     });
 
@@ -67,6 +83,7 @@ async function buildBlog() {
     const title = item.title || "";
     const date = item.publishedAt?.slice(0, 10) || "";
     const categoryName = item.category?.name || "";
+    const eyecatchUrl = getEyecatchUrl(item);
 
     const html = applyTemplate(template, {
       seo_title: item.seoTitle || title,
@@ -74,6 +91,7 @@ async function buildBlog() {
       description: item.seoDescription || item.excerpt || title,
       date,
       category_label: categoryName ? ` / ${categoryName}` : "",
+      eyecatch_html: buildEyecatchHtml(eyecatchUrl, title),
       body_html: item.body || "<p>本文を追加してください。</p>",
     });
 

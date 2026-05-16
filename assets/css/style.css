@@ -2691,14 +2691,15 @@ main {
   }
 }
 
-/* ===== 支援事例 詳細ページ ===== */
+/* ===== 記事詳細：アイキャッチ画像（お知らせ・コラム・支援事例 共通） ===== */
 
-/* アイキャッチ帯 */
+.article-eyecatch,
 .works-eyecatch {
   background: var(--bg-light, #f8f7f4);
   padding: 32px 0;
 }
 
+.article-eyecatch img,
 .works-eyecatch img {
   display: block;
   width: 100%;
@@ -2706,6 +2707,8 @@ main {
   object-fit: cover;
   border-radius: 4px;
 }
+
+/* ===== 支援事例 詳細ページ ===== */
 
 /* 各セクション（ご相談の経緯 / サポート内容 / 成果） */
 .works-detail-body {
@@ -2728,10 +2731,12 @@ main {
 }
 
 @media (max-width: 768px) {
+  .article-eyecatch,
   .works-eyecatch {
     padding: 20px 0;
   }
 
+  .article-eyecatch img,
   .works-eyecatch img {
     max-height: 260px;
   }
