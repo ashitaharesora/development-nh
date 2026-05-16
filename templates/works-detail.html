@@ -49,7 +49,8 @@
           <a href="/">ホーム</a> / <a href="/works/">支援事例</a> / <span>{{ title }}</span>
         </p>
         <h2>{{ title }}</h2>
-        <p class="meta"><time datetime="{{ date }}">{{ date }}</time>{{ category_label }}</p>
+        <p class="meta"><time datetime="{{ date }}">{{ date }}</time></p>
+        {{ category_tag_html }}
       </div>
     </section>
 
