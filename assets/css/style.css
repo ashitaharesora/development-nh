@@ -2633,6 +2633,35 @@ main {
   display: none;
 }
 
+@media (min-width: 901px) {
+  .home-page .posts-feed,
+  .home-page .posts-feed.works-feed {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .home-page .posts-feed .post-card {
+    height: 100%;
+  }
+
+  .home-page .posts-feed .post-card-body {
+    flex: 1;
+  }
+
+  .home-page .posts-feed .post-card-body time {
+    margin-top: auto;
+  }
+
+  .home-page .posts-feed .post-card-title {
+    min-height: calc(1.65em * 2);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+
 /* ===== トップページ：スマホ版カード高さ統一 =====
    同一フィード内でタイトル・タグ行数の違いによる
    カードの高さズレをなくす。

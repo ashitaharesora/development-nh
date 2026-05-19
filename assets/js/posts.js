@@ -118,13 +118,38 @@
     return res.json();
   }
 
+  var homeDesktopMedia = window.matchMedia ? window.matchMedia('(min-width: 901px)') : null;
+
+  function getFeedLimit(el, desktopFallback, mobileFallback) {
+    var desktopLimit = parseInt(el.dataset.limit || String(desktopFallback), 10);
+    var mobileLimit = parseInt(el.dataset.limitMobile || String(mobileFallback), 10);
+
+    if (isNaN(desktopLimit) || desktopLimit < 1) desktopLimit = desktopFallback;
+    if (isNaN(mobileLimit) || mobileLimit < 1) mobileLimit = mobileFallback;
+
+    return homeDesktopMedia && homeDesktopMedia.matches ? desktopLimit : mobileLimit;
+  }
+
+  function watchHomeFeedBreakpoint(callback) {
+    if (!homeDesktopMedia || !callback) return;
+
+    if (typeof homeDesktopMedia.addEventListener === 'function') {
+      homeDesktopMedia.addEventListener('change', callback);
+      return;
+    }
+
+    if (typeof homeDesktopMedia.addListener === 'function') {
+      homeDesktopMedia.addListener(callback);
+    }
+  }
+
   // ---- トップページ：お知らせ＋コラム 最新N件（タグあり） ----
   async function loadPostsFeed() {
     var el = document.getElementById('postsFeed');
     if (!el) return;
 
     var prefix = el.dataset.prefix || './';
-    var limit = parseInt(el.dataset.limit || '3', 10);
+    var limit = getFeedLimit(el, 3, 2);
     var items = [];
 
     await Promise.allSettled([
@@ -330,7 +355,7 @@
     if (!el) return;
 
     var prefix = el.dataset.prefix || './';
-    var limit = parseInt(el.dataset.limit || '2', 10);
+    var limit = getFeedLimit(el, 3, 2);
 
     try {
       var data = await fetchJson(prefix + 'assets/data/blogs.json');
@@ -365,7 +390,7 @@
     if (!el) return;
 
     var prefix = el.dataset.prefix || './';
-    var limit = parseInt(el.dataset.limit || '2', 10);
+    var limit = getFeedLimit(el, 3, 2);
 
     try {
       var data = await fetchJson(prefix + 'assets/data/news.json');
@@ -400,7 +425,7 @@
     if (!el) return;
 
     var prefix = el.dataset.prefix || './';
-    var limit = parseInt(el.dataset.limit || '2', 10);
+    var limit = getFeedLimit(el, 3, 2);
 
     try {
       var data = await fetchJson(prefix + 'assets/data/works.json');
@@ -436,5 +461,13 @@
     loadNewsList();
     loadColumnList();
     loadWorksList();
+
+    if (document.body.classList.contains('home-page')) {
+      watchHomeFeedBreakpoint(function () {
+        loadWorksFeed();
+        loadColumnFeed();
+        loadNewsFeed();
+      });
+    }
   });
 })();
