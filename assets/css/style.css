@@ -2792,3 +2792,74 @@ main {
     padding-left: 14px;
   }
 }
+
+/* ===== PC typography tuning ===== */
+@media (min-width: 769px) {
+  body {
+    font-size: 16px;
+  }
+
+  .nav-item,
+  .static-header-unified .nav-item,
+  .brand-name {
+    font-size: 14px;
+  }
+
+  .button,
+  a.button,
+  .nav-item.cta,
+  .nav-cta-group .nav-item.cta {
+    font-size: 14px;
+  }
+
+  .hero h1,
+  .home-page .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero p,
+  .home-page .hero p,
+  .section-lead,
+  .content p,
+  .content li,
+  .card p,
+  .blog-item p,
+  .faq-item p,
+  .works-detail-body p,
+  .list li,
+  .post-card-excerpt {
+    font-size: 16px;
+  }
+
+  .page-hero h1,
+  .page-hero h2 {
+    font-size: 30px;
+  }
+
+  .section h2,
+  .content h2 {
+    font-size: 24px;
+  }
+
+  .content h3,
+  .faq-item h3,
+  .works-section-title {
+    font-size: 20px;
+  }
+
+  .card h3,
+  .blog-item h3,
+  .post-card-title,
+  .cta-box h3,
+  .price-panel h3 {
+    font-size: 18px;
+  }
+
+  .meta,
+  .breadcrumbs,
+  .hero-kicker,
+  .brand-kicker,
+  .post-card time {
+    font-size: 13px;
+  }
+}
