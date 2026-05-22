@@ -2483,6 +2483,14 @@ main {
   .about-profile-card .profile-body {
     padding: 14px 12px;
   }
+
+  .about-profile-card {
+    order: -1;
+  }
+
+  .about-profile-table {
+    order: 0;
+  }
 }
 
 /* ===== フィルタータブ / カテゴリタブ ===== */
