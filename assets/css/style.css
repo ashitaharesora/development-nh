@@ -823,6 +823,13 @@ main {
   align-items: stretch;
 }
 
+@media (min-width: 901px) {
+  .about-profile-row {
+    grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+    gap: 32px;
+  }
+}
+
 .about-profile-table,
 .about-profile-card {
   height: 100%;
