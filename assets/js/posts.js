@@ -17,6 +17,11 @@
       .replace(/'/g, '&#39;');
   }
 
+  function normalizeCategoryName(name) {
+    if (!name) return '';
+    return name === '法人化' ? '創業支援' : name;
+  }
+
   function getImage(item) {
     var field = item.eyecatch || item.thumbnail || item.image || item.mainImage || null;
     if (!field) return null;
@@ -34,17 +39,17 @@
     // --- category フィールド（単一参照 or 文字列）---
     var cat = item.category;
     if (cat) {
-      if (typeof cat === 'string' && cat) return cat;
-      if (cat.name) return cat.name;
+      if (typeof cat === 'string' && cat) return normalizeCategoryName(cat);
+      if (cat.name) return normalizeCategoryName(cat.name);
       // content reference が配列で返ってくる場合
       if (Array.isArray(cat) && cat.length) {
-        return cat[0].name || cat[0] || null;
+        return normalizeCategoryName(cat[0].name || cat[0] || null);
       }
     }
     // --- tags フィールド（複数参照）---
     var tags = item.tags;
     if (tags && Array.isArray(tags) && tags.length) {
-      return tags[0].name || tags[0] || null;
+      return normalizeCategoryName(tags[0].name || tags[0] || null);
     }
     return null;
   }
@@ -56,20 +61,22 @@
   function matchesCategory(item, categoryName) {
     if (!categoryName) return true; // 「すべて」
 
+    var normalizedCategoryName = normalizeCategoryName(categoryName);
+
     // category フィールド（単一参照 or 文字列）
     var cat = item.category;
     if (cat) {
-      if (typeof cat === 'string' && cat === categoryName) return true;
-      if (cat.name === categoryName) return true;
+      if (typeof cat === 'string' && normalizeCategoryName(cat) === normalizedCategoryName) return true;
+      if (normalizeCategoryName(cat.name) === normalizedCategoryName) return true;
       if (Array.isArray(cat)) {
-        if (cat.some(function (c) { return (c.name || c) === categoryName; })) return true;
+        if (cat.some(function (c) { return normalizeCategoryName(c.name || c) === normalizedCategoryName; })) return true;
       }
     }
 
     // tags フィールド（複数参照）
     var tags = item.tags;
     if (tags && Array.isArray(tags)) {
-      if (tags.some(function (t) { return (t.name || t) === categoryName; })) return true;
+      if (tags.some(function (t) { return normalizeCategoryName(t.name || t) === normalizedCategoryName; })) return true;
     }
 
     return false;
