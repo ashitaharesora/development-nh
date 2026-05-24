@@ -612,16 +612,6 @@ main {
   color: var(--muted)
 }
 
-.mini-logo {
-  width: 92px;
-  margin: 0 0 18px
-}
-
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
 
 .profile-body .list {
   margin: 0;
@@ -632,19 +622,6 @@ main {
   margin: 0;
 }
 
-.profile-header .mini-logo {
-  width: 52px;
-  margin: 0;
-  flex-shrink: 0;
-}
-
-.profile-header .profile-name {
-  margin: 0 0 2px;
-}
-
-.profile-header .profile-role {
-  margin: 0;
-}
 
 .home-page .hero .container {
   padding-top: 190px;
@@ -1102,11 +1079,6 @@ main {
   line-height: 1.7;
 }
 
-.price-note {
-  margin: 14px 0 0;
-  font-size: 14px;
-  color: var(--muted);
-}
 
 /* ===== シンプル料金リスト（税理士・社労士ページ） ===== */
 .price-dl {
@@ -1181,11 +1153,6 @@ main {
   color: var(--text);
 }
 
-/* トップページ：代表プロフィール → お知らせ・記事 を縦並びにする */
-.home-page .split {
-  grid-template-columns: 1fr !important;
-  gap: 40px;
-}
 
 /* 主なサービスのカード高さを揃える */
 .home-page .section .grid.three {
@@ -1378,12 +1345,6 @@ main {
 }
 
 /* ===== トップ：代表プロフィールの写真を大きくして右側へ ===== */
-.home-page .profile-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  align-items: stretch;
-  overflow: hidden;
-}
 
 .home-page .profile-body {
   order: 1;
@@ -1402,9 +1363,6 @@ main {
 
 /* 画面が少し狭い時は写真を少しだけ縮める */
 @media (max-width: 1200px) {
-  .home-page .profile-card {
-    grid-template-columns: minmax(0, 1fr) 280px;
-  }
 
   .home-page .profile-photo {
     min-height: 280px;
@@ -1427,9 +1385,6 @@ main {
     margin-bottom: 12px;
   }
 
-  .home-page .profile-card {
-    grid-template-columns: 1fr;
-  }
 
   .home-page .profile-body {
     order: 2;
