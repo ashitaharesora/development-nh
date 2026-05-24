@@ -2001,19 +2001,20 @@ main {
 
 .compact-profile-card {
   display: grid;
-  grid-template-columns: 224px 1fr;
+  grid-template-columns: minmax(280px, 320px) minmax(0, 1fr);
   gap: 24px;
-  align-items: stretch;
+  align-items: center;
   padding: 0;
   overflow: hidden;
 }
 
 .compact-profile-card .profile-photo {
   width: 100%;
-  height: 100%;
-  min-height: 224px;
+  max-width: 320px;
+  height: auto;
   object-fit: cover;
-  aspect-ratio: auto;
+  aspect-ratio: 5 / 4;
+  justify-self: center;
 }
 
 .compact-profile-card .profile-body {
@@ -2033,11 +2034,16 @@ main {
 @media (max-width: 900px) {
   .compact-profile-card {
     grid-template-columns: 1fr;
+    align-items: stretch;
   }
 
   .compact-profile-card .profile-photo {
+    width: 100%;
+    max-width: none;
+    height: auto;
     min-height: auto;
     aspect-ratio: 5 / 4;
+    justify-self: stretch;
   }
 
   .compact-profile-card .profile-body {
