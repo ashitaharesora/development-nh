@@ -2770,7 +2770,7 @@ main {
 }
 
 .works-section {
-  border-left: 3px solid var(--text);
+  border-left: 1px solid var(--text);
   padding-left: 20px;
 }
 
