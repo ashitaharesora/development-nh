@@ -347,13 +347,7 @@ main {
 }
 
 .access-desktop-break {
-  display: none;
-}
-
-@media (min-width: 901px) {
-  .access-desktop-break {
-    display: inline;
-  }
+  display: inline;
 }
 
 .list {
