@@ -350,6 +350,16 @@ main {
   display: inline;
 }
 
+.access-mobile-break {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .access-mobile-break {
+    display: inline;
+  }
+}
+
 .list {
   display: grid;
   gap: 12px;
