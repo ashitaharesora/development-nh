@@ -2791,18 +2791,9 @@ main {
 .works-eyecatch img {
   display: block;
   width: 100%;
-  border-radius: 4px;
-}
-
-.article-eyecatch img {
   max-height: 420px;
   object-fit: cover;
-}
-
-.works-eyecatch img {
-  height: auto;
-  max-height: none;
-  object-fit: contain;
+  border-radius: 4px;
 }
 
 /* ===== 支援事例 詳細ページ ===== */
