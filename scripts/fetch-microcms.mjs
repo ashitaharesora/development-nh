@@ -4,7 +4,7 @@ import path from "node:path";
 const SERVICE_ID = process.env.MICROCMS_SERVICE_ID;
 const API_KEY = process.env.MICROCMS_API_KEY;
 const ENDPOINT_NEWS = process.env.MICROCMS_ENDPOINT_NEWS || "news";
-const ENDPOINT_BLOGS = process.env.MICROCMS_ENDPOINT_BLOGS || "blog";
+const ENDPOINT_BLOGS = process.env.MICROCMS_ENDPOINT_BLOGS || "column";
 const ENDPOINT_CATEGORIES = process.env.MICROCMS_ENDPOINT_CATEGORIES || "";
 
 if (!SERVICE_ID || !API_KEY) {
@@ -34,7 +34,7 @@ console.log(`news (${ENDPOINT_NEWS}): ${newsData.contents?.length ?? 0} 件`);
 
 // ブログ
 const blogData = await fetchEndpoint(ENDPOINT_BLOGS);
-console.log(`blog (${ENDPOINT_BLOGS}): ${blogData.contents?.length ?? 0} 件`);
+console.log(`column (${ENDPOINT_BLOGS}): ${blogData.contents?.length ?? 0} 件`);
 
 // カテゴリ（設定されている場合のみ）
 let categoryData = { contents: [] };

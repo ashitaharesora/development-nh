@@ -51,7 +51,7 @@ jobs:
           echo "MICROCMS_SERVICE_DOMAIN: $MICROCMS_SERVICE_DOMAIN"
           echo "MICROCMS_API_KEY: [set, length=$(echo -n "$MICROCMS_API_KEY" | wc -c | tr -d ' ')]"
           echo "ENDPOINT_NEWS: ${MICROCMS_ENDPOINT_NEWS:-news}"
-          echo "ENDPOINT_BLOGS: ${MICROCMS_ENDPOINT_BLOGS:-blog}"
+          echo "ENDPOINT_BLOGS: ${MICROCMS_ENDPOINT_BLOGS:-column}"
           echo "ENDPOINT_CATEGORIES: ${MICROCMS_ENDPOINT_CATEGORIES:-(未設定)}"
 
           npm ci || npm install
