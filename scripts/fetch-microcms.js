@@ -5,7 +5,7 @@
  *   MICROCMS_SERVICE_DOMAIN   例: yourservice  (yourservice.microcms.io の yourservice 部分)
  *   MICROCMS_API_KEY          GET 権限のみのAPIキー（ログには出力しない）
  *   MICROCMS_ENDPOINT_NEWS    お知らせのエンドポイント名
- *   MICROCMS_ENDPOINT_BLOGS   ブログのエンドポイント名
+ *   MICROCMS_ENDPOINT_BLOGS   コラムのエンドポイント名
  *   MICROCMS_ENDPOINT_WORKS   支援事例のエンドポイント名
  *   MICROCMS_ENDPOINT_CATEGORIES  カテゴリのエンドポイント名（省略可）
  */
@@ -16,7 +16,7 @@ import path from "node:path";
 const SERVICE_DOMAIN = process.env.MICROCMS_SERVICE_DOMAIN;
 const API_KEY = process.env.MICROCMS_API_KEY;
 const ENDPOINT_NEWS = process.env.MICROCMS_ENDPOINT_NEWS || "news";
-const ENDPOINT_BLOGS = process.env.MICROCMS_ENDPOINT_BLOGS || "blog";
+const ENDPOINT_BLOGS = process.env.MICROCMS_ENDPOINT_BLOGS || "column";
 const ENDPOINT_WORKS = process.env.MICROCMS_ENDPOINT_WORKS || "works";
 const ENDPOINT_CATEGORIES = process.env.MICROCMS_ENDPOINT_CATEGORIES || "";
 
@@ -59,14 +59,14 @@ await fs.writeFile(
 );
 console.log(`[done] news.json: ${newsData.contents?.length ?? 0} 件`);
 
-// --- blogs ---
+// --- column ---
 const blogsData = await fetchEndpoint(ENDPOINT_BLOGS);
 await fs.writeFile(
   path.join(OUT_DIR, "blogs.json"),
   JSON.stringify(blogsData, null, 2),
   "utf-8"
 );
-console.log(`[done] blogs.json: ${blogsData.contents?.length ?? 0} 件`);
+console.log(`[done] blogs.json (column): ${blogsData.contents?.length ?? 0} 件`);
 
 // --- works ---
 const worksData = await fetchEndpoint(ENDPOINT_WORKS);
