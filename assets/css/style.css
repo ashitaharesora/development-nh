@@ -2755,9 +2755,18 @@ main {
 .works-eyecatch img {
   display: block;
   width: 100%;
+  border-radius: 4px;
+}
+
+.article-eyecatch img {
   max-height: 420px;
   object-fit: cover;
-  border-radius: 4px;
+}
+
+.works-eyecatch img {
+  height: auto;
+  max-height: none;
+  object-fit: contain;
 }
 
 /* ===== 支援事例 詳細ページ ===== */
