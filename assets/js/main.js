@@ -1,3 +1,31 @@
+(() => {
+  const PROD_ORIGIN = 'https://ashitaharesora.jp';
+  const LEGACY_HOST = 'ashitaharesora.github.io';
+  const LEGACY_PREFIXES = ['/ashita-haresora', '/development-nh', '/development'];
+
+  if (window.location.hostname !== LEGACY_HOST) return;
+
+  let nextPath = window.location.pathname || '/';
+
+  for (const prefix of LEGACY_PREFIXES) {
+    if (nextPath === prefix) {
+      nextPath = '/';
+      break;
+    }
+
+    if (nextPath.startsWith(prefix + '/')) {
+      nextPath = nextPath.slice(prefix.length) || '/';
+      break;
+    }
+  }
+
+  const target = PROD_ORIGIN + nextPath + window.location.search + window.location.hash;
+
+  if (window.location.href !== target) {
+    window.location.replace(target);
+  }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   const navToggle = document.querySelector('.home-page .nav-toggle');
   const nav = document.querySelector('.home-page .nav');

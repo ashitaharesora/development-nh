@@ -4,6 +4,11 @@ import path from "node:path";
 const root = path.resolve(".");
 const dataDir = path.join(root, "assets/data");
 const templatesDir = path.join(root, "templates");
+const SITE_URL = "https://ashitaharesora.jp";
+
+function buildPageUrl(pathname) {
+  return new URL(pathname, `${SITE_URL}/`).toString();
+}
 
 async function readJson(file) {
   const text = await fs.readFile(path.join(dataDir, file), "utf-8");
@@ -54,11 +59,14 @@ async function buildNews() {
     const date = item.publishedAt?.slice(0, 10) || "";
     const eyecatchUrl = getEyecatchUrl(item);
 
+    const pageUrl = buildPageUrl(`/news/${slug}/`);
+
     const html = applyTemplate(template, {
       seo_title: item.seoTitle || title,
       title,
       description: item.seoDescription || item.excerpt || title,
       date,
+      page_url: pageUrl,
       eyecatch_html: buildEyecatchHtml(eyecatchUrl, title),
       body_html: item.body || "<p>本文を追加してください。</p>",
     });
@@ -85,11 +93,14 @@ async function buildBlog() {
     const categoryName = item.category?.name || "";
     const eyecatchUrl = getEyecatchUrl(item);
 
+    const pageUrl = buildPageUrl(`/column/${slug}/`);
+
     const html = applyTemplate(template, {
       seo_title: item.seoTitle || title,
       title,
       description: item.seoDescription || item.excerpt || title,
       date,
+      page_url: pageUrl,
       category_label: categoryName ? ` / ${categoryName}` : "",
       eyecatch_html: buildEyecatchHtml(eyecatchUrl, title),
       body_html: item.body || "<p>本文を追加してください。</p>",
@@ -143,11 +154,14 @@ async function buildWorks() {
     const consultationText = (item.consultation || "").replace(/<[^>]*>/g, "").trim();
     const description = item.seoDescription || consultationText.slice(0, 120) || title;
 
+    const pageUrl = buildPageUrl(`/works/${slug}/`);
+
     const html = applyTemplate(template, {
       seo_title: item.seoTitle || title,
       title,
       description,
       date,
+      page_url: pageUrl,
       category_tag_html: categoryTagHtml,
       eyecatch_html: eyecatchHtml,
       consultation_html: sectionHtml("ご相談の経緯", item.consultation),
