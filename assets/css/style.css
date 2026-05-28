@@ -2662,6 +2662,22 @@ main {
   margin-top: auto;
 }
 
+.news-page #newsList {
+  align-items: stretch;
+}
+
+.news-page #newsList .post-card {
+  height: 100%;
+}
+
+.news-page #newsList .post-card-body {
+  flex: 1;
+}
+
+.news-page #newsList .post-card-body time {
+  margin-top: auto;
+}
+
 @media (min-width: 901px) {
   .home-page .posts-feed,
   .home-page .posts-feed.works-feed {
@@ -2740,11 +2756,11 @@ main {
   }
 }
 
-/* スマホ：2列（お知らせ一覧のみ1列） */
+/* スマホ：お知らせ一覧も2列表示を維持 */
 @media (max-width: 768px) {
-  #newsList.posts-feed {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  .news-page #newsList.posts-feed {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
@@ -2754,9 +2770,9 @@ main {
     gap: 10px;
   }
 
-  #newsList.posts-feed {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  .news-page #newsList.posts-feed {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
   .post-card-body {
