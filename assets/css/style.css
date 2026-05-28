@@ -819,6 +819,16 @@ main {
     grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
     gap: 32px;
   }
+
+  .about-profile-card {
+    display: flex;
+  }
+
+  .about-profile-card .profile-photo {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
 }
 
 .about-profile-table,
