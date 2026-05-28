@@ -1986,12 +1986,12 @@ main {
   }
 
   .compact-profile-card {
-    grid-template-columns: minmax(360px, 420px) minmax(0, 1fr);
+    grid-template-columns: minmax(380px, 450px) minmax(0, 1fr);
     gap: 36px;
   }
 
   .compact-profile-card .profile-photo {
-    max-width: 420px;
+    max-width: 450px;
   }
 
   .compact-profile-card .profile-body {
