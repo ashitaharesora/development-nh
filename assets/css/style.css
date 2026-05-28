@@ -816,7 +816,7 @@ main {
 
 @media (min-width: 901px) {
   .about-profile-row {
-    grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     gap: 32px;
   }
 
@@ -1996,12 +1996,12 @@ main {
   }
 
   .compact-profile-card {
-    grid-template-columns: minmax(380px, 450px) minmax(0, 1fr);
+    grid-template-columns: minmax(400px, 480px) minmax(0, 1fr);
     gap: 36px;
   }
 
   .compact-profile-card .profile-photo {
-    max-width: 450px;
+    max-width: 480px;
   }
 
   .compact-profile-card .profile-body {
