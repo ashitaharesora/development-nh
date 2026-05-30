@@ -2000,6 +2000,10 @@ main {
     gap: 36px;
   }
 
+  .home-profile-section .compact-profile-card {
+    gap: 0;
+  }
+
   .compact-profile-card .profile-photo {
     max-width: 480px;
   }
