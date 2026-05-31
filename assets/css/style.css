@@ -815,6 +815,11 @@ main {
 }
 
 @media (min-width: 901px) {
+  .about-section .about-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
   .about-profile-row {
     grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
     gap: 36px;
@@ -823,9 +828,9 @@ main {
   .about-profile-card {
     display: flex;
     justify-self: end;
-    width: 108%;
-    max-width: 720px;
-    transform: translateX(18px);
+    width: 100%;
+    max-width: none;
+    transform: none;
   }
 
   .about-profile-card .profile-photo {
