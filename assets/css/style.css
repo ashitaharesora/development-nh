@@ -816,12 +816,16 @@ main {
 
 @media (min-width: 901px) {
   .about-profile-row {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: 32px;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+    gap: 36px;
   }
 
   .about-profile-card {
     display: flex;
+    justify-self: end;
+    width: 108%;
+    max-width: 720px;
+    transform: translateX(18px);
   }
 
   .about-profile-card .profile-photo {
