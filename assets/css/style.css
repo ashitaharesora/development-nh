@@ -821,8 +821,11 @@ main {
   }
 
   .about-profile-row {
-    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-    gap: 36px;
+    width: min(1120px, calc(100vw - 40px));
+    margin-left: 50%;
+    transform: translateX(-50%);
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    gap: 32px;
   }
 
   .about-profile-card {
@@ -837,6 +840,19 @@ main {
     width: 100%;
     height: 100%;
     aspect-ratio: auto;
+  }
+
+  .about-profile-table .table th {
+    width: 7em;
+  }
+
+  .about-profile-table .career-list {
+    grid-template-columns: 4.5em max-content;
+  }
+
+  .about-profile-table .career-list dt,
+  .about-profile-table .career-list dd {
+    white-space: nowrap;
   }
 }
 
