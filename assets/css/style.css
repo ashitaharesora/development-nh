@@ -846,6 +846,10 @@ main {
     width: 7em;
   }
 
+  .about-profile-table .table {
+    margin: 0;
+  }
+
   .about-profile-table .career-list {
     grid-template-columns: 4.5em max-content;
   }
