@@ -2010,8 +2010,8 @@ main {
   }
 
   .home-profile-section .compact-profile-card {
-    column-gap: 32px;
-    padding-left: 48px;
+    column-gap: 52px;
+    padding-left: 64px;
   }
 
   .compact-profile-card .profile-photo {
