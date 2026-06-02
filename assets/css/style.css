@@ -2010,15 +2010,21 @@ main {
   }
 
   .home-profile-section .compact-profile-card {
-    gap: 0;
+    column-gap: 32px;
   }
 
   .compact-profile-card .profile-photo {
     max-width: 480px;
   }
 
+  .home-profile-section .compact-profile-card .profile-photo {
+    order: 1;
+    justify-self: end;
+  }
+
   .home-profile-section .compact-profile-card .profile-body {
-    padding: 64px 0 32px 36px;
+    order: 2;
+    padding: 64px 24px 32px 0;
   }
 
   .home-profile-section .compact-profile-card .profile-name {
