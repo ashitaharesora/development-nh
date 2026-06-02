@@ -2018,7 +2018,28 @@ main {
   }
 
   .home-profile-section .compact-profile-card .profile-body {
-    padding: 64px 0px 32px 56px;
+    padding: 64px 0 32px 36px;
+  }
+
+  .home-profile-section .compact-profile-card .profile-name {
+    margin-bottom: 4px;
+  }
+
+  .home-profile-section .compact-profile-card .profile-role {
+    margin-bottom: 10px;
+  }
+
+  .home-profile-section .compact-profile-card .meta {
+    margin-bottom: 12px;
+  }
+
+  .home-profile-section .compact-profile-card .compact-strength-list {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .home-profile-section .compact-profile-card .compact-strength-list li {
+    padding: 10px 14px;
   }
 }
 
