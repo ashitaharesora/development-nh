@@ -821,7 +821,7 @@ main {
   }
 
   .about-profile-row {
-    width: min(940px, calc(100vw - 40px));
+    width: min(880px, calc(100vw - 40px));
     margin-left: 50%;
     transform: translateX(-50%);
     grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
