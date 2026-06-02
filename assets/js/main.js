@@ -1,22 +1,4 @@
 (() => {
-  const CLARITY_ID = 'x0om9ckns4';
-  const PROD_HOSTS = ['ashitaharesora.jp', 'www.ashitaharesora.jp'];
-
-  if (!PROD_HOSTS.includes(window.location.hostname)) return;
-  if (document.getElementById('ms-clarity-script')) return;
-
-  window.clarity = window.clarity || function () {
-    (window.clarity.q = window.clarity.q || []).push(arguments);
-  };
-
-  const script = document.createElement('script');
-  script.id = 'ms-clarity-script';
-  script.async = true;
-  script.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
-  document.head.appendChild(script);
-})();
-
-(() => {
   const PROD_ORIGIN = 'https://ashitaharesora.jp';
   const LEGACY_HOST = 'ashitaharesora.github.io';
   const LEGACY_PREFIXES = ['/ashita-haresora', '/development-nh', '/development'];
