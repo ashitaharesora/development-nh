@@ -2025,7 +2025,7 @@ main {
 
   .home-profile-section .compact-profile-card .profile-body {
     order: 2;
-    padding: 64px 24px 32px 24px;
+    padding: 64px 24px 32px 64px;
   }
 
   .home-profile-section .compact-profile-card .profile-name {
